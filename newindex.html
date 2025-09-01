@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Inside your <head> -->
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;600;800&display=swap" rel="stylesheet">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Achieve International</title>
   <link rel="stylesheet" href="newstyles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Navigation -->
@@ -30,81 +31,90 @@
     </div>
     <div class="footer-text">ACHIEVE INTERNATIONAL</div>
   </section>
+
+  <!-- Business Section -->
+  <section class="business-section">
+    <h2>BUSINESS OVERVIEW</h2>
+
+    <!-- Card 1 -->
+    <div class="business-card">
+      <img src="youth-hockey.jpg" alt="Youth Hockey League & Camp">
+      <div class="card-content">
+        <h3>YOUTH HOCKEY LEAGUE & CAMP</h3>
+        <p>
+          We open our own hockey league, which provides guaranteed, consistent games over a period of time and Playoffs.
+          We also host a camp and bring Coaches with extensive playing experience in the NHL, Major Junior, and Jr. A.
+        </p>
+        <a href="#" class="btn-secondary">more details</a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="business-card reverse">
+      <img src="high-caliber.jpg" alt="High Caliber Hockey Tournament">
+      <div class="card-content">
+        <h3>HIGH CALIBER HOCKEY TOURNAMENT</h3>
+        <p>
+          Providing the opportunity to participate in the most prestigious tournaments all around the world like Quebec
+          Peewee (U13), Intl Brick Tryout (U9-U10), Peewee Bernières (U13), Laval Tournament (U15), European Tournaments,
+          Boston Summer Tournaments.
+        </p>
+        <a href="#" class="btn-secondary">more details</a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="business-card">
+      <img src="youth-hockey.jpg" alt="Ice Hockey Academy Tour">
+      <div class="card-content">
+        <h3>ICE HOCKEY ACADEMY TOUR</h3>
+        <p>
+          Visit North American Hockey Academies & experience the life of a North American student-athlete by spending a day in each academy, joining current athletes on the ice and in the classroom. (Spring & Summer)
+        </p>
+        <a href="#" class="btn-secondary">more details</a>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="business-card reverse">
+      <img src="high-caliber.jpg" alt="Hockey Coach Internship">
+      <div class="card-content">
+        <h3>HOCKEY COACH INTERNSHIP</h3>
+        <p>
+          Provides internship opportunities to many young hockey coaches from Major Junior/Junior A/College & Provides Asian students elite North American coaching that open doors to take that next step in their career and play in any major North American Hockey Leagues.
+        </p>
+        <a href="#" class="btn-secondary">more details</a>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="business-card">
+      <img src="youth-hockey.jpg" alt="Student Hockey Athlete Exchange">
+      <div class="card-content">
+        <h3>STUDENT HOCKEY ATHLETE EXCHANGE PROGRAM</h3>
+        <p>
+          An exchange program connecting Asian students with Canadian hockey academies, offering one academic semester and intensive North American hockey training.
+        </p>
+        <a href="#" class="btn-secondary">more details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script -->
+  <script>
+    const cards = document.querySelectorAll('.business-card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        } else {
+          entry.target.classList.remove('show'); // remove when out of view
+        }
+      });
+    }, { threshold: 0.2 }); // triggers when 20% of card is visible
+
+    cards.forEach(card => observer.observe(card));
+  </script>
 </body>
 </html>
-
-
-
-
-
-<!-- Business Section -->
-<section class="business-section">
-  <h2>BUSINESS OVERVIEW</h2>
-
-  <!-- Card 1 -->
-  <div class="business-card">
-    <img src="youth-hockey.jpg" alt="Youth Hockey League & Camp">
-    <div class="card-content">
-      <h3>YOUTH HOCKEY LEAGUE & CAMP</h3>
-      <p>
-        We open our own hockey league, which provides guaranteed, consistent games over a period of time and Playoffs.
-        We also host a camp and bring Coaches with extensive playing experience in the NHL, Major Junior, and Jr. A.
-      </p>
-      <a href="#" class="btn-secondary">more details</a>
-    </div>
-  </div>
-
-  <!-- Card 2 -->
-  <div class="business-card reverse">
-    <img src="high-caliber.jpg" alt="High Caliber Hockey Tournament">
-    <div class="card-content">
-      <h3>HIGH CALIBER HOCKEY TOURNAMENT</h3>
-      <p>
-        Providing the opportunity to participate in the most prestigious tournaments all around the world like Quebec
-        Peewee (U13), Intl Brick Tryout (U9-U10), Peewee Bernières (U13), Laval Tournament (U15), European Tournaments,
-        Boston Summer Tournaments.
-      </p>
-      <a href="#" class="btn-secondary">more details</a>
-    </div>
-  </div>
-
-  <!-- Card 3 -->
-  <div class="business-card">
-    <img src="youth-hockey.jpg" alt="Ice Hockey Academy Tour">
-    <div class="card-content">
-      <h3>ICE HOCKEY ACADEMY TOUR</h3>
-      <p>
-        Visit North American Hockey Academies & experience the life of a North American student-athlete by spending a day in each academy, joining current athletes on the ice and in the classroom. (Spring & Summer)
-      </p>
-      <a href="#" class="btn-secondary">more details</a>
-    </div>
-  </div>
-
-  <!-- Card 4 -->
-  <div class="business-card reverse">
-    <img src="high-caliber.jpg" alt="Hockey Coach Internship">
-    <div class="card-content">
-      <h3>HOCKEY COACH INTERNSHIP</h3>
-      <p>
-        Provides internship opportunities to many young hockey coaches from Major Junior/Junior A/College & Provides Asian students elite North American coaching that open doors to take that next step in their career and play in any major North American Hockey Leagues.
-      </p>
-      <a href="#" class="btn-secondary">more details</a>
-    </div>
-  </div>
-
-  <!-- Card 5 -->
-  <div class="business-card">
-    <img src="youth-hockey.jpg" alt="Student Hockey Athlete Exchange">
-    <div class="card-content">
-      <h3>STUDENT HOCKEY ATHLETE EXCHANGE PROGRAM</h3>
-      <p>
-        An exchange program connecting Asian students with Canadian hockey academies, offering one academic semester and intensive North American hockey training.
-      </p>
-      <a href="#" class="btn-secondary">more details</a>
-    </div>
-  </div>
-</section>
-
-
-
-
