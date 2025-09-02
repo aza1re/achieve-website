@@ -80,8 +80,8 @@
 .story-left h2 {
   font-size: 5rem;
   font-weight: 800;
-  letter-spacing: 5px;
-  margin-bottom: 20px;
+  letter-spacing: 15px;
+  margin-bottom: 30px;
   text-transform: uppercase;
 }
 
@@ -104,6 +104,7 @@
   font-size: 1.4rem;
   line-height: 1.6;
   margin-bottom: 1rem;
+  letter-spacing: 3px;
   font-family: 'Krub', sans-serif; /* Ensure same font family */
 }
 
@@ -120,7 +121,7 @@
   letter-spacing: 4px;
   line-height: 1.6;
   margin-bottom: 30px;
-  font-weight: 700; /* Bolder weight than the default 400 of paragraphs */
+  font-weight: 600; /* Bolder weight than the default 400 of paragraphs */
   font-family: 'Krub', sans-serif; /* Match the font family */
 }
 
@@ -135,7 +136,7 @@
 
 /* Story Divider Line */
 .story-divider {
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   border: 0;
   height: 1px; /* Thin line */
   background-color: white; /* White color to match the text */
@@ -161,47 +162,138 @@ body {
 
 /* Existing styles remain unchanged */
 
-/* New Section for "What We Do" */
+/* What We Do Section */
+/* What We Do Section */
 .what-we-do {
-  background-color: #000;
-  padding: 100px 20px;
-  text-align: center;
+  background-color: #000; /* black background */
+  padding: 100px 40px;
   color: white;
 }
 
 .what-we-do h2 {
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  letter-spacing: 4px;
-  margin-bottom: 2rem;
   text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.what-we-do .divider {
+  border: 0;
+  height: 1px;
+  background-color: #777;
+  margin: 15px auto 50px auto;
+  width: 200px;
+}
+
+.what-we-do .content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px; /* spacing between rows */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.what-we-do .row {
+  display: flex;
+  align-items: flex-start; /* align items at top */
+  gap: 40px;
+}
+
+.left-text {
+  flex: 1;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  text-align: right; /* keep this right-aligned */
+}
+
+.left-text .big-text {
+  font-size: 50px;
+  margin: 0; /* tighter */
+}
+
+.right-text {
+  flex: 2;
+  text-align: left; /* Ensure left alignment */
 }
 
 .what-we-do .guide-text {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 300;
-  letter-spacing: 2px;
-  margin-bottom: 2rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left; /* Explicitly left-align */
 }
 
 .what-we-do ul {
   list-style: none;
   padding: 0;
-  max-width: 600px;
-  margin: 0 auto;
+  text-align: left; /* Ensure left alignment */
 }
 
 .what-we-do ul li {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #d3a8b1;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 25px;
+  text-align: left; /* Ensure left alignment */
 }
 
-.what-we-do .highlight {
-  font-size: 5rem;
-  font-weight: 800;
-  letter-spacing: 10px;
-  margin: 2rem 0;
-  text-transform: uppercase;
-  color: white;
+.what-we-do ul li::before {
+  content: "•";
+  color: #a64c57; /* maroon circle like in screenshot */
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: -3px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .what-we-do .row {
+    flex-direction: column;
+  }
+  
+  .left-text {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .right-text {
+    text-align: center;
+  }
+  
+  .what-we-do ul li {
+    text-align: left;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .what-we-do .content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .left-text {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .left-text .big-text {
+    margin: 30px 0;
+  }
+
+  .right-text {
+    text-align: center;
+  }
+
+  .what-we-do ul li {
+    text-align: left;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
