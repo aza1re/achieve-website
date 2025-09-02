@@ -1,0 +1,132 @@
+/* tnm.css */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: url("../images/background.png"); /* Ensure this path is correct */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-color: #000; /* Fallback color (black) if image fails */
+}
+
+/* Rest of your CSS remains unchanged */
+.container {
+  margin: 0 auto;
+  max-width: 900px;
+  padding-bottom: 2rem;
+  color: #000;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  background: #fff; /* tabs bar is white */
+  border-bottom: 1px solid #ddd;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.tabs button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  background: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: #7a3942;
+  transition: background 0.3s, color 0.3s;
+}
+
+.tabs button.active {
+  background: #7a3942;
+  color: #fff;
+}
+
+/* Tournament cards */
+.tournament {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.tournament img {
+  width: 90px;
+  margin-right: 1rem;
+}
+
+.tournament-details {
+  flex: 1;
+}
+
+.tournament-details h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.tournament-details p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.2rem;
+}
+
+.register-btn {
+  background: #7a3942;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.register-btn:hover {
+  background: #5a2932;
+}
+
+/* Hide non-active tab contents */
+.tab-content {
+  display: none;
+  background: #fff; /* content is white */
+  padding: 1.5rem;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.logo a {
+  text-decoration: none; /* Removes the underline */
+  color: #fff; /* Matches the white color of other text */
+}

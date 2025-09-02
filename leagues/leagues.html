@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leagues</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../tournaments/tnm.css">
+    <link rel="stylesheet" href="../mainpage/newstyles.css">
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+      <div class="logo"><a href="../mainpage/newindex.html">ACHIEVE</a></div>
+    <ul class="nav-links">
+
+      <li class="dropdown">
+        <a href="#">Business ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../tournaments/tnm.html">Tournaments</a></li>
+          <li><a href="../leagues/leagues.html">Leagues</a></li>
+          <li><a href="../camp/camps.html">Camps</a></li>
+          <li><a href="../coaches/coaches.html">Coaches</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="../about/about.html">About ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../abouts/abouts.html">About Us</a></li>
+          <li><a href="#">Location</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">App ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Tournament</a></li>
+          <li><a href="#">Camps</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="header">
+    <h1>Leagues</h1>
+  </div>
+
+  <div class="container">
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="active" data-tab="u9">U9-10</button>
+      <button data-tab="u11">U11</button>
+      <button data-tab="u12">U12</button>
+      <button data-tab="u13">U13</button>
+      <button data-tab="u15">U15</button>
+    </div>
+
+    <!-- Tab Contents -->
+    <div id="u9" class="tab-content active">
+      <div class="tournament">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/1e/Quebec_Peewee_Tournament_logo.png" alt="Tournament Logo">
+        <div class="tournament-details">
+          <h2>2026 U9 Quebec Leagues</h2>
+          <p>Quebec, Canada</p>
+          <p>13–17 December 2026</p>
+        </div>
+        <button class="register-btn">register</button>
+      </div>
+    </div>
+
+    <div id="u11" class="tab-content">
+      <div class="tournament">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/1e/Quebec_Peewee_Tournament_logo.png" alt="Tournament Logo">
+        <div class="tournament-details">
+          <h2>2026 U11 Quebec Leagues</h2>
+          <p>Quebec, Canada</p>
+          <p>13–17 December 2026</p>
+        </div>
+        <button class="register-btn">register</button>
+      </div>
+    </div>
+
+    <div id="u12" class="tab-content">
+      <div class="tournament">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/1e/Quebec_Peewee_Tournament_logo.png" alt="Tournament Logo">
+        <div class="tournament-details">
+          <h2>2026 U12 Quebec Leagues</h2>
+          <p>Quebec, Canada</p>
+          <p>13–17 December 2026</p>
+        </div>
+        <button class="register-btn">register</button>
+      </div>
+    </div>
+
+    <div id="u13" class="tab-content">
+      <div class="tournament">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/1e/Quebec_Peewee_Tournament_logo.png" alt="Tournament Logo">
+        <div class="tournament-details">
+          <h2>2026 U13 Quebec Leagues</h2>
+          <p>Quebec, Canada</p>
+          <p>13–17 December 2026</p>
+        </div>
+        <button class="register-btn">register</button>
+      </div>
+    </div>
+
+    <div id="u15" class="tab-content">
+      <div class="tournament">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/1e/Quebec_Peewee_Tournament_logo.png" alt="Tournament Logo">
+        <div class="tournament-details">
+          <h2>2026 U15 Quebec Leauges</h2>
+          <p>Quebec, Canada</p>
+          <p>13–17 December 2026</p>
+        </div>
+        <button class="register-btn">register</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for tab switching -->
+  <script>
+    const tabs = document.querySelectorAll(".tabs button");
+    const contents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        // remove active from all
+        tabs.forEach(t => t.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+
+        // add active to clicked tab + its content
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.tab).classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>

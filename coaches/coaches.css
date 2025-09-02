@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Krub', sans-serif;
+  background-color: #4a1c26;
+  color: #fff;
+  line-height: 1.6;
+}
+
+.logo a {
+  text-decoration: none; /* Removes the underline */
+  color: #fff; /* Matches the white color */
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  margin-top: 80px; /* Adjust to avoid overlap with navbar */
+}
+
+
+
+.header {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.coach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.coach-card {
+  background-color: #fff;
+  color: #000;
+  padding: 40px 20px; /* Increased vertical padding */
+  border-radius: 10px;
+  text-align: center;
+  height: 400px; /* Fixed height for uniform and longer cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distributes space evenly */
+}
+
+.coach-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.coach-card h2 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  text-transform: uppercase;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.coach-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-family: 'Space Mono', monospace;
+  flex-grow: 1; /* Allows text to expand and fill available space */
+  overflow: auto; /* Adds scroll if text exceeds height */
+}
+
+.logo a {
+  text-decoration: none; /* Removes the underline */
+  color: #fff; /* Matches the white color of other text */
+}
+
