@@ -1,0 +1,234 @@
+<<<<<<< HEAD
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f6ff;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #1a2a6c, #2b5876);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.locations {
+    padding: 30px;
+}
+
+.country {
+    margin-bottom: 40px;
+    border-left: 5px solid #1a2a6c;
+    padding-left: 20px;
+}
+
+.country:last-child {
+    margin-bottom: 0;
+}
+
+.country-name {
+    font-size: 2rem;
+    color: #1a2a6c;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    color: #2b5876;
+    margin: 20px 0 15px;
+    padding-left: 10px;
+    border-left: 3px solid #2b5876;
+}
+
+.partners-list {
+    list-style-type: none;
+    padding-left: 25px;
+}
+
+.partners-list li {
+    margin-bottom: 12px;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.partners-list li:hover {
+    background-color: #e9f1ff;
+    transform: translateX(5px);
+    border-left: 3px solid #2b5876;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #1a2a6c;
+    color: white;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .country-name {
+        font-size: 1.7rem;
+    }
+    
+    .locations {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .country {
+        padding-left: 15px;
+    }
+    
+    .partners-list {
+        padding-left: 15px;
+    }
+    
+    .partners-list li {
+        padding: 8px 12px;
+    }
+}
+=======
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Krub', sans-serif;
+  color: white;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: url('../images/background.png') no-repeat center top; /* your image */
+  background-size: cover;   /* cover the whole viewport */
+  background-attachment: fixed; /* keeps it fixed when scrolling */
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+
+
+
+
+.title {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 80px;
+  letter-spacing: 8px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.location-card {
+  display: flex;
+  align-items: center;
+  background: #7a202d; /* Dark red */
+  padding: 50px;
+  margin: 20px auto;
+  max-width: 1000px;
+  border-radius: 4px;
+}
+
+/* Only style p and h2 inside .location-info */
+.location-info h2 {
+  font-family: 'Bebas Neue', sans-serif; /* or whatever you want */
+  font-size: 60px;
+  font-weight: 10;
+  color: #ffffff;
+  letter-spacing: 10px;
+  margin: 0 0 10px 0;
+}
+
+.location-info p {
+  font-family: 'Krub', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+  margin: 2px 0;
+}
+
+.location-info h3 {
+  font-family: 'Krub', sans-serif;
+  font-size: 20px;
+    font-weight: 20px;
+  line-height: 1.5;
+  color: #ffffff;
+  margin: 2px 0;
+}
+
+.pin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 50px;
+  position: relative;
+}
+
+.circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid #ccc;
+  z-index: 2; /* keep circle on top */
+}
+
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bigger triangle that overlaps upward */
+.triangle {
+  position: relative;
+  top: -24px; /* move upward to overlap circle */
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 70px solid #ccc; /* bigger and taller */
+  z-index: 1; /* behind circle */
+}
+>>>>>>> 41ea68d (everything)
