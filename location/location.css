@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     margin: 0;
     padding: 0;
@@ -124,3 +125,110 @@ footer {
         padding: 8px 12px;
     }
 }
+=======
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Krub', sans-serif;
+  color: white;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: url('../images/background.png') no-repeat center top; /* your image */
+  background-size: cover;   /* cover the whole viewport */
+  background-attachment: fixed; /* keeps it fixed when scrolling */
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+
+
+
+
+.title {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 80px;
+  letter-spacing: 8px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.location-card {
+  display: flex;
+  align-items: center;
+  background: #7a202d; /* Dark red */
+  padding: 50px;
+  margin: 20px auto;
+  max-width: 1000px;
+  border-radius: 4px;
+}
+
+/* Only style p and h2 inside .location-info */
+.location-info h2 {
+  font-family: 'Bebas Neue', sans-serif; /* or whatever you want */
+  font-size: 60px;
+  font-weight: 10;
+  color: #ffffff;
+  letter-spacing: 10px;
+  margin: 0 0 10px 0;
+}
+
+.location-info p {
+  font-family: 'Krub', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+  margin: 2px 0;
+}
+
+.location-info h3 {
+  font-family: 'Krub', sans-serif;
+  font-size: 20px;
+    font-weight: 20px;
+  line-height: 1.5;
+  color: #ffffff;
+  margin: 2px 0;
+}
+
+.pin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 50px;
+  position: relative;
+}
+
+.circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid #ccc;
+  z-index: 2; /* keep circle on top */
+}
+
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bigger triangle that overlaps upward */
+.triangle {
+  position: relative;
+  top: -24px; /* move upward to overlap circle */
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 70px solid #ccc; /* bigger and taller */
+  z-index: 1; /* behind circle */
+}
+>>>>>>> 41ea68d (everything)
