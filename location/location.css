@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f6ff;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #1a2a6c, #2b5876);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.locations {
+    padding: 30px;
+}
+
+.country {
+    margin-bottom: 40px;
+    border-left: 5px solid #1a2a6c;
+    padding-left: 20px;
+}
+
+.country:last-child {
+    margin-bottom: 0;
+}
+
+.country-name {
+    font-size: 2rem;
+    color: #1a2a6c;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    color: #2b5876;
+    margin: 20px 0 15px;
+    padding-left: 10px;
+    border-left: 3px solid #2b5876;
+}
+
+.partners-list {
+    list-style-type: none;
+    padding-left: 25px;
+}
+
+.partners-list li {
+    margin-bottom: 12px;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.partners-list li:hover {
+    background-color: #e9f1ff;
+    transform: translateX(5px);
+    border-left: 3px solid #2b5876;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #1a2a6c;
+    color: white;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .country-name {
+        font-size: 1.7rem;
+    }
+    
+    .locations {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .country {
+        padding-left: 15px;
+    }
+    
+    .partners-list {
+        padding-left: 15px;
+    }
+    
+    .partners-list li {
+        padding: 8px 12px;
+    }
+}
