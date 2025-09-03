@@ -1,9 +1,20 @@
-
 /* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.hero-divider {
+    width: 100vw;
+    height: 0;
+    border-bottom: 3px solid #fff;
+    margin: 32px 0 0 0; /* No auto centering */
+    padding-top: 470px;   /* Adjust for spacing above */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
 }
 
 .logo a {
@@ -70,16 +81,23 @@ body {
   margin-left: 40px; /* 🔥 adds space between logo and menu */
 }
 
-
 .logo {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 2px;
   color: white;
+  display: flex;
+  align-items: flex-end;   /* Align logo to bottom of navbar */
+  height: 60px;            /* Match navbar height or adjust as needed */
 }
 
-
-
+.logo img {
+  width: 500px;
+  height: 500px;            /* Make logo image bigger */
+  width: auto;
+  display: block;
+  align-self: flex-end;    /* Stick image to bottom */
+}
 
 .nav-links a {
   color: white;
