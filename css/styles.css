@@ -53,13 +53,23 @@ body {
   background-color: #6a1c26;
   padding: 15px 40px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* 🔥 everything on left */
   align-items: center;
   border-bottom: 2px solid #000;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  margin-left: 40px; /* 🔥 adds space between logo and menu */
+}
+
 
 .logo {
   font-size: 20px;
@@ -68,14 +78,7 @@ body {
   color: white;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 40px;
-  margin: 0;           /* reset weird spacing */
-  padding: 0;          /* reset padding */
-  margin-left: auto;   /* 🔥 pushes nav links to the right */
-}
+
 
 
 .nav-links a {
@@ -88,7 +91,17 @@ body {
   transition: 0.3s ease;
 }
 
+/* Remove underline effect from <a> */
 .nav-links a::after {
+  content: none;
+}
+
+/* New underline effect on <li> */
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li::after {
   content: '';
   position: absolute;
   bottom: -6px;
@@ -97,7 +110,14 @@ body {
   height: 2px;
   background: white;
   transition: width 0.3s ease;
+  z-index: 20; /* stays above dropdown background */
 }
+
+/* Expand underline on hover */
+.nav-links li:hover::after {
+  width: 100%;
+}
+
 
 .nav-links a:hover::after {
   width: 100%;
@@ -299,22 +319,22 @@ body {
   position: relative;
 }
 
+/* Dropdown menu */
 .dropdown-menu {
   position: absolute;
-  top: 100%;           /* right below parent */
+  top: 100%;           
   left: 0;
   background: #6a1c26;
   list-style: none;
   padding: 10px 0;
   margin: 0;
   min-width: 220px;
-  display: none;       /* hidden by default */
+  display: none;
   flex-direction: column;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  z-index: 1000;
+  z-index: 10; /* 🔥 ensures dropdown is above text */
 }
-
 .dropdown-menu li {
   width: 100%;
 }
@@ -336,4 +356,24 @@ body {
 /* Show menu on hover */
 .dropdown:hover .dropdown-menu {
   display: flex;
+}
+
+
+.logo img {
+  height: 30px;         /* adjust size to fit navbar */
+  width: auto;
+  display: block;
+}
+
+
+/* Top-level menu links (Business / About / App) */
+.navbar .nav-links > li > a {
+  font-size: 18px;   /* bigger font */
+  font-weight: 600;  /* optional: make bolder */
+}
+
+/* Dropdown menu links */
+.dropdown-menu li a {
+  font-size: 14px;   /* smaller font */
+  font-weight: 300;  /* normal weight */
 }
