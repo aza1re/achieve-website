@@ -62,14 +62,17 @@ body {
 /* Navbar */
 .navbar {
   background-color: #6a1c26;
-  padding: 15px 40px;
+  padding: 20px 40px;
   display: flex;
-  justify-content: flex-start; /* 🔥 everything on left */
+  justify-content: flex-start;
   align-items: center;
   border-bottom: 2px solid #000;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  position: fixed; /* Keep the navbar floating */
+  top: 20px; /* Slide the navbar down by 20px */
+  width: 100%; /* Add space on the sides */
+  margin: 0 50px; /* Center the navbar with space on the sides */
+  z-index: 1000; /* Keep it above other elements */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow for a floating effect */
 }
 
 .nav-links {
@@ -79,24 +82,6 @@ body {
   margin: 0;
   padding: 0;
   margin-left: 40px; /* 🔥 adds space between logo and menu */
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: white;
-  display: flex;
-  align-items: flex-end;   /* Align logo to bottom of navbar */
-  height: 60px;            /* Match navbar height or adjust as needed */
-}
-
-.logo img {
-  width: 500px;
-  height: 500px;            /* Make logo image bigger */
-  width: auto;
-  display: block;
-  align-self: flex-end;    /* Stick image to bottom */
 }
 
 .nav-links a {
@@ -149,22 +134,24 @@ body {
   background: linear-gradient(to bottom, black 30%, #6a1c26 100%);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 100px 80px;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  padding: 0; /* Remove extra padding */
   position: relative;
+}
+
+.hero-content {
+  text-align: center; /* Center text alignment */
 }
 
 .hero-content h1 {
   font-size: clamp(60px, 8vw, 100px);
   font-weight: 900;
-  margin-bottom: -40px;
   letter-spacing: 7px;
   text-transform: uppercase;
 }
 
 .hero-content p {
-  margin-top: -20px;        /* removes extra gap */
   font-family: 'Krub', sans-serif;
   font-size: 22px;
   font-weight: 400;
