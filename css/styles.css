@@ -57,13 +57,13 @@ body {
 /* Navbar */
 .navbar {
   background-color: #6a1c26;
-  padding: 20px 40px;
+  padding: 5px 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   border-bottom: 2px solid #000;
   position: fixed; /* Keep the navbar floating */
-  top: 20px; /* Slide the navbar down by 20px */
+  top: 10px; /* Slide the navbar down by 10px */
   width: 100%; /* Add space on the sides */
   margin: 0 50px; /* Center the navbar with space on the sides */
   z-index: 1000; /* Keep it above other elements */
@@ -85,13 +85,13 @@ body {
   letter-spacing: 2px;
   color: white;
   display: flex;
-  align-items: flex-end;   /* Align logo to bottom of navbar */
+  align-items: center;   /* Align logo to bottom of navbar */
   height: 60px;            /* Match navbar height or adjust as needed */
 }
 
 .logo img {
-  width: 60px;
-  height: 60px;            /* Make logo image bigger */
+  width: 40px;
+  height: 40px;            /* Make logo image bigger */
   width: auto;
   display: block;
   align-self: flex-end;    /* Stick image to bottom */
@@ -146,9 +146,21 @@ body {
   z-index: 1;
 }
 
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.45); /* Adjust opacity as needed */
+  z-index: 2;
+  pointer-events: none;
+}
+
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3; /* Make sure content is above overlay */
   text-align: center;
   color: #fff;
   text-shadow: 0 2px 16px rgba(0,0,0,0.7);
