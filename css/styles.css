@@ -5,44 +5,40 @@
   box-sizing: border-box;
 }
 
+/* Hero Divider */
 .hero-divider {
-    width: 100vw;
-    height: 0;
-    border-bottom: 3px solid #fff;
-    margin: 32px 0 0 0; /* No auto centering */
-    padding-top: 470px;   /* Adjust for spacing above */
-    position: relative;
-    left: 50%;
-    right: 50%;
-    transform: translateX(-50%);
+  width: 100vw;
+  height: 0;
+  border-bottom: 3px solid #fff;
+  margin: 32px 0 0 0;
+  padding-top: 470px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+/* Logo */
 .logo a {
-  text-decoration: none; /* Removes the underline */
-  color: #fff; /* Matches the white color of other text */
+  text-decoration: none;
+  color: #fff;
 }
 
-/* Font styles */
+.logo img {
+  height: 30px;
+  width: auto;
+  display: block;
+}
 
+/* Font Styles */
 h1, h2, h3, .section-title {
   font-family: 'Bebas Neue', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-
-.navbar a {
+.navbar a, .section-subtitle, .card-title {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-}
-
-.section-subtitle, .card-title {
-  font-family: 'Oswald', sans-serif;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 16px;
 }
 
 .card-body, .card-description, p {
@@ -51,7 +47,6 @@ h1, h2, h3, .section-title {
   line-height: 1.5;
   letter-spacing: 0.5px;
 }
-
 
 body {
   font-family: 'Krub', sans-serif;
@@ -64,7 +59,7 @@ body {
   background-color: #6a1c26;
   padding: 15px 40px;
   display: flex;
-  justify-content: flex-start; /* 🔥 everything on left */
+  justify-content: flex-start;
   align-items: center;
   border-bottom: 2px solid #000;
   position: sticky;
@@ -76,27 +71,7 @@ body {
   list-style: none;
   display: flex;
   gap: 40px;
-  margin: 0;
-  padding: 0;
-  margin-left: 40px; /* 🔥 adds space between logo and menu */
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: white;
-  display: flex;
-  align-items: flex-end;   /* Align logo to bottom of navbar */
-  height: 60px;            /* Match navbar height or adjust as needed */
-}
-
-.logo img {
-  width: 500px;
-  height: 500px;            /* Make logo image bigger */
-  width: auto;
-  display: block;
-  align-self: flex-end;    /* Stick image to bottom */
+  margin-left: 40px;
 }
 
 .nav-links a {
@@ -109,16 +84,6 @@ body {
   transition: 0.3s ease;
 }
 
-/* Remove underline effect from <a> */
-.nav-links a::after {
-  content: none;
-}
-
-/* New underline effect on <li> */
-.nav-links li {
-  position: relative;
-}
-
 .nav-links li::after {
   content: '';
   position: absolute;
@@ -128,20 +93,12 @@ body {
   height: 2px;
   background: white;
   transition: width 0.3s ease;
-  z-index: 20; /* stays above dropdown background */
+  z-index: 20;
 }
 
-/* Expand underline on hover */
 .nav-links li:hover::after {
   width: 100%;
 }
-
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-
 
 /* Hero Section */
 .hero {
@@ -160,12 +117,10 @@ body {
   font-weight: 900;
   margin-bottom: -40px;
   letter-spacing: 7px;
-  text-transform: uppercase;
 }
 
 .hero-content p {
-  margin-top: -20px;        /* removes extra gap */
-  font-family: 'Krub', sans-serif;
+  margin-top: -20px;
   font-size: 22px;
   font-weight: 400;
   line-height: 1.4;
@@ -173,7 +128,7 @@ body {
   opacity: 0.9;
 }
 
-
+/* Buttons */
 .btn {
   display: inline-block;
   margin: 10px 0 0 0;
@@ -194,101 +149,6 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-/* Footer text */
-.footer-text {
-  position: absolute;
-  bottom: 25px;
-  right: 40px;
-  font-size: 12px;
-  letter-spacing: 2px;
-  opacity: 0.7;
-}
-
-
-
-
-
-/* Business Section */
-.business-section {
-  background: linear-gradient(to bottom, #6a1c26 0%, #ffffff 35%);
-  padding: 100px 40px;
-  text-align: center;
-}
-
-.business-section h2 {
-  font-size: 60px;
-  font-weight: 100;
-  letter-spacing: 3px;
-  margin-bottom: 80px;
-  color: black;
-}
-
-.business-card {
-  display: flex;
-  align-items: stretch;       /* stretch content vertically */
-  justify-content: flex-start;/* start from the left edge */
-  margin-bottom: 80px;
-  gap: 40px;
-  flex-wrap: nowrap;          /* keep items on one line */
-  width: 100%;                /* span full width of screen */
-}
-
-.business-card {
-  display: flex;
-  align-items: center;      /* keep image + box aligned vertically */
-  justify-content: center;  /* center the whole row */
-  margin-bottom: 80px;
-  gap: 0;                   /* 🔥 remove space between image and box */
-  flex-wrap: nowrap;
-  width: 100%;
-}
-
-.business-card.reverse {
-  flex-direction: row-reverse;
-}
-
-.business-card img {
-  width: 380px;             /* fixed image width */
-  height: auto;
-  border-radius: 6px 0 0 6px; /* smooth corner only on outer side */
-  object-fit: cover;
-}
-
-.business-card.reverse img {
-  border-radius: 0 6px 6px 0; /* opposite corners when reversed */
-}
-
-.card-content {
-  background: #6a1c26;
-  color: white;
-  padding: 30px;
-  flex: 1;                  /* stretch box to fill remaining row space */
-  max-width: none;          /* 🔥 let it grow wide */
-  text-align: left;
-  border-radius: 0 6px 6px 0; /* corners opposite of image */
-}
-
-.business-card.reverse .card-content {
-  border-radius: 6px 0 0 6px;
-}
-
-
-
-.card-content h3 {
-  font-size: 40px;
-  font-weight: 800;
-  margin-bottom: 15px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.card-content p {
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-/* Buttons */
 .btn-secondary {
   display: inline-block;
   padding: 10px 22px;
@@ -305,42 +165,104 @@ body {
   background: #ddd;
 }
 
-
-/* --- Business Card Animation --- */
-
-/* Start hidden & off-screen */
-.business-card {
-  opacity: 0;
-  transform: translateX(-100px);  /* slide from left by default */
-  transition: all 0.8s ease-out;
+/* Footer */
+.footer-text {
+  position: absolute;
+  bottom: 25px;
+  right: 40px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  opacity: 0.7;
 }
 
-/* When in view */
-.business-card.show {
-  opacity: 1;
-  transform: translateX(0);
+/* Business Section */
+.business-section {
+  background: linear-gradient(to bottom, #6a1c26 0%, #ffffff 35%);
+  padding: 100px 40px;
+  text-align: center;
 }
 
-/* Reversed cards slide from right */
-.business-card.reverse {
-  transform: translateX(100px);
+.business-section h2 {
+  font-size: 60px;
+  font-weight: 100;
+  letter-spacing: 3px;
+  margin-bottom: 80px;
+  color: black;
 }
 
-.business-card.reverse.show {
-  transform: translateX(0);
+/* Business Rows & Cards */
+.business-row {
+  display: flex;
+  gap: 10px;          /* horizontal spacing */
+  margin-bottom: 10px; /* vertical spacing */
+  flex-wrap: wrap;
 }
 
+.business-row .business-card {
+  flex: 1;
+  margin-bottom: 0;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 400px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  color: white;
+  padding: 20px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
 
+/* Overlay */
+.business-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.business-card .card-content {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  padding: 20px;
+  max-width: 80%;
+}
+
+.card-content h3 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.card-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Individual card backgrounds */
+.card-youth { background-image: url("../images/business/camp.png"); }
+.card-tournament { background-image: url("../images/business/tournament.png"); }
+.card-tour { background-image: url("../images/business/tour.png"); }
+.card-coach { background-image: url("../images/business/coach.png"); }
+.card-exchange { background-image: url("../images/business/exchange.png"); }
+.card-app { background-image: url("../images/business/app.png"); }
 
 /* Dropdown Menu */
 .navbar .dropdown {
   position: relative;
 }
 
-/* Dropdown menu */
 .dropdown-menu {
   position: absolute;
-  top: 100%;           
+  top: 100%;
   left: 0;
   background: #6a1c26;
   list-style: none;
@@ -351,18 +273,15 @@ body {
   flex-direction: column;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  z-index: 10; /* 🔥 ensures dropdown is above text */
-}
-.dropdown-menu li {
-  width: 100%;
+  z-index: 10;
 }
 
-.dropdown-menu a {
+.dropdown-menu li a {
   display: block;
   padding: 10px 18px;
   color: white;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
   text-decoration: none;
   transition: background 0.2s ease;
 }
@@ -371,27 +290,6 @@ body {
   background: #8a2f3d;
 }
 
-/* Show menu on hover */
 .dropdown:hover .dropdown-menu {
   display: flex;
-}
-
-
-.logo img {
-  height: 30px;         /* adjust size to fit navbar */
-  width: auto;
-  display: block;
-}
-
-
-/* Top-level menu links (Business / About / App) */
-.navbar .nav-links > li > a {
-  font-size: 18px;   /* bigger font */
-  font-weight: 600;  /* optional: make bolder */
-}
-
-/* Dropdown menu links */
-.dropdown-menu li a {
-  font-size: 14px;   /* smaller font */
-  font-weight: 300;  /* normal weight */
 }
