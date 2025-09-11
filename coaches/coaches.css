@@ -82,3 +82,72 @@ body {
   color: #fff; /* Matches the white color of other text */
 }
 
+
+
+/* Region Dropdown Bar */
+.region-bar {
+  width: 100%;
+  background: #6a1c26; /* dark red */
+  text-align: center;
+  padding: 0.5rem 0;
+  border-radius: 8px 8px 0 0;
+  box-shadow: none; /* remove the white border effect */
+}
+
+
+/* Region Button - keep white text */
+.region-btn {
+  background: #6a1c26; /* Button matches the bar */
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #ffffff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.region-btn:hover {
+  transform: translateY(-2px); /* subtle lift on hover */
+  box-shadow: 0 0px 0px rgba(0,0,0,0);
+}
+
+
+
+/* Keep dropdown styled like navbar, text white */
+.region-menu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #6a1c26; /* dark red background */
+  color: #fff;         /* text color white */
+  min-width: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+.region-menu li a {
+  display: block;
+  padding: 12px 16px;
+  color: #fff;          /* make all links white */
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.region-menu li a:hover {
+  background: #460505;  /* slightly darker on hover */
+  color: #fff;           /* keep text white on hover */
+}
+
+/* Show menu on hover */
+.region-dropdown:hover .region-menu {
+  display: flex;
+  flex-direction: column;
+}

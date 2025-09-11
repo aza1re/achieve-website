@@ -7,57 +7,125 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;600;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;600;800&display=swap" rel="stylesheet">
-  <!-- CSS -->
-  <link rel="stylesheet" href="tnm.css">
-    <link rel="stylesheet" href="../css/styles.css">
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="../tournaments/tnm.css">
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    /* Region bar attached above tabs */
+    .region-bar {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-bottom: none; /* merges smoothly with the tabs */
+      border-radius: 8px 8px 0 0;
+      text-align: center;
+      padding: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .region-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .region-btn {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #7a3942;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .region-menu {
+      display: none;
+      position: absolute;
+      background: #fff;
+      min-width: 160px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      z-index: 1000;
+      text-align: left;
+    }
+
+    .region-menu li {
+      list-style: none;
+    }
+
+    .region-menu li a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .region-menu li a:hover {
+      background: #f2f2f2;
+    }
+
+    .region-menu.show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar">
-<div class="logo">
-  <a href="../index.html">
-    <img src="../images/logo.png" alt="Achieve Logo">
-  </a>
-</div>
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../images/logo.png" alt="Achieve Logo">
+      </a>
+    </div>
     <ul class="nav-links">
-    <!-- Business Dropdown -->
-    <li class="dropdown">
-      <a href="#">Business ▾</a>
-      <ul class="dropdown-menu">
-        <li><a href="../tournaments/tnm.html">Tournaments</a></li>
-        <li><a href="../leagues/leagues.html">Leauges</a></li>
-        <li><a href="../camps/camps.html">Camps</a></li>
-        <li><a href="../coaches/coaches.html">Coaches</a></li>
-      </ul>
-    </li>
+      <!-- Business Dropdown -->
+      <li class="dropdown">
+        <a href="#">Our Events ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../tournaments/tnm.html">Tournaments</a></li>
+          <li><a href="../camp/camps.html">Camps</a></li>
+          <li><a href="../coaches/coaches.html">Coaches</a></li>
+        </ul>
+      </li>
 
-    <!-- About Dropdown -->
-    <li class="dropdown">
-      <a href="../abouts/abouts.html">About ▾</a>
-      <ul class="dropdown-menu">
-        <li><a href="../abouts/abouts.html">About Us</a></li>
-        <li><a href="../location/location.html">Location</a></li>
-      </ul>
-    </li>
+      <!-- About Dropdown -->
+      <li class="dropdown">
+        <a href="../abouts/abouts.html">About ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../abouts/abouts.html">About Us</a></li>
+          <li><a href="../location/location.html">Location</a></li>
+        </ul>
+      </li>
 
-    <!-- App Dropdown -->
-    <li class="dropdown">
-      <a href="../app/app.html">App ▾</a>
-      <ul class="dropdown-menu">
-        <li><a href="../app/app.html">App Info</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+      <!-- App Dropdown -->
+      <li class="dropdown">
+        <a href="../app/app.html">App ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../app/app.html">App Info</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
   <div class="header">
-    <h1>Tournaments</h1>
+    <h1>Camps</h1>
   </div>
 
   <div class="container">
+    <!-- Region Dropdown -->
+    <div class="region-bar">
+      <div class="region-dropdown">
+        <button class="region-btn">KOREA ▾</button>
+        <ul class="region-menu">
+          <li><a href="?region=korea">Korea</a></li>
+          <li><a href="?region=thailand">Thailand</a></li>
+        </ul>
+      </div>
+    </div>
+
     <!-- Tabs -->
     <div class="tabs">
       <button class="active" data-tab="u9">U9-10</button>
@@ -72,7 +140,7 @@
       <div class="tournament">
         <img src="https://upload.wikimedia.org/wikipedia/en/1/1e/Quebec_Peewee_Tournament_logo.png" alt="Tournament Logo">
         <div class="tournament-details">
-          <h2>2026 U9 Quebec Tournament</h2>
+          <h2>2026 U9-10 Youth Tournament</h2>
           <p>Quebec, Canada</p>
           <p>13–17 December 2026</p>
         </div>
@@ -84,7 +152,7 @@
       <div class="tournament">
         <img src="https://upload.wikimedia.org/wikipedia/en/1/1e/Quebec_Peewee_Tournament_logo.png" alt="Tournament Logo">
         <div class="tournament-details">
-          <h2>2026 U11 Quebec Tournament</h2>
+          <h2>2026 U11 Youth Trounament</h2>
           <p>Quebec, Canada</p>
           <p>13–17 December 2026</p>
         </div>
@@ -96,7 +164,7 @@
       <div class="tournament">
         <img src="https://upload.wikimedia.org/wikipedia/en/1/1e/Quebec_Peewee_Tournament_logo.png" alt="Tournament Logo">
         <div class="tournament-details">
-          <h2>2026 U12 Quebec Tournament</h2>
+          <h2>2026 U12 Tournament</h2>
           <p>Quebec, Canada</p>
           <p>13–17 December 2026</p>
         </div>
@@ -108,7 +176,7 @@
       <div class="tournament">
         <img src="https://upload.wikimedia.org/wikipedia/en/1/1e/Quebec_Peewee_Tournament_logo.png" alt="Tournament Logo">
         <div class="tournament-details">
-          <h2>2026 U13 Quebec Tournament</h2>
+          <h2>2026 U13 Youth Tournament</h2>
           <p>Quebec, Canada</p>
           <p>13–17 December 2026</p>
         </div>
@@ -129,22 +197,35 @@
     </div>
   </div>
 
-  <!-- JavaScript for tab switching -->
+  <!-- JavaScript -->
   <script>
     const tabs = document.querySelectorAll(".tabs button");
     const contents = document.querySelectorAll(".tab-content");
 
     tabs.forEach(tab => {
       tab.addEventListener("click", () => {
-        // remove active from all
         tabs.forEach(t => t.classList.remove("active"));
         contents.forEach(c => c.classList.remove("active"));
 
-        // add active to clicked tab + its content
         tab.classList.add("active");
         document.getElementById(tab.dataset.tab).classList.add("active");
       });
     });
+
+    // Region Dropdown toggle
+    const regionBtn = document.querySelector(".region-btn");
+    const regionMenu = document.querySelector(".region-menu");
+
+    regionBtn.addEventListener("click", () => {
+      regionMenu.classList.toggle("show");
+    });
+
+    window.addEventListener("click", (e) => {
+  if (!e.target.closest(".region-dropdown")) {
+    regionMenu.classList.remove("show");
+  }
+});
+
   </script>
 </body>
 </html>
