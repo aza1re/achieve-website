@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achieve Hockey - Training Programs</title>
+    <style>
+        .programs-section {
+            padding: 100px 0;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #ccc;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Interactive Card Stack */
+        .programs-stack {
+            position: relative;
+            height: 600px;
+            max-width: 1200px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .program-card {
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            background: #111;
+            border-radius: 20px;
+            border: 1px solid #333;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 20px 40px rgba(140, 33, 49, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .program-card.active {
+            transform: translateX(0) scale(1) rotateY(0deg) !important;
+            z-index: 10;
+            border-color: #8C2131;
+            box-shadow: 0 25px 50px rgba(140, 33, 49, 0.3);
+        }
+
+        .program-card.left {
+            transform: translateX(-280px) scale(0.85) rotateY(15deg);
+            z-index: 3;
+            opacity: 0.7;
+        }
+
+        .program-card.right {
+            transform: translateX(280px) scale(0.85) rotateY(-15deg);
+            z-index: 3;
+            opacity: 0.7;
+        }
+
+        .program-card.far-left {
+            transform: translateX(-500px) scale(0.7) rotateY(25deg);
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        .program-card.far-right {
+            transform: translateX(500px) scale(0.7) rotateY(-25deg);
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        .program-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8C2131, #a52c3f);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .program-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .program-card p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .program-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .program-features li {
+            color: #8C2131;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .program-features li:before {
+            content: "✓";
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .program-btn {
+            background: #8C2131;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .program-btn:hover {
+            background: #a52c3f;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Dots */
+        .program-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: #8C2131;
+            transform: scale(1.2);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .programs-stack {
+                height: 500px;
+                perspective: 800px;
+            }
+
+            .program-card {
+                width: 300px;
+                height: 400px;
+                padding: 30px 25px;
+            }
+
+            .program-card.left {
+                transform: translateX(-200px) scale(0.8) rotateY(20deg);
+            }
+
+            .program-card.right {
+                transform: translateX(200px) scale(0.8) rotateY(-20deg);
+            }
+
+            .program-card.far-left {
+                transform: translateX(-350px) scale(0.6) rotateY(30deg);
+            }
+
+            .program-card.far-right {
+                transform: translateX(350px) scale(0.6) rotateY(-30deg);
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .program-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .program-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .programs-stack {
+                height: 450px;
+            }
+
+            .program-card {
+                width: 280px;
+                height: 380px;
+            }
+
+            .program-card.left {
+                transform: translateX(-150px) scale(0.75) rotateY(25deg);
+            }
+
+            .program-card.right {
+                transform: translateX(150px) scale(0.75) rotateY(-25deg);
+            }
+
+            .program-card.far-left,
+            .program-card.far-right {
+                display: none;
+            }
+        }
+
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .programs-section {
+            animation: slideIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <section class="programs-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Elite Training Programs</h2>
+                <p>Transform your game with our cutting-edge training methodologies</p>
+            </div>
+
+            <div class="programs-stack">
+                <!-- Elite Skating -->
+                <div class="program-card active" data-index="0">
+                    <div>
+                        <div class="program-icon">⛸️</div>
+                        <h3>Elite Skating</h3>
+                        <p>Master the art of skating with precision edge work, explosive acceleration, and professional-level agility techniques.</p>
+                        <ul class="program-features">
+                            <li>Advanced Edge Control</li>
+                            <li>Explosive Acceleration</li>
+                            <li>Professional Agility Drills</li>
+                            <li>Speed Optimization</li>
+                        </ul>
+                    </div>
+                    <button class="program-btn">Start Training</button>
+                </div>
+
+                <!-- Shooting & Scoring -->
+                <div class="program-card right" data-index="1">
+                    <div>
+                        <div class="program-icon">🎯</div>
+                        <h3>Shooting & Scoring</h3>
+                        <p>Develop lethal shooting accuracy and scoring instincts used by professional players worldwide.</p>
+                        <ul class="program-features">
+                            <li>Shot Accuracy Training</li>
+                            <li>Power Development</li>
+                            <li>Quick Release Drills</li>
+                            <li>Game Situation Scoring</li>
+                        </ul>
+                    </div>
+                    <button class="program-btn">Start Training</button>
+                </div>
+
+                <!-- Goalie Training -->
+                <div class="program-card far-right" data-index="2">
+                    <div>
+                        <div class="program-icon">🥅</div>
+                        <h3>Goalie Training</h3>
+                        <p>Specialized training for goaltenders focusing on positioning, reflexes, and mental toughness.</p>
+                        <ul class="program-features">
+                            <li>Advanced Positioning</li>
+                            <li>Lightning Reflex Drills</li>
+                            <li>Angle Management</li>
+                            <li>Mental Toughness</li>
+                        </ul>
+                    </div>
+                    <button class="program-btn">Start Training</button>
+                </div>
+
+                <!-- Power & Strength -->
+                <div class="program-card left" data-index="3">
+                    <div>
+                        <div class="program-icon">💪</div>
+                        <h3>Power & Strength</h3>
+                        <p>Build hockey-specific strength and explosive power to dominate on the ice.</p>
+                        <ul class="program-features">
+                            <li>Hockey-Specific Strength</li>
+                            <li>Explosive Power Development</li>
+                            <li>Core Stability</li>
+                            <li>Injury Prevention</li>
+                        </ul>
+                    </div>
+                    <button class="program-btn">Start Training</button>
+                </div>
+
+                <!-- Team Training -->
+                <div class="program-card far-left" data-index="4">
+                    <div>
+                        <div class="program-icon">👥</div>
+                        <h3>Team Training</h3>
+                        <p>Complete team development programs focusing on systems, chemistry, and game strategy.</p>
+                        <ul class="program-features">
+                            <li>Team Systems</li>
+                            <li>Chemistry Building</li>
+                            <li>Game Strategy</li>
+                            <li>Leadership Development</li>
+                        </ul>
+                    </div>
+                    <button class="program-btn">Start Training</button>
+                </div>
+            </div>
+
+            <div class="program-nav">
+                <div class="nav-dot active" data-nav="0"></div>
+                <div class="nav-dot" data-nav="1"></div>
+                <div class="nav-dot" data-nav="2"></div>
+                <div class="nav-dot" data-nav="3"></div>
+                <div class="nav-dot" data-nav="4"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        class ProgramsCarousel {
+            constructor() {
+                this.cards = document.querySelectorAll('.program-card');
+                this.dots = document.querySelectorAll('.nav-dot');
+                this.currentIndex = 0;
+                this.totalCards = this.cards.length;
+                
+                this.init();
+            }
+
+            init() {
+                // Add click events to dots
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        this.setActiveCard(index);
+                    });
+                });
+
+                // Add click events to cards
+                this.cards.forEach((card, index) => {
+                    card.addEventListener('click', (e) => {
+                        if (!e.target.classList.contains('program-btn')) {
+                            this.setActiveCard(index);
+                        }
+                    });
+                });
+
+                // Add swipe support for mobile
+                this.addSwipeSupport();
+            }
+
+            setActiveCard(index) {
+                this.currentIndex = index;
+                
+                // Update cards
+                this.cards.forEach((card, i) => {
+                    card.classList.remove('active', 'left', 'right', 'far-left', 'far-right');
+                    
+                    if (i === index) {
+                        card.classList.add('active');
+                    } else if (i === (index - 1 + this.totalCards) % this.totalCards) {
+                        card.classList.add('left');
+                    } else if (i === (index + 1) % this.totalCards) {
+                        card.classList.add('right');
+                    } else if (i === (index - 2 + this.totalCards) % this.totalCards) {
+                        card.classList.add('far-left');
+                    } else if (i === (index + 2) % this.totalCards) {
+                        card.classList.add('far-right');
+                    }
+                });
+
+                // Update dots
+                this.dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            addSwipeSupport() {
+                let startX = 0;
+                let endX = 0;
+
+                this.cards[0].parentElement.addEventListener('touchstart', (e) => {
+                    startX = e.changedTouches[0].screenX;
+                });
+
+                this.cards[0].parentElement.addEventListener('touchend', (e) => {
+                    endX = e.changedTouches[0].screenX;
+                    this.handleSwipe(startX, endX);
+                });
+            }
+
+            handleSwipe(startX, endX) {
+                const swipeThreshold = 50;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe left - next card
+                        this.setActiveCard((this.currentIndex + 1) % this.totalCards);
+                    } else {
+                        // Swipe right - previous card
+                        this.setActiveCard((this.currentIndex - 1 + this.totalCards) % this.totalCards);
+                    }
+                }
+            }
+        }
+
+        // Initialize the carousel when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ProgramsCarousel();
+        });
+    </script>
+</body>
+</html>
