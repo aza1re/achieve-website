@@ -1,408 +1,446 @@
-/* App Page Only */
-.app-page {
-  font-family: 'Krub', sans-serif;
-  background: linear-gradient(to right, #000000 50%, #7a1f2d 100%);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
 
-.app-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  max-width: 1100px;
-  margin-top: 80px; /* Add margin instead of padding to avoid navbar overlap */
-}
+    body {
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
 
-/* Left Text Section */
-.app-text {
-  flex: 1;
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-.app-text h1 {
-  margin-top: 0; /* Remove the excessive top margin */
-  font-size: 7rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
+    /* Header Styles */
+    header {
+      background-color: rgba(0, 0, 0, 0.9);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 0;
+      border-bottom: 1px solid #333;
+    }
 
-.app-text h2 {
-  font-size: 2rem;
-  font-weight: 100;
-  letter-spacing: 4px;
-  margin: 10px 0 20px;
-}
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.app-text p {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 100;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
 
-.app-store-buttons img {
-  height: 40px;
-  margin-right: 15px;
-}
+    .logo span {
+      color: #8C2131;
+    }
 
-/* Right Shapes */
-.app-shapes {
-  flex: 1;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
 
-.app-red-box {
-  width: 220px;
-  height: 500px;
-  background: #7a1f2d; /* Fallback color */
-  background-image: url("../images/appintro.png");
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: -200px;
-  left: 200px;
-  z-index: 2;
-  border-radius: 20px;
-  overflow: hidden;
-}
+    nav ul li {
+      margin-left: 30px;
+    }
 
-.app-white-box {
-  width: 220px;
-  height: 500px;
-  background: #fff; /* Fallback color */
-  background-image: url("../images/tournament1.png");
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: -300px;
-  left: 300px;
-  z-index: 1;
-  border-radius: 20px;
-  overflow: hidden;
-}
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: 16px;
+    }
 
-/* Ensure navbar stays on top */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+    nav ul li a:hover {
+      color: #8C2131;
+    }
 
-/* Tournaments Section */
-.tournaments-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(to right, #000000 50%, #7a1f2d 100%);
-  padding: 50px 0;
-}
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
 
-.tournaments-header {
-  background-color: #7a1f2d;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin: 100px 0 100px;
-}
+    /* App Hero Section */
+    .app-hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #000;
+      padding-top: 80px;
+    }
 
-.tournaments-header h1 {
-    margin-bottom: -200px;
+    .app-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      width: 100%;
+    }
 
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #fff;
-  margin: 0;
-  letter-spacing: 2px;
-}
+    .app-text h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
 
-.tournaments-content {
-  display: flex;
-  margin-top: 100px;
-  justify-content: space-around;
-  width: 90%;
-  max-width: 1100px;
-}
+    .app-text h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #8C2131;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
 
-.tournaments-content.reverse {
-  flex-direction: row-reverse;
-}
+    .app-text p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
 
-.tournament-box {
-  width: 200px;
-  height: 300px;
-  background: #ccc; /* Fallback color */
-  background-image: url("../images/tournament1.png"); /* Default image for tournament-box */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 2px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10px;
-  border-radius: 10px;
-}
+    .app-store-buttons {
+      display: flex;
+      gap: 20px;
+    }
 
-.tournament2-box {
-  width: 230px;
-  height: 500px;
-  background: #ccc; /* Fallback color */
-  background-image: url("../images/tournament2.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 4px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
-  border-radius: 30px;
-}
+    .app-store-buttons img {
+      height: 50px;
+      transition: transform 0.3s;
+    }
 
-.tournament3-box {
-  width: 230px;
-  height: 500px;
-  background: #ccc; /* Fallback color */
-  background-image: url("../images/tournament3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 4px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
-  border-radius: 30px;
-}
+    .app-store-buttons img:hover {
+      transform: scale(1.05);
+    }
 
-.tournament4-box {
-  width: 230px;
-  height: 500px;
-  background: #ccc; /* Fallback color */
-  background-image: url("../images/tournament4.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 4px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
-  border-radius: 30px;
-}
+     .btn-login {
+                background-color:#8C2131;
+                color: #fff;
+                padding: 10px 25px;
+                border-radius: 25px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+                transition: all 0.3s;
+                border: 2px solid #8C2131;
+            }
 
-.tournament5-box {
-  width: 230px;
-  height: 500px;
-  background: #ccc; /* Fallback color */
-  background-image: url("../images/tournament5.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 4px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
-  border-radius: 30px;
-}
+            .btn-login:hover {
+                background-color: transparent;
+                color: #8C2131;
+            }
+    /* App Mockups */
+    .app-mockups {
+      position: relative;
+      height: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
+    .mockup {
+      position: absolute;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(255, 45, 45, 0.2);
+      transition: transform 0.3s;
+    }
 
+    .mockup-1 {
+      width: 250px;
+      height: 500px;
+      background: #8C2131;
+      z-index: 3;
+      transform: rotate(-5deg) translateX(-50px);
+    }
 
-.tournaments-content .tournament-detail {
-  flex: 1;
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-align: left;
-  padding: 20px;
-  background: url('https://via.placeholder.com/300x400.png?text=Crowd+Image') no-repeat bottom right;
-  background-size: contain;
-}
+    .mockup-2 {
+      width: 250px;
+      height: 500px;
+      background: #fff;
+      z-index: 2;
+      transform: rotate(5deg) translateX(50px);
+    }
 
-.tournaments-content.reverse .tournament-detail {
-  text-align: right;
-  background: url('https://via.placeholder.com/300x400.png?text=Crowd+Image') no-repeat bottom left;
-  background-size: contain;
-}
+    /* Sections */
+    section {
+      padding: 100px 0;
+    }
 
-.tournament-detail p {
-  margin: 10px 0;
-  font-size: 1.2rem;
-  font-weight: 400;
-}
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
 
-.tournament-detail h2 {
-  margin: 10px 0;
-  font-size: 4rem;
-  font-weight: 400;
-}
+    .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #8C2131;
+    }
 
-/* Scroll Behavior */
-.app-page + .tournaments-section {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
+    .section-title p {
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-.app-page + .tournaments-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
 
+    .feature-card {
+      background-color: #111;
+      border-radius: 15px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: transform 0.3s;
+      border: 1px solid #333;
+    }
 
-/* Tournaments Section */
-.camps-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(to right, #000000 50%, #7a1f2d 100%);
-  padding: 50px 0;
-}
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: #8C2131;
+    }
 
-.camps-header {
-  background-color: #7a1f2d;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin: 100px 0 100px;
-}
+    .feature-icon {
+      font-size: 48px;
+      color: #8C2131;
+      margin-bottom: 20px;
+    }
 
-.camps-header h1 {
-    margin-bottom: -200px;
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #fff;
+    }
 
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #fff;
-  margin: 0;
-  letter-spacing: 2px;
-}
+    .feature-card p {
+      color: #ccc;
+      line-height: 1.6;
+    }
 
-.camps-content {
-  display: flex;
-  margin-top: 100px;
-  justify-content: space-around;
-  width: 90%;
-  max-width: 1100px;
-}
+    /* CTA Section */
+    .cta {
+      text-align: center;
+      background: #111;
+      border-radius: 20px;
+      padding: 80px 40px;
+      margin: 0 auto;
+      max-width: 800px;
+    }
 
-.camps-content.reverse {
-  flex-direction: row-reverse;
-}
+    .cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
 
-.camps1-box {
-  width: 230px;
-  height: 500px;
-  background: #ccc; /* Fallback color */
-  background-image: url("../images/camps/camps1.png"); /* Default image for tournament-box */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 2px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10px;
-  border-radius: 30px;
-}
+    .cta p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #ccc;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-.camps2-box {
-  width: 230px;
-  height: 500px;
-  background: #ccc; /* Fallback color */
-  background-image: url("../images/camps/camps2.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 4px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
-  border-radius: 30px;
-}
+    .btn {
+      display: inline-block;
+      background-color: #8C2131;
+      color: #fff;
+      padding: 15px 40px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: 2px solid #8C2131;
+      font-size: 1.1rem;
+    }
 
-.camps3-box {
-  width: 230px;
-  height: 500px;
-  background: #ccc; /* Fallback color */
-  background-image: url("../images/camps/camps3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 4px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
-  border-radius: 30px;
-}
+    .btn:hover {
+      background-color: transparent;
+      color: #8C2131;
+    }
 
-.camps4-box {
-  width: 230px;
-  height: 500px;
-  background: #ccc; /* Fallback color */
-  background-image: url("../images/camps/camps4.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 4px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
-  border-radius: 30px;
-}
+    /* Footer */
+    footer {
+      background-color: #111;
+      padding: 60px 0 30px;
+      border-top: 1px solid #333;
+    }
 
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
 
+    .footer-col h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #8C2131;
+    }
 
+    .footer-col ul {
+      list-style: none;
+    }
 
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
 
-.camps-content .camps-detail {
-  flex: 1;
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-align: left;
-  padding: 20px;
-  background: url('https://via.placeholder.com/300x400.png?text=Crowd+Image') no-repeat bottom right;
-  background-size: contain;
-}
+    .footer-col ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-.camps-content.reverse .camps-detail {
-  text-align: right;
-  background: url('https://via.placeholder.com/300x400.png?text=Crowd+Image') no-repeat bottom left;
-  background-size: contain;
-}
+    .footer-col ul li a:hover {
+      color: #8C2131;
+    }
 
-.camps-detail p {
-  margin: 10px 0;
-  font-size: 1.2rem;
-  font-weight: 400;
-}
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
 
-.camps-detail h2 {
-  margin: 10px 0;
-  font-size: 4rem;
-  font-weight: 400;
-}
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: #222;
+      border-radius: 50%;
+      color: #fff;
+      transition: all 0.3s;
+    }
 
-/* Scroll Behavior */
-.app-page + .camps-section {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
+    .social-links a:hover {
+      background-color: #8C2131;
+      transform: translateY(-5px);
+    }
 
-.app-page + .camps-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #333;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        flex-direction: column;
+        padding: 20px 0;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 0;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      .app-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .app-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .app-text h2 {
+        font-size: 1.2rem;
+      }
+
+      .app-store-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .app-mockups {
+        height: 400px;
+      }
+
+      .mockup-1, .mockup-2 {
+        width: 180px;
+        height: 350px;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+      }
+
+      .cta {
+        padding: 60px 20px;
+      }
+
+      .cta h2 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Animation */
+    .app-text h1,
+    .app-text h2,
+    .app-text p,
+    .app-store-buttons {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .app-text h1 { animation-delay: 0.3s; }
+    .app-text h2 { animation-delay: 0.5s; }
+    .app-text p { animation-delay: 0.7s; }
+    .app-store-buttons { animation-delay: 0.9s; }
+
+    .mockup-1 { animation: float 3s ease-in-out infinite; }
+    .mockup-2 { animation: float 3s ease-in-out infinite 1.5s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: rotate(-5deg) translateX(-50px) translateY(0); }
+      50% { transform: rotate(-5deg) translateX(-50px) translateY(-20px); }
+    }

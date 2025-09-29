@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Achieve Hockey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about/about.html">About Us</a></li>
+                    <li><a href="../index.html#programs">Programs</a></li>
+
+                    <li><a href="../app/app.html">App</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li class="mobile-login"><a href="login.html" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
+           
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <div class="login-card">
+                <h1 class="login-logo">ACHIEVE<span>HOCKEY</span></h1>
+                <p class="login-subtitle">Sign in to your account</p>
+                
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Sign In</button>
+                    
+                    <a href="#" class="forgot-password">Forgot your password?</a>
+                    
+                    <div class="divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <div class="signup-link">
+                        <p>Don't have an account?</p>
+                        <a href="../signup/signup.html" class="btn-secondary">Create Account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>ACHIEVE HOCKEY</h3>
+                    <p>Dedicated to developing hockey players through professional training and personalized coaching.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about/about.html">About</a></li>
+                        <li><a href="../index.html#program">Programs</a></li>
+               
+                        <li><a href="../app/app.html">App</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="../signup/signup.html">Sign Up</a></li>
+                        <li><a href="#">Reset Password</a></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Hockey Way, Minneapolis, MN</li>
+                        <li><i class="fas fa-phone"></i> (612) 555-HOCKEY</li>
+                        <li><i class="fas fa-envelope"></i> info@achievehockey.org</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Achieve Hockey. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js">
+
+        // Reset animation on page load
+        window.addEventListener('load', function() {
+            const loginCard = document.querySelector('.login-card');
+            loginCard.style.animation = 'none';
+            setTimeout(() => {
+                loginCard.style.animation = '';
+            }, 10);
+        });
+    </script>
+</body>
+</html>
