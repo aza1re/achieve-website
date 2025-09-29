@@ -97,17 +97,5 @@
             </div>
             </section>
 </body>
-<script>
-    // Mobile Menu Toggle
-    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-        document.querySelector('nav ul').classList.toggle('show');
-    });
-
-    // Close mobile menu when clicking on links
-    document.querySelectorAll('nav ul li a').forEach(link => {
-        link.addEventListener('click', () => {
-            document.querySelector('nav ul').classList.remove('show');
-        });
-    });
-</script>
+<script src="../js/script.js"></script>
 </html>
