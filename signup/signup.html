@@ -11,22 +11,20 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
+            <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../about/about.html">About Us</a></li>
-                    <li><a href="../index.html#programs">Programs</a></li>
-                
-                    <li><a href="../app/app.html">App</a></li>
-                    <li><a href="../index.html#contact">Contact</a></li>
-                    <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
-                </ul>
-            </nav>
-          
+           <nav>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="../index.html#programs">Programs</a></li>
+        <li><a href="../app/app.html">App</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
+    </ul>
+</nav>
         </div>
     </header>
 
@@ -94,4 +92,22 @@
                             Send me updates about tournaments, training programs, and hockey news
                         </label>
                     </div>
-                    
+                </form>
+            </div>
+            </div>
+            </section>
+</body>
+<script>
+    // Mobile Menu Toggle
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+        document.querySelector('nav ul').classList.toggle('show');
+    });
+
+    // Close mobile menu when clicking on links
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.querySelector('nav ul').classList.remove('show');
+        });
+    });
+</script>
+</html>

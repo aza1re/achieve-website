@@ -47,56 +47,7 @@
             color: #8C2131;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 16px;
-        }
-
-        nav ul li a:hover {
-            color: #8C2131;
-        }
-
-         .btn-login {
-                background-color:#8C2131;
-                color: #fff;
-                padding: 10px 25px;
-                border-radius: 25px;
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 14px;
-                transition: all 0.3s;
-                border: 2px solid #8C2131;
-            }
-
-  
-
-        .btn-login:hover {
-            background-color: transparent;
-            color: #8C2131;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-
+     
 
         /* Signup Section */
         .signup-section {
@@ -382,51 +333,91 @@
             font-size: 14px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
+      /* Navbar Styles */
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    color: #8C2131;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.btn-login {
+    background-color: #8C2131;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+    border: 2px solid #8C2131;
+}
+
+.btn-login:hover {
+    background-color: transparent;
+    color: #8C2131;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 0;
+        text-align: center;
+        padding: 12px 0;
+    }
+}
+
+            .login-card {
+                margin: 0 20px;
+                padding: 40px 30px;
             }
 
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: #000;
-                flex-direction: column;
-                padding: 20px 0;
+            .login-logo {
+                font-size: 2rem;
             }
-
-            nav ul.show {
-                display: flex;
-            }
-
-            nav ul li {
-                margin: 0;
-                text-align: center;
-                padding: 12px 0;
-            }
-
-            .nav-actions {
-                display: none;
-            }
-
-            .mobile-login {
-                display: block;
-                text-align: center;
-                margin-top: 15px;
-                padding-top: 15px;
-                border-top: 1px solid #333;
-            }
-
-            .mobile-login .btn-login {
-                display: inline-block;
-                width: 80%;
-                max-width: 200px;
-            }
-
+        
             .signup-card {
                 margin: 0 20px;
                 padding: 40px 30px;
@@ -440,7 +431,7 @@
                 grid-template-columns: 1fr;
                 gap: 0;
             }
-        }
+        
 
         /* Animation */
         .signup-card {
