@@ -127,6 +127,22 @@
       transform: scale(1.05);
     }
 
+     .btn-login {
+                background-color:#8C2131;
+                color: #fff;
+                padding: 10px 25px;
+                border-radius: 25px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+                transition: all 0.3s;
+                border: 2px solid #8C2131;
+            }
+
+            .btn-login:hover {
+                background-color: transparent;
+                color: #8C2131;
+            }
     /* App Mockups */
     .app-mockups {
       position: relative;

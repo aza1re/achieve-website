@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Achieve Hockey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about/about.html">About Us</a></li>
+                    <li><a href="../index.html#programs">Programs</a></li>
+                
+                    <li><a href="../app/app.html">App</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
+          
+        </div>
+    </header>
+
+    <!-- Signup Section -->
+    <section class="signup-section">
+        <div class="signup-container">
+            <div class="signup-card">
+                <h1 class="signup-logo">ACHIEVE<span>HOCKEY</span></h1>
+                <p class="signup-subtitle">Create your account and start your journey</p>
+                
+                <form id="signupForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Enter your first name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Enter your last name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+                        <div class="password-strength">
+                            <div class="strength-bar" id="passwordStrength"></div>
+                        </div>
+                        <div class="password-hint">Use 8+ characters with letters and numbers</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="userType">I am a...</label>
+                        <select id="userType" class="form-control" required>
+                            <option value="">Select your role</option>
+                            <option value="player">Player</option>
+                            <option value="parent">Parent/Guardian</option>
+                            <option value="coach">Coach</option>
+                            <option value="trainer">Trainer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">
+                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter">
+                        <label for="newsletter">
+                            Send me updates about tournaments, training programs, and hockey news
+                        </label>
+                    </div>
+                    
