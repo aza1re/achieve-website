@@ -133,9 +133,20 @@
 }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 40px;
             margin-bottom: 20px;
             font-weight: 700;
+            font-family: "Lato", sans-serif;
+            font-style: normal;
+        }
+
+        .hero img{
+            width: 140px;
+            margin-bottom: 6px;
+        }
+        .hero h1 span{
+            color: #8C2131;
+            font-weight: bolder;
         }
 
         .hero p {
@@ -178,6 +189,7 @@
         /*animations*/
         /* Text animation styles */
           .hero-content h1,
+          .hero-img,
           .hero-content p,
           .hero-content .btn {
               opacity: 0;
