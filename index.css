@@ -134,15 +134,16 @@
 
         .hero h1 {
             font-size: 40px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            font-family: "Lato", sans-serif;
+            
+            
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
             font-style: normal;
         }
 
         .hero img{
             width: 140px;
-            margin-bottom: 6px;
+            margin-bottom: 12px;
         }
         .hero h1 span{
             color: #8C2131;
@@ -150,9 +151,12 @@
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 30px;
             margin-bottom: 30px;
             color: #ccc;
+             font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
         }
 
         .btn {
