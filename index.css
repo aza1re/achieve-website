@@ -133,15 +133,30 @@
 }
 
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
+            font-size: 40px;
+            
+            
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .hero img{
+            width: 140px;
+            margin-bottom: 12px;
+        }
+        .hero h1 span{
+            color: #8C2131;
+            font-weight: bolder;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 30px;
             margin-bottom: 30px;
             color: #ccc;
+             font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
         }
 
         .btn {
@@ -178,6 +193,7 @@
         /*animations*/
         /* Text animation styles */
           .hero-content h1,
+          .hero-img,
           .hero-content p,
           .hero-content .btn {
               opacity: 0;
