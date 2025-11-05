@@ -5,28 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Achieve Hockey</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../index.css">
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
+            <div class="logo-container">
+                <img src="../sources/logo.png" class="logo-img" alt="Achieve Hockey logo"/>
+                <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
+            </div>
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
             <nav>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
                     <li><a href="../about/about.html">About Us</a></li>
-                    <li><a href="../index.html#programs">Programs</a></li>
+                    <li class="has-dropdown">
+                        <a href="../index.html#programs">Programs</a>
+                        <ul class="dropdown">
+                            <li><a href="../index.html#programs-elite">Elite Skating</a></li>
+                            <li><a href="../index.html#programs-shooting">Shooting &amp; Scoring</a></li>
+                            <li><a href="../index.html#programs-goalie">Goalie Training</a></li>
+                            <li><a href="../index.html#programs-team">Team Training</a></li>
+                            <li><a href="../index.html#programs-camps">Camps</a></li>
+                        </ul>
+                    </li>
 
                     <li><a href="../app/app.html">App</a></li>
                     <li><a href="../index.html#contact">Contact</a></li>
                     <li class="mobile-login"><a href="login.html" class="btn-login">Login</a></li>
                 </ul>
             </nav>
-           
         </div>
     </header>
 
@@ -36,26 +47,26 @@
             <div class="login-card">
                 <h1 class="login-logo">ACHIEVE<span>HOCKEY</span></h1>
                 <p class="login-subtitle">Sign in to your account</p>
-                
+
                 <form>
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
                     </div>
-                    
+
                     <button type="submit" class="btn-primary">Sign In</button>
-                    
+
                     <a href="#" class="forgot-password">Forgot your password?</a>
-                    
+
                     <div class="divider">
                         <span>or</span>
                     </div>
-                    
+
                     <div class="signup-link">
                         <p>Don't have an account?</p>
                         <a href="../signup/signup.html" class="btn-secondary">Create Account</a>
@@ -85,7 +96,6 @@
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="../about/about.html">About</a></li>
                         <li><a href="../index.html#program">Programs</a></li>
-               
                         <li><a href="../app/app.html">App</a></li>
                     </ul>
                 </div>
@@ -113,15 +123,17 @@
         </div>
     </footer>
 
-    <script src="../js/script.js">
-
+    <script src="../js/script.js"></script>
+    <script>
         // Reset animation on page load
         window.addEventListener('load', function() {
             const loginCard = document.querySelector('.login-card');
-            loginCard.style.animation = 'none';
-            setTimeout(() => {
-                loginCard.style.animation = '';
-            }, 10);
+            if (loginCard) {
+                loginCard.style.animation = 'none';
+                setTimeout(() => {
+                    loginCard.style.animation = '';
+                }, 10);
+            }
         });
     </script>
 </body>

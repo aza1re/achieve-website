@@ -31,4 +31,32 @@
                     }
                 }
             });
+
+            // Dropdown hover behavior: show on hover and keep visible while cursor is over the trigger or panel
+            (function attachDropdownHover() {
+                if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+                const DROPDOWN_SELECTOR = '.has-dropdown';
+                document.querySelectorAll(DROPDOWN_SELECTOR).forEach(item => {
+                    let hideTimer = null;
+                    const dropdown = item.querySelector('.dropdown');
+
+                    const show = () => {
+                        clearTimeout(hideTimer);
+                        item.classList.add('open');
+                    };
+
+                    const hide = () => {
+                        clearTimeout(hideTimer);
+                        hideTimer = setTimeout(() => item.classList.remove('open'), 220);
+                    };
+
+                    item.addEventListener('mouseenter', show);
+                    item.addEventListener('mouseleave', hide);
+                    if (dropdown) {
+                        dropdown.addEventListener('mouseenter', show);
+                        dropdown.addEventListener('mouseleave', hide);
+                    }
+                });
+            })();
         });

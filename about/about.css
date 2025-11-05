@@ -19,13 +19,17 @@
         }
 
         /* Header Styles */
-        header {
-            background-color: rgba(0, 0, 0, 0.9);
+      header {
+            background: rgba(20,20,20,0.40);
+            -webkit-backdrop-filter: blur(10px) saturate(120%);
+            backdrop-filter: blur(10px) saturate(120%);
             position: fixed;
             width: 100%;
             z-index: 1000;
-            padding: 20px 0;
-            border-bottom: 1px solid #333;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+            transition: background-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         .header-container {
@@ -33,11 +37,14 @@
             justify-content: space-between;
             align-items: center;
         }
-      /*      .navbar-logo {
-            height: 60px;  
-            width: auto;
-        } */
-
+        .header-container .logo-img{
+            width: 50px;
+            margin-right: 20px;
+        }
+     .logo-container{
+            display: flex;
+            align-items: center;
+        }
 
         .logo {
             font-size: 24px;
@@ -50,25 +57,103 @@
             color: #8C2131;
         }
 
-        nav ul {
+        /* Top-level navigation (keeps nested dropdown ULs unaffected) */
+        nav > ul {
             display: flex;
             list-style: none;
+            align-items: center;
         }
 
-        nav ul li {
+        nav > ul > li {
             margin-left: 30px;
         }
 
-        nav ul li a {
+        nav > ul > li a {
             color: #fff;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.22s ease, transform 0.15s ease;
             font-size: 16px;
         }
 
         nav ul li a:hover {
             color: #8C2131;
+            transform: translateY(-1px);
+        }
+
+        /* Dropdown for Programs - smooth glass panel, positioned directly under Programs */
+        nav ul li.has-dropdown {
+            position: relative;
+        }
+
+        /* dropdown ul (vertical) */
+        nav ul li .dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            -webkit-backdrop-filter: blur(8px) saturate(120%);
+            backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            min-width: 220px;
+            list-style: none;
+            padding: 6px 6px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            z-index: 2000;
+            opacity: 0;
+            transform: translateY(6px);
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+        }
+
+        /* show on hover / keyboard focus */
+        nav ul li.has-dropdown:hover .dropdown,
+        nav ul li.has-dropdown:focus-within .dropdown {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* show when JS toggles the .open class (keeps behavior consistent across pages) */
+        nav ul li.has-dropdown.open .dropdown {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        nav ul li .dropdown li a {
+            display: block;
+            padding: 10px 14px;
+            color: #e9eef5;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+        }
+
+        nav ul li .dropdown li a:hover {
+            background: rgba(140,33,49,0.07);
+            color: #fff;
+            transform: translateX(4px);
+        }
+
+        /* Mobile: make dropdown static inside mobile menu when nav is expanded */
+        @media (max-width: 768px) {
+            nav ul li .dropdown {
+                position: static;
+                opacity: 1;
+                transform: none;
+                visibility: visible;
+                pointer-events: auto;
+                padding-left: 18px;
+            }
+            nav ul li .dropdown li a {
+                padding: 10px 0 10px 6px;
+            }
         }
 
         .mobile-menu-btn {
@@ -80,7 +165,8 @@
             cursor: pointer;
         }
 
-          .btn-login {
+
+            .btn-login {
                 background-color:#8C2131;
                 color: #fff;
                 padding: 10px 25px;
@@ -96,6 +182,7 @@
                 background-color: transparent;
                 color: #8C2131;
             }
+
         /* Hero Section */
         .about-hero {
             height: 60vh;
@@ -440,7 +527,12 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background-color: #000;
+                /* glassmorphism mobile nav */
+                background: rgba(10,10,10,0.55);
+                -webkit-backdrop-filter: blur(8px) saturate(120%);
+                backdrop-filter: blur(8px) saturate(120%);
+                border-top: 1px solid rgba(255,255,255,0.04);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.6);
                 flex-direction: column;
                 padding: 20px 0;
             }

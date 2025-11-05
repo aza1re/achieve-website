@@ -6,6 +6,7 @@
     <title>About Us - Achieve Hockey | Premium Hockey Training</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="about.css">
+ 
 </head>
 <body>
     <!-- Header -->
@@ -17,9 +18,17 @@
             </button>
             <nav>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
                     <li><a href="about.html" class="active">About Us</a></li>
-                    <li><a href="../index.html#programs">Programs</a></li>
+                    <li class="has-dropdown">
+                        <a href="../index.html#programs">Programs</a>
+                        <ul class="dropdown">
+                            <li><a href="../index.html#programs-elite">Elite Skating</a></li>
+                            <li><a href="../index.html#programs-shooting">Shooting &amp; Scoring</a></li>
+                            <li><a href="../index.html#programs-goalie">Goalie Training</a></li>
+                            <li><a href="../index.html#programs-team">Team Training</a></li>
+                            <li><a href="../index.html#programs-camps">Camps</a></li>
+                        </ul>
+                    </li>
                  
                     <li><a href="../app/app.html">App</a></li>
                     <li><a href="../index.html#contact">Contact</a></li>
@@ -219,43 +228,6 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('show');
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu after clicking a link
-                    if(window.innerWidth <= 768) {
-                        document.querySelector('nav ul').classList.remove('show');
-                    }
-                }
-            });
-        });
-
-        // Reset animation on page load for smoother effect
-        window.addEvfentListener('load', function() {
-            const heroContent = document.querySelector('.about-hero-content');
-            heroContent.style.animation = 'none';
-            setTimeout(() => {
-                heroContent.style.animation = '';
-            }, 10);
-        });
-    </script>
+    <script src="../js/script.js"></script>
 </body>
 </html>
