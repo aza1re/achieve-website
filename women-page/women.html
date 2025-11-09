@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achieve Hockey | Women's Hockey Development</title>
+  <link rel="stylesheet" href="../index.css">
+  <link rel="stylesheet" href="women.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+ 
+</head>
+<body>
+  <!-- Header -->
+ <header>
+        <div class="container header-container">
+            <div class="logo-container">
+         <a href="../index.html">   <img src="../sources/logo.png" class="logo-img"/></a>
+            <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                  
+                    <li><a href="../about/about.html">About Us</a></li>
+                    <li class="has-dropdown">
+                        <a href="../index.html#programs">Programs</a>
+                        <ul class="dropdown">
+                             <li><a href="../index.html#programs-elite">Youth Hockey Camps</a></li>
+                            <li><a href="index.html#programs-shooting">High Caliber Hockey Tournaments</a></li>
+                            <li><a href="index.html#programs-goalie">Women's Hockey</a></li>
+                            <li><a href="index.html#programs-team">North American Hockey Academy Tours</a></li>
+                        </ul>
+                    </li>
+                  
+                    <li><a href="../app/app.html">App</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
+                </ul>
+                
+            </nav>
+    
+    </header>
+
+  <!-- Hero Section -->
+  <section class="hero-women">
+    <div>
+      <h1>Women's Hockey Development</h1>
+      <p>Empowering the next generation of female athletes through international exposure, skill development, and community.</p>
+    </div>
+  </section>
+
+  <!-- Live Map Section -->
+  <section class="map-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Global Network</h2>
+        <p>Explore our partner academies across North America and Europe</p>
+      </div>
+      <div id="live-map"></div>
+    </div>
+  </section>
+
+  <!-- Academies Section -->
+  <section class="academies-section">
+    <div class="section-title">
+      <h2>Partner Academies</h2>
+      <p>Explore the top institutions shaping the future of women's hockey across the globe.</p>
+    </div>
+    <div class="academies-grid">
+      <div class="academy-card">
+        <h3>🇨🇦 Canada</h3>
+        <ul>
+          <li>Shawnigan Lake School</li>
+          <li>Ontario Hockey Academy</li>
+          <li>Standstead College</li>
+          <li>Victus Academy</li>
+          <li>Crystal Beach Academy</li>
+        </ul>
+      </div>
+      <div class="academy-card">
+        <h3>🇺🇸 United States</h3>
+        <ul>
+          <li>Gatineau USPHL</li>
+          <li>Wranglers USPHL</li>
+        </ul>
+      </div>
+      <div class="academy-card">
+        <h3>🇸🇪 Sweden</h3>
+        <ul>
+          <li>Modo Hockey</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+<!-- <section class="gallery">
+    <div class="section-title">
+      <h2>Gallery</h2>
+      <p>Highlights from our women's hockey journey around the world.</p>
+    </div>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1605548237355-557f25ae9c35?auto=format&fit=crop&w=800&q=80" alt="Women Hockey 1">
+      <img src="https://images.unsplash.com/photo-1605548237672-265e3c58d8e1?auto=format&fit=crop&w=800&q=80" alt="Women Hockey 2">
+      <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=800&q=80" alt="Women Hockey 3">
+      <img src="https://images.unsplash.com/photo-1610057099553-54611fa631d2?auto=format&fit=crop&w=800&q=80" alt="Women Hockey 4">
+      <img src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?auto=format&fit=crop&w=800&q=80" alt="Women Hockey 5">
+      <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=800&q=80" alt="Women Hockey 6">
+      <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d7c3af?auto=format&fit=crop&w=800&q=80" alt="Women Hockey 7">
+      <img src="https://images.unsplash.com/photo-1605405748761-e5e90b7e2f74?auto=format&fit=crop&w=800&q=80" alt="Women Hockey 8">
+      <img src="https://images.unsplash.com/photo-1615339725561-cc47b54fdf4f?auto=format&fit=crop&w=800&q=80" alt="Women Hockey 9">
+    </div>
+  </section> -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>ACHIEVE HOCKEY</h3>
+          <p>Dedicated to developing hockey players through professional training and personalized coaching.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html#programs">Programs</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Programs</h3>
+          <ul>
+            <li><a href="index.html#programs-elite">Youth Hockey</a></li>
+            <li><a href="index.html#programs-goalie">Goalie Training</a></li>
+            <li><a href="index.html#programs-team">Women's Hockey</a></li>
+            <li><a href="index.html#programs-tour">Academy Tours</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Subscribe</h3>
+          <p>Stay updated with our latest programs and training tips.</p>
+          <form>
+            <input type="email" placeholder="Your Email" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #222; border: 1px solid #333; color: #fff; border-radius: 5px;">
+            <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Achieve Hockey. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <script>
+    // Initialize the map
+    const map = L.map('live-map').setView([45, -75], 3);
+    
+    // Add tile layer (map background)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      className: 'map-tiles'
+    }).addTo(map);
+    
+    // Define academy locations with coordinates
+    const academies = [
+      {
+        name: "Shawnigan Lake School",
+        country: "Canada",
+        coords: [48.642, -123.658],
+        description: "Renowned for its holistic approach to education and athletics."
+      },
+      {
+        name: "Ontario Hockey Academy",
+        country: "Canada", 
+        coords: [45.018, -74.728],
+        description: "Dedicated to developing elite female hockey players."
+      },
+      {
+        name: "Standstead College",
+        country: "Canada",
+        coords: [45.007, -72.139],
+        description: "Offers a unique bilingual education with a strong hockey program."
+      },
+      {
+        name: "Victus Academy",
+        country: "Canada",
+        coords: [45.501, -73.567],
+        description: "Focuses on developing complete athletes with personalized training."
+      },
+      {
+        name: "Crystal Beach Academy",
+        country: "Canada",
+        coords: [42.905, -79.060],
+        description: "Provides elite training in a supportive environment."
+      },
+      {
+        name: "Gatineau USPHL",
+        country: "USA",
+        coords: [45.476, -75.701],
+        description: "Competitive USPHL program offering high-level competition."
+      },
+      {
+        name: "Wranglers USPHL",
+        country: "USA",
+        coords: [32.776, -96.797],
+        description: "Premier women's hockey program in the southern US."
+      },
+      {
+        name: "Modo Hockey",
+        country: "Sweden",
+        coords: [63.290, 18.716],
+        description: "One of Sweden's most successful hockey clubs."
+      }
+    ];
+    
+    // Custom icon for markers
+    const hockeyIcon = L.divIcon({
+      html: '<i class="fas fa-hockey-puck" style="color: #8C2131; font-size: 20px;"></i>',
+      iconSize: [20, 20],
+      className: 'hockey-marker'
+    });
+    
+    // Add markers for each academy
+    academies.forEach(academy => {
+      const marker = L.marker(academy.coords, {icon: hockeyIcon}).addTo(map);
+      
+      // Create popup content
+      const popupContent = `
+        <div class="map-popup">
+          <h3>${academy.name}</h3>
+          <p><strong>Country:</strong> ${academy.country}</p>
+          <p>${academy.description}</p>
+        </div>
+      `;
+      
+      marker.bindPopup(popupContent);
+    });
+    
+    // Add a circle to highlight North America
+  
+    
+    // Mobile menu functionality
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+      document.querySelector('nav ul').classList.toggle('show');
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu after clicking a link
+          if(window.innerWidth <= 768) {
+            document.querySelector('nav ul').classList.remove('show');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
