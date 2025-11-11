@@ -393,9 +393,25 @@ nav ul li a:hover {
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: #000;
+        /* glassmorphism mobile nav */
+        background: rgba(10,10,10,0.55);
+        -webkit-backdrop-filter: blur(8px) saturate(120%);
+        backdrop-filter: blur(8px) saturate(120%);
+        border-top: 1px solid rgba(255,255,255,0.04);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.6);
         flex-direction: column;
         padding: 20px 0;
+        transform: translateY(-8px);
+        opacity: 0;
+        transition: transform 0.28s cubic-bezier(.2,.9,.2,1), opacity 0.22s ease;
+        overflow: hidden;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+
+    nav ul.show {
+        transform: translateY(0);
+        opacity: 1;
     }
 
     nav ul.show {
