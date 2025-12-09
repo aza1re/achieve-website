@@ -1,4 +1,4 @@
- * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -487,3 +487,68 @@
                 transform: translateY(0);
             }
         }
+
+        /* Hide visual chrome of the rendered GSI button but keep it in DOM so clicks can be forwarded */
+#google-signin-button > div { 
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Modern full-width Google button that matches .btn-primary width */
+.btn-google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  background: linear-gradient(90deg, #fff 0%, #f7f7f7 100%);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  border: 1px solid rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  margin-top: 12px;
+}
+
+/* Google brand icon (use Font Awesome) - simple, normal appearance */
+.btn-google .google-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  font-size: 18px;
+  color: #4285F4;                /* Google blue */
+  background: transparent;       /* no gradient behind icon */
+  box-shadow: none;
+}
+
+/* Text */
+.btn-google .google-text { color: #111; }
+
+/* Hover / active */
+.btn-google:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.22);
+  filter: saturate(1.03);
+}
+
+/* Match spacing on small screens */
+@media (max-width: 520px) {
+  .btn-google { padding: 12px 14px; font-size: 15px; border-radius: 10px; }
+  .btn-google .google-icon { width: 32px; height: 32px; font-size:16px; }
+}
+
+/* Ensure visual parity with main sign-in button spacing */
+.login-card .btn-google { display:block; }

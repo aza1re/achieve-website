@@ -3,183 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Achieve Hockey | Premium Hockey Training</title>
+    <title>Achieve Ice Hockey & Education</title>
+
+    <!-- Font Awesome + site CSS (use absolute path to avoid relative issues) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="about.css">
- 
+    <link rel="stylesheet" href="/index.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo-container">
-           <a href="../index.html"> <img src="../sources/logo.png" class="logo-img"/> </a>
-            <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
+                <a href="/index.html">
+                    <img src="/sources/logo.png" class="logo-img" alt="Achieve Logo"/>
+                </a>
+                <a href="/index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
             </div>
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
             <nav>
                 <ul>
-                  
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="/about/about.html">About Us</a></li>
                     <li class="has-dropdown">
-                        <a href="../index.html#programs">Programs</a>
+                        <a href="#programs">Programs</a>
                         <ul class="dropdown">
-                             <li><a href="../index.html#programs-elite">Youth Hockey Camps</a></li>
-                            <li><a href="../index.html#programs-shooting">High Caliber Hockey Tournaments</a></li>
-                            <li><a href="../women-page/women.html">Women's Hockey</a></li>
-                            <li><a href="../index.html#programs-team">North American Hockey Academy Tours</a></li>
+                            <li><a href="/camp/camps.html">ACHIEVEHOCKEYCAMPS</a></li>
+                            <li><a href="/index.html#programs-shooting">High Caliber Hockey Tournaments</a></li>
+                            <li><a href="/women-page/women.html">Women's Hockey</a></li>
+                            <li><a href="/index.html#programs-team">North American Hockey Academy Tours</a></li>
                         </ul>
                     </li>
-                  
-                    <li><a href="../app/app.html">App</a></li>
-                    <li><a href="../index.html#contact">Contact</a></li>
-                    <li class="mobile-login"><a href="login/login.html" class="btn-login">Login</a></li>
+                    <li><a href="/app/app.html">App</a></li>
+                    <li><a href="/index.html#contact">Contact</a></li>
+                    <li class="mobile-login"><a href="/login/login.html" class="btn-login">Login</a></li>
                 </ul>
-                
             </nav>
-    
+        </div>
     </header>
 
-    <!-- About Hero Section -->
-  <!-- About Hero Section -->
-<section class="about-hero">
-    <div class="container">
-        <div class="about-hero-content">
-             <h1>ACHIEVE<span style="color: #8C2131;">HOCKEY</span> </h1>
-            <p>Achieve is an international ice hockey recruitment agency dedicated to connecting players, parents, coaches, and academies with opportunities across the hockey world.</p>
-        </div>
-    </div>
-</section>
-
-    <!-- Mission Section -->
-    <section class="mission">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop playsinline>
+          <source src="https://escex07qwkvrz1em.public.blob.vercel-storage.com/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
         <div class="container">
-            <div class="mission-content">
-                <div class="mission-text">
-                    <h3>Our <span style="color:white;">Story</span></h3>
-                    <p>At Achieve Hockey, we believe that eve   ry player has untapped potential waiting to be discovered. Our mission is to provide world-class training that develops not just hockey skills, but character, discipline, and a winning mindset.</p>
-                    <p>We combine cutting-edge techniques with proven coaching methodologies to help players at all levels reach their highest potential.</p>
-                    <a href="../index.html#programs" class="btn">Explore Our Programs</a>
+            <div class="hero-content">
+                <div class="hero-img">
+                    <img src="/sources/logo.png" alt="Achieve Logo"/>
                 </div>
-                <div class="mission-image">
-                    <img src="../sources/background.png">
-            </div>
-        </div>
-    </section>
-
-    <!-- Values Section -->
-    <section>
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Values</h2>
-                <p>The core principles that guide everything we do at Achieve Hockey.</p>
-            </div>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>Excellence</h3>
-                    <p>We strive for excellence in every aspect of our training programs, from technique development to mental preparation.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Community</h3>
-                    <p>Building a supportive hockey community where players can grow together and push each other to new heights.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Passion</h3>
-                    <p>Our coaches share an unwavering passion for the game and for helping players achieve their dreams.</p>
+                <h1>NOTHING GREAT COMES EASY</h1>
+                <div class="hero-buttons">
+                    <a href="#programs" class="btn btn-outline">View Programs</a>
+                    <a href="/app/app.html" class="btn">Launch App</a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-   <!---- <section class="stats">
+    <!-- Programs Section -->
+   <section class="programs-section" id="programs">
         <div class="container">
             <div class="section-title">
-                <h2>By The Numbers</h2>
-                <p>Our impact on player development over the years.</p>
+                <h2>Elite Training Programs</h2>
+                <p>
             </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>500+</h3>
-                    <p>Players Trained</p>
+
+            <div class="programs-stack">
+                <!-- Elite Skating -->
+                <div class="program-card active" data-index="0">
+                    <div>
+                        <div class="program-icon">⛸️</div>
+                        <h3>Youth Hockey Camps</h3>
+                        <p>We will host Yout Hockey Camps and bring coaches with extensive playinng experience in NHL, Major Junior and Jr. A. </p>
+                        <ul class="program-features">
+                            <li>Porfessional Coaches</li>
+                            <li>Polish foundational skills</li>
+                            
+                        </ul>
+                    </div>
+                    <button class="program-btn">Program Details</button>
                 </div>
-                <div class="stat-item">
-                    <h3>50+</h3>
-                    <p>College Scholarships</p>
+
+                <!-- Shooting & Scoring -->
+                <div class="program-card right" data-index="1">
+                    <div>
+                        <div class="program-icon">🎯</div>
+                        <h3>North American Academy Tours</h3>
+                        <p>Visit North American Hockey Academies and experience the life of a North American student-athelete.</p>
+                        <ul class="program-features">
+                            <li>Spend a day in each academy</li>
+                            <li>Join current athelets on the ice and classroom</li>
+                          
+                        </ul>
+                    </div>
+                    <button class="program-btn">Program Details</button>
                 </div>
-                <div class="stat-item">
-                    <h3>12</h3>
-                    <p>Years of Excellence</p>
+
+                <!-- Goalie Training -->
+                <div class="program-card left" data-index="2">
+                    <div>
+                        <div class="program-icon">🥅</div>
+                        <h3>High Caliber Hockey Tournaments</h3>
+                        <p>Providing the oppurtunity to participate in the most prestigious tournaments all around the world.</p>
+                        <ul class="program-features">
+                            <li>Elite International exposure</li>
+                            <li>Pathway to Pro oppurtunites</li>
+                            
+                        </ul>
+                    </div>
+                    <button class="program-btn">Program Details</button>
                 </div>
-                <div class="stat-item">
-                    <h3>15</h3>
-                    <p>Professional Coaches</p>
+
+                <div class="program-card far-right" data-index="3">
+                    <div>
+                        <div class="program-icon">🏒</div>
+                        <h3>Women's Hockey</h3>
+                        <p>Specialized training pathway for female athletes focusing on skill, speed, and competitive play development.</p>
+                        <ul class="program-features">
+                            <li>Position-specific skill work</li>
+                            <li>Strength & conditioning for female athletes</li>
+
+                        </ul>
+                    </div>
+              <a href="women-page/women.html">      <button class="program-btn">Program Details</button></a>
                 </div>
+
+              
+
+              
+            </div>
+
+            <div class="program-nav">
+                <div class="nav-dot active" data-nav="0"></div>
+                <div class="nav-dot" data-nav="1"></div>
+                <div class="nav-dot" data-nav="2"></div>
+                <div class="nav-dot" data-nav="3"></div>
+            
             </div>
         </div>
-    </section> -->
-
-    <!-- Timeline Section -->
-    <section>
+    </section>
+    <!-- Founder Section -->
+    <section id="coaches" style="background-color: #111;">
         <div class="container">
             <div class="section-title">
-                <h2>Our Journey</h2>
-                <p>Key milestones in the growth of Achieve Hockey.</p>
+                <h2>Our Founders</h2>
+                <p>Meet the founders of Achieve-Ice</p>
             </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2010</h3>
-                        <p>Founded by former NHL player Mike Johnson with a vision to revolutionize hockey training.</p>
-                    </div>
+            <div class="coaches-grid">
+                <div class="coach-card">
+                    <div class="coach-img" style="background-image: url(sources/founders/Solomon.jpg);"></div>
+                    <h3>Seiwon "Solomon" Kim</h3>
+                    <p style="color: white;">Co-Founder | Software development project manager</p>
+               
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2013</h3>
-                        <p>Expanded to include specialized goalie training programs and opened our second facility.</p>
-                    </div>
+                <div class="coach-card" >
+                    <div class="coach-img" style="background-image: url(sources/founders/Thomas.jpg);"></div>
+                    <h3>Thomas Kim</h3>
+                    <p style="color:white">CEO | Founder</p>
+                  
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2016</h3>
-                        <p>Launched our first summer intensive program, attracting players from across the country.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2020</h3>
-                        <p>Adapted our programs for virtual training during the pandemic, reaching international players.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2023</h3>
-                        <p>Celebrated our 50th player receiving a college hockey scholarship through our programs.</p>
-                    </div>
+                <div class="coach-card">
+                    <div class="coach-img" style="background-image: url(sources/founders/Jerry.jpeg);"></div>
+                    <h3>Jerry Kim</h3>
+                    <p style="color:white;"> Chief Client Relations Officer</p>
+                    
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
+    <!-- Testimonials Section -->
+    <!--<section id="testimonials" class="testimonials">
         <div class="container">
-            <h2>Ready to Achieve Your Hockey Goals?</h2>
-            <p>Join the hundreds of players who have transformed their game with our proven training methods.</p>
-            <a href="contact.html" class="btn">Get the App!</a>
-            <a href="../index.html#programs" class="btn btn-outline">View Programs</a>
+            <div class="section-title">
+                <h2>Success Stories</h2>
+                <p>Hear from players who have transformed their game with Achieve Hockey.</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"The training at Achieve Hockey completely changed my game. My skating improved dramatically and I earned a scholarship to play college hockey."</p>
+                    <h4>James Peterson</h4>
+                    <p>NCAA Division I Player</p>
+                </div>
+            </div>
+        </div>
+    </section>
+-->
 
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Ready to take your game to the next level? Contact us today to schedule a training session.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Hockey Way, Minneapolis, MN 55401</p>
+                    <p><i class="fas fa-phone"></i> (612) 555-HOCKEY</p>
+                    <p><i class="fas fa-envelope"></i> info@achievehockey.org</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9am-9pm, Sat-Sun: 8am-6pm</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject" required>
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -190,21 +237,15 @@
                 <div class="footer-col">
                     <h3>ACHIEVE HOCKEY</h3>
                     <p>Dedicated to developing hockey players through professional training and personalized coaching.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="../index.html#programs">Programs</a></li>
-                      
-                        <li><a href="../index.html3contact">Contact</a></li>
+                       
+                        <li><a href="#programs">Programs</a></li>
+                        
+                        
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -218,12 +259,12 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Hockey Way, Minneapolis, MN</li>
-                        <li><i class="fas fa-phone"></i> (612) 555-HOCKEY</li>
-                        <li><i class="fas fa-envelope"></i> info@achievehockey.org</li>
-                    </ul>
+                    <h3>Subscribe</h3>
+                    <p>Stay updated with our latest programs and training tips.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #222; border: 1px solid #333; color: #fff; border-radius: 5px;">
+                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    </form>
                 </div>
             </div>
             <div class="copyright">
@@ -232,6 +273,6 @@
         </div>
     </footer>
 
-    <script src="../js/script.js"></script>
+    <script src="/index.js"></script>
 </body>
 </html>

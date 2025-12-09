@@ -187,15 +187,22 @@
     height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center; /* <- ensure hero content is centered horizontally */
     position: relative;
     overflow: hidden;
+    text-align: center; /* center text fallback */
 }
         .hero-content {
-            max-width: 600px;
+            /* made this a flex column so heading, logo and buttons center correctly */
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-       
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
      
         .hero-video {
@@ -361,195 +368,44 @@
             margin: 0 auto;
         }
 
-        /* Interactive Card Stack */
+        /* --- REPLACED: remove carousel/3D stack styles and keep simple static layout --- */
+        /* keep a simple container for programs (cards-row already handles layout) */
         .programs-stack {
-            position: relative;
-            height: 600px;
-            max-width: 1200px;
-            margin: 0 auto;
-            perspective: 1000px;
-              display: flex;
-        justify-content: center;
-        align-items: center;
+          position: relative;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0;
+          height: auto; /* allow cards to flow normally */
+          display: block;
         }
 
-        .program-card {
-            position: absolute;
-            width: 350px;
-            height: 450px;
-            background: #111;
-            border-radius: 20px;
-            border: 1px solid #333;
-            padding: 40px 30px;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 20px 40px rgba(140, 33, 49, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .program-card.active {
-            transform: translateX(0) scale(1) rotateY(0deg) !important;
-            z-index: 10;
-            border-color: #8C2131;
-            box-shadow: 0 25px 50px rgba(140, 33, 49, 0.3);
-        }
-
-        .program-card.left {
-            transform: translateX(-280px) scale(0.85) rotateY(15deg);
-            z-index: 3;
-            opacity: 0.7;
-        }
-
-        .program-card.right {
-            transform: translateX(280px) scale(0.85) rotateY(-15deg);
-            z-index: 3;
-            opacity: 0.7;
-        }
-
-        .program-card.far-left {
-            transform: translateX(-500px) scale(0.7) rotateY(25deg);
-            z-index: 1;
-            opacity: 0.4;
-        }
-
+        /* neutralize old program-card / carousel rules so they don't interfere */
+        .program-card,
+        .program-card.active,
+        .program-card.left,
+        .program-card.right,
+        .program-card.far-left,
         .program-card.far-right {
-            transform: translateX(500px) scale(0.7) rotateY(-25deg);
-            z-index: 1;
-            opacity: 0.4;
+          all: unset;
+          box-sizing: border-box;
+          display: block;
+          width: auto;
+          height: auto;
+          margin: 0;
+          padding: 0;
+          background: transparent;
+          border: none;
+          box-shadow: none;
         }
 
-        .program-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #8C2131, #a52c3f);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            font-size: 2rem;
-            color: #fff;
-        }
-
-        .program-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 15px;
-        }
-
-        .program-card p {
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-
-        .program-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .program-features li {
-            color: #8C2131;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            font-size: 0.9rem;
-        }
-
-        .program-features li:before {
-            content: "✓";
-            margin-right: 10px;
-            font-weight: bold;
-        }
-
-        .program-btn {
-            background: #8C2131;
-            color: #fff;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        .program-btn:hover {
-            background: #a52c3f;
-            transform: translateY(-2px);
-        }
-
-        /* Navigation Dots */
-        .program-nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 50px;
-        }
-
+        /* hide program navigation dots if present */
+        .program-nav,
         .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #333;
-            cursor: pointer;
-            transition: all 0.3s;
+          display: none !important;
         }
 
-        .nav-dot.active {
-            background: #8C2131;
-            transform: scale(1.2);
-        }
-
-        /* Mobile Styles */
-      @media (max-width: 768px) {
-    .program-card.left {
-        transform: translateX(calc(-50% - 200px)) scale(0.8) rotateY(20deg);
-    }
-
-    .program-card.right {
-        transform: translateX(calc(-50% + 200px)) scale(0.8) rotateY(-20deg);
-    }
-
-    .program-card.far-left {
-        transform: translateX(calc(-50% - 350px)) scale(0.6) rotateY(30deg);
-    }
-
-    .program-card.far-right {
-        transform: translateX(calc(-50% + 350px)) scale(0.6) rotateY(-30deg);
-    }
-}
-
-@media (max-width: 480px) {
-    .program-card.left {
-        transform: translateX(calc(-50% - 150px)) scale(0.75) rotateY(25deg);
-    }
-
-    .program-card.right {
-        transform: translateX(calc(-50% + 150px)) scale(0.75) rotateY(-25deg);
-    }
-}
-
-        /* Animation */
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .programs-section {
-            animation: slideIn 0.8s ease-out;
-        }
-
+        /* remove any transforms / keyframe usage for program-cards by leaving keyframes untouched */
+        /* ...existing code... */
 
         /* Coaches Section */
             .coaches-grid {
@@ -720,7 +576,184 @@
             font-size: 14px;
         }
 
-        /* Responsive Design */
+        /* Static card layout for Programs */
+.cards-row {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 28px;
+  justify-content: space-between; /* spread cards across the available width */
+  align-items: stretch;
+  padding: 20px 0;
+}
+
+/* card style provided (adjusted for site) */
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 900px;
+  height: 320px;
+  background: #000;
+  border: 1px solid #fff;
+  box-shadow: 12px 17px 51px rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  display: flex;
+  flex-direction: row;       /* <-- image left, body right */
+  align-items: stretch;
+  gap: 18px;
+  user-select: none;
+  font-weight: 700;
+  color: #fff;
+  padding: 0;                /* children handle inner padding */
+  overflow: hidden;
+}
+
+/* left image column */
+.card-media {
+  flex: 0 0 40%;
+  height: 100%;
+  min-height: 200px;
+  overflow: hidden;
+  border-radius: 0; /* keep flush with left edge */
+  background: #111;
+  display: block;
+}
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* right content column */
+.card-body {
+  flex: 1 1 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.card-body h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #fff;
+}
+.card-desc {
+  margin: 0;
+  color: #cfcfcf;
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+
+/* keep the "Learn More" action aligned left in the content column */
+.card-learn {
+  align-self: flex-start;
+}
+
+/* hover/active remain */
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: #8C2131;
+}
+
+/* Interaction: enlarge clicked card and blur/scale others */
+.cards-row .card {
+  transition: transform .36s cubic-bezier(.2,.9,.2,1), box-shadow .36s, filter .36s, opacity .36s;
+  transform-origin: center top;
+  z-index: 1;
+}
+
+/* When a card is expanded, make it larger and lift it above others */
+.cards-row .card.expanded {
+  transform: scale(1.06) translateY(-6px);
+  box-shadow: 0 40px 80px rgba(0,0,0,.65);
+  border-color: rgba(140,33,49,0.95);
+  z-index: 60 !important;
+}
+
+/* When any card is expanded (row gets .has-expanded), blur and shrink non-expanded cards */
+.cards-row.has-expanded .card:not(.expanded) {
+  filter: blur(6px) saturate(.9);
+  transform: scale(.96);
+  opacity: .55;
+  pointer-events: none; /* avoid accidental clicks on blurred cards */
+}
+
+/* Optional: show a details panel inside the card when expanded */
+.card .card-details {
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height .42s ease, opacity .32s ease;
+  margin-top: 12px;
+  color: #e6e6e6;
+}
+
+/* reveal details when card is expanded */
+.card.expanded .card-details {
+  display: block;
+  max-height: 480px; /* adjust */
+  opacity: 1;
+}
+
+/* small close button inside details */
+.card .card-details .close-card {
+  display: inline-block;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* keep cards responsive: don't let transform overflow layout */
+.cards-row { position: relative; }
+
+/* Accessibility: indicate expanded card visually with outline */
+.card.expanded { outline: 3px solid rgba(140,33,49,0.12); outline-offset: 8px; }
+
+/* ensure expanded card content (media + body) remain readable */
+.card.expanded .card-media img { filter: none; transform: none; }
+
+/* On mobile/stacked layout we still allow expand but reduce scale */
+@media (max-width: 880px) {
+  .card.expanded { transform: scale(1.02) translateY(-4px); }
+  .cards-row.has-expanded .card:not(.expanded) { filter: blur(4px); transform: scale(.98); }
+}
+
+/* MOBILE / stacked fallback: make card column and image full-width */
+@media (max-width: 880px) {
+  .card {
+    flex-direction: column !important;
+    height: auto;
+    padding: 12px !important;
+  }
+  .card-media {
+    width: 100%;
+    height: 240px;
+    flex: none;
+    border-radius: 12px;
+  }
+  .card-body {
+    width: 100%;
+    padding: 12px 6px 18px 6px;
+    align-items: stretch;
+  }
+}
+/* ...existing code... */
+
+/* Responsive Design */
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
@@ -790,5 +823,541 @@
                 margin-left: 0;
             }
         }
+        
+        /* Season tabs */
+.season-tabs {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin: 28px 0 36px;
+  padding: 0 20px;
+}
+.season-tab {
+  background: transparent;
+  color: #d6d6d6;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 14px 26px;    /* increased vertical/horizontal size */
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 18px;       /* larger text */
+  letter-spacing: 0.6px;
+  min-width: 140px;      /* ensure consistent button width */
+  text-align: center;
+  transition: background .18s, color .18s, border-color .18s, transform .12s;
+}
+.season-tab:hover { transform: translateY(-3px); }
 
-           
+.season-tab.active {
+  background: linear-gradient(90deg, rgba(140,33,49,0.16), rgba(140,33,49,0.06));
+  color: #fff;
+  border-color: rgba(140,33,49,0.85);
+  box-shadow: 0 10px 28px rgba(140,33,49,0.07);
+}
+
+/* make tabs responsive on small screens */
+@media (max-width: 520px) {
+  .season-tabs {
+    gap: 10px;
+    margin: 18px 0 22px;
+  }
+  .season-tab {
+    padding: 10px 14px;
+    font-size: 15px;
+    min-width: 0;
+  }
+}
+
+/* FORCE: always stack cards vertically (container) but keep each card layout as row so image stays left */
+.cards-row,
+.season-cards .cards-row {
+  display: flex !important;
+  flex-direction: column !important; /* cards stacked vertically in the section */
+  gap: 20px !important;
+  padding: 12px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* Each card should be a row: image on the left, content on the right */
+.cards-row > .card,
+.season-cards .cards-row > .card {
+  width: 90% !important;
+  max-width: 1200px !important;
+  margin: 0 auto 20px auto !important;
+  align-self: center !important;
+  min-height: 360px !important;
+  box-sizing: border-box !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  display: flex !important;
+  flex-direction: row !important; /* <-- ensure image is left column */
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Explicitly set the image column to occupy left side of the card */
+.cards-row > .card .card-media,
+.season-cards .cards-row > .card .card-media {
+  flex: 0 0 40% !important;   /* left column width */
+  width: auto !important;
+  height: 100% !important;
+  min-height: 200px !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Ensure card-body stays on the right and fills remaining space */
+.cards-row > .card .card-body,
+.season-cards .cards-row > .card .card-body {
+  flex: 1 1 60% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  align-items: flex-start !important;
+}
+
+/* Mobile fallback: stacked (image above content) — unchanged */
+@media (max-width: 880px) {
+  .cards-row > .card,
+  .season-cards .cards-row > .card {
+    flex-direction: column !important;
+    min-height: auto !important;
+  }
+  .cards-row > .card .card-media,
+  .season-cards .cards-row > .card .card-media {
+    flex: none !important;
+    width: 100% !important;
+    height: 240px !important;
+    border-radius: 12px !important;
+  }
+  .cards-row > .card .card-body,
+  .season-cards .cards-row > .card .card-body {
+    padding: 12px 6px 18px 6px !important;
+    align-items: stretch !important;
+  }
+}
+/* ...existing code... */
+
+/* Center hero buttons */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+/* remove extra margins that can offset centering */
+.hero-buttons .btn {
+  margin: 0;
+}
+
+/* keep mobile stacked layout */
+@media (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hero-buttons .btn {
+    width: 80%;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
+/* Scope: only affect cards inside the season-cards groups so other site layouts (tabs, header) are unaffected */
+.season-cards .cards-row {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;    /* stack vertically */
+  gap: 28px;
+  align-items: stretch;
+  padding: 20px 0;
+  position: relative;
+}
+
+/* Each season card remains a row (image left, body right) but only for season-cards */
+.season-cards .cards-row > .card {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  min-height: 360px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* image column scoped to season cards */
+.season-cards .cards-row > .card .card-media {
+  flex: 0 0 40%;
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* right content column scoped */
+.season-cards .cards-row > .card .card-body {
+  flex: 1 1 60%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Keep mobile stacked fallback scoped as well */
+@media (max-width: 880px) {
+  .season-cards .cards-row > .card {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .season-cards .cards-row > .card .card-media {
+    flex: none;
+    width: 100%;
+    height: 240px;
+    border-radius: 12px;
+  }
+  .season-cards .cards-row > .card .card-body {
+    padding: 12px 6px 18px 6px;
+    align-items: stretch;
+  }
+}
+
+/* ---------- Strong scoped overrides for expanded card panel (season cards only) ---------- */
+/* These rules are intentionally very specific and placed at EOF so they override earlier rules. */
+
+.season-cards .cards-row { position: relative; }
+
+/* blur non-expanded cards only inside season-cards rows */
+.season-cards .cards-row.has-expanded .card:not(.expanded) {
+  filter: blur(6px) saturate(.9) !important;
+  transform: scale(.96) !important;
+  opacity: .55 !important;
+  pointer-events: none !important;
+}
+
+/* base expanded fixed panel (no forced transform) */
+.season-cards .cards-row .card.expanded {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important; /* final visual state, JS will animate via inline transform first */
+  width: min(1400px, 94vw) !important;
+  max-width: 1400px !important;
+  height: auto !important;
+  max-height: 94vh !important;
+  border-radius: 14px !important;
+  padding: 0 !important;
+  box-shadow: 0 80px 160px rgba(0,0,0,0.86) !important;
+  z-index: 200000 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0 !important;
+  /* ensure only transform animates position/scale (JS controls transform) */
+  transition: box-shadow .36s ease, opacity .24s ease !important;
+  will-change: transform;
+}
+
+/* class used while JS is animating the transform */
+.season-cards .cards-row .card.expanded.animating {
+  transition: transform .45s cubic-bezier(.22,.9,.15,1) !important;
+  pointer-events: auto !important;
+}
+
+/* when collapsed, keep regular transition on transform (hover states still ok) */
+.cards-row .card { transition: transform .36s cubic-bezier(.2,.9,.2,1), box-shadow .36s, filter .36s, opacity .36s; }
+
+/* EOF - end of overrides */
+
+/* Register button style (as requested) */
+.button {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(45deg, #0ce39a, #69007f, #fc0987);
+  padding: 14px 25px;
+  border-radius: 10px;
+  font-size: 1.25em;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 14px; /* space from description/details */
+}
+
+.button span {
+  position: relative;
+  z-index: 1;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: #272727;
+  border-radius: 9px;
+  transition: 0.5s;
+}
+
+.button:hover::before {
+  opacity: 0.7;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  background: linear-gradient(45deg, #0ce39a, #69007f, #fc0987);
+  border-radius: 9px;
+  transition: 0.5s;
+  opacity: 0;
+  filter: blur(20px);
+}
+
+.button:hover::after {
+  opacity: 1;
+}
+
+/* optional: smaller on mobile */
+@media (max-width: 880px) {
+  .button { font-size: 1rem; padding: 12px 18px; }
+}
+
+/* Smooth symmetric open/close: avoid jumping to fixed position and slow the transitions.
+   Place this at the end of index.css (overrides earlier rules). */
+
+/* slower base transitions for cards */
+.cards-row .card {
+  transition: transform .60s cubic-bezier(.22,.9,.15,1), 
+              box-shadow .60s cubic-bezier(.22,.9,.15,1),
+              filter .60s cubic-bezier(.22,.9,.15,1),
+              opacity .60s cubic-bezier(.22,.9,.15,1);
+  will-change: transform, filter, opacity;
+}
+
+/* expanded state: grow in-place (no position change) so opening/closing are pure transforms */
+.season-cards .cards-row .card.expanded {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: translateY(-12px) scale(1.08) !important;
+  width: 94% !important;
+  max-width: 1200px !important;
+  max-height: none !important;
+  border-radius: 14px !important;
+  padding: 0 !important;
+  box-shadow: 0 80px 160px rgba(0,0,0,0.86) !important;
+  z-index: 2000 !important;
+  overflow: hidden !important;
+  transition: transform .60s cubic-bezier(.22,.9,.15,1), width .60s cubic-bezier(.22,.9,.15,1), box-shadow .60s;
+}
+
+/* ensure the blurred siblings animate smoothly and slower */
+.season-cards .cards-row.has-expanded .card:not(.expanded) {
+  transition: filter .60s cubic-bezier(.22,.9,.15,1), transform .60s cubic-bezier(.22,.9,.15,1), opacity .60s cubic-bezier(.22,.9,.15,1);
+  filter: blur(6px) saturate(.9) !important;
+  transform: scale(.96) !important;
+  opacity: .55 !important;
+  pointer-events: none !important;
+}
+
+/* ensure card-details reveal stays smooth */
+.card .card-details {
+  transition: max-height .60s ease, opacity .40s ease;
+}
+
+/* mobile: keep slightly reduced scale and slower timing */
+@media (max-width: 880px) {
+  .cards-row .card {
+    transition-duration: .42s;
+  }
+  .season-cards .cards-row .card.expanded {
+    transform: translateY(-6px) scale(1.03) !important;
+    width: 96% !important;
+  }
+}
+
+/* Glass-style tabs (4 options) — scoped to .season-tabs.glass */
+.season-tabs.glass {
+  --bg: rgba(255,255,255,0.04);
+  --text: #d6d6d6;
+  display: inline-flex;
+  position: relative;
+  background: var(--bg);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  box-shadow:
+    inset 1px 1px 4px rgba(255,255,255,0.06),
+    inset -1px -1px 6px rgba(0,0,0,0.25),
+    0 6px 18px rgba(0,0,0,0.2);
+  overflow: hidden;
+  padding: 6px;
+  gap: 6px;
+  align-items: center;
+  margin: 0 auto 28px;
+}
+
+/* hide native radios */
+.season-tabs.glass input[type="radio"] { display: none; }
+
+/* labels visually become the tabs — keep existing season-tab look + glass tweaks */
+.season-tabs.glass .season-tab {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  color: var(--text);
+  padding: 12px 20px;
+  min-width: 110px;
+  text-align: center;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: color .25s ease, transform .18s ease;
+  background: transparent;
+  border: none;
+}
+
+/* hover */
+.season-tabs.glass .season-tab:hover { color: #fff; transform: translateY(-3px); }
+
+/* glider */
+.season-tabs.glass .glass-glider {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  width: calc(100% / 4 - 12px);
+  border-radius: 1rem;
+  z-index: 1;
+  transition:
+    transform 0.45s cubic-bezier(0.37, 1.95, 0.66, 0.56),
+    background 0.35s ease-in-out,
+    box-shadow 0.35s ease-in-out;
+  background: linear-gradient(90deg, rgba(140,33,49,0.12), rgba(140,33,49,0.04));
+  box-shadow: 0 6px 18px rgba(140,33,49,0.06);
+}
+
+/* Position the glider when each radio is checked (use general sibling selector) */
+#glass-spring:checked ~ .glass-glider { transform: translateX(0%); /* leftmost */ }
+#glass-summer:checked ~ .glass-glider { transform: translateX(100%); }
+#glass-fall:checked   ~ .glass-glider { transform: translateX(200%); }
+#glass-winter:checked ~ .glass-glider { transform: translateX(300%); }
+
+/* Make checked label text white */
+.season-tabs.glass input:checked + label { color: #fff; }
+
+/* Small-screen / fluid adjustments */
+@media (max-width: 520px) {
+  .season-tabs.glass { gap: 6px; padding: 6px; }
+  .season-tabs.glass .season-tab { padding: 10px 12px; font-size: 14px; min-width: 0; }
+  .season-tabs.glass .glass-glider { display: none; } /* keep simpler on tiny screens */
+}
+
+/* Centered, even glass tabs (override previous .season-tabs.glass rules) */
+.season-tabs.glass {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 28px;
+  padding: 6px;
+  gap: 0;                      /* no gap so glider width = 100% / 4 */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: var(--bg, rgba(255,255,255,0.04));
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* hide radios but keep them in DOM order */
+.season-tabs.glass input[type="radio"] { display: none; }
+
+/* make each label take equal space and center text */
+.season-tabs.glass .season-tab {
+  flex: 1 1 0;
+  min-width: 110px;
+  padding: 12px 14px;
+  margin: 0 6px;              /* small horizontal spacing */
+  text-align: center;
+  background: transparent;
+  color: var(--text, #d6d6d6);
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 2;
+  transition: color .25s ease, transform .18s ease;
+}
+
+/* ensure hover/active remain */
+.season-tabs.glass .season-tab:hover { color: #fff; transform: translateY(-3px); }
+.season-tabs.glass input:checked + label { color: #fff; }
+
+/* glider spans one-fourth of container */
+.season-tabs.glass .glass-glider {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 0;
+  width: calc(100% / 4);
+  border-radius: 1rem;
+  z-index: 1;
+  transition: transform 0.45s cubic-bezier(0.37, 1.95, 0.66, 0.56), background .35s, box-shadow .35s;
+  background: linear-gradient(90deg, rgba(140,33,49,0.12), rgba(140,33,49,0.04));
+  box-shadow: 0 6px 18px rgba(140,33,49,0.06);
+}
+
+/* Move glider by multiples of its own width */
+#glass-spring:checked ~ .glass-glider { transform: translateX(0%); }
+#glass-summer:checked ~ .glass-glider { transform: translateX(100%); }
+#glass-fall:checked   ~ .glass-glider { transform: translateX(200%); }
+#glass-winter:checked ~ .glass-glider { transform: translateX(300%); }
+
+/* small screen tweaks */
+@media (max-width: 520px) {
+  .season-tabs.glass { padding: 6px; }
+  .season-tabs.glass .season-tab { padding: 8px 10px; font-size: 14px; margin: 0 4px; }
+  .season-tabs.glass .glass-glider { display: none; }
+}
+
+/* Ensure JS-driven active state styles (labels + glider) */
+.season-tabs.glass .season-tab.active {
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.season-tabs.glass .glass-glider {
+  /* fallback vibrant gradient (JS will set more specific color inline) */
+  background: linear-gradient(90deg, #34d399, #8b5cf6);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.45);
+  transition: transform 0.45s cubic-bezier(0.37, 1.95, 0.66, 0.56), background .35s ease, box-shadow .35s ease;
+}
+
+/* hide original input:checked color rule so it doesn't conflict */
+.season-tabs.glass input:checked + label { color: inherit; }
+
+/* Make tabs horizontally scrollable so we can scroll the active label to the left on demand */
+.season-tabs.glass {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* hide scrollbar visual (still scrollable) */
+.season-tabs.glass::-webkit-scrollbar { height: 8px; display: none; }
+.season-tabs.glass { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* reduce label side margin so scrolling aligns cleanly */
+.season-tabs.glass .season-tab { margin: 0 8px; }
+
+/* ensure first/left padding provides a small inset so the label isn't flush to edge */
+.season-tabs.glass { padding-left: 12px; padding-right: 12px; }
+
