@@ -1,64 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achieve Hockey | Premium Hockey Training</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Achieve Ice Hockey & Education — Camps</title>
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- Font Awesome + Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+    <!-- site CSS (use camp css copied into camp folder) -->
+    <link rel="stylesheet" href="index.css" />
+</head>
 <body>
     <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo-container">
-            <img src="sources/logo.png" class="logo-img"/>
-            <a href="#" class="logo">ACHIEVE<span>HOCKEY</span>CAMPS</a>
+                <a href="/index.html">
+                    <img src="/sources/logo.png" class="logo-img" alt="Achieve Logo" />
+                </a>
+                <a href="/index.html" class="logo">ACHIEVE<span>HOCKEY</span>CAMPS</a>
             </div>
+
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
+
             <nav>
                 <ul>
-                  
-                    <li><a href="about/about.html">About Us</a></li>
+                    <li><a href="/about/about.html">About Us</a></li>
+
                     <li class="has-dropdown">
                         <a href="#programs">Programs</a>
                         <ul class="dropdown">
-                             <li><a href="index.html#programs-elite">Youth Hockey Camps</a></li>
-                            <li><a href="index.html#programs-shooting">High Caliber Hockey Tournaments</a></li>
-                            <li><a href="women-page/women.html">Women's Hockey</a></li>
-                            <li><a href="index.html#programs-team">North American Hockey Academy Tours</a></li>
+                            <li><a href="/camp/camps.html">Youth Hockey Camps</a></li>
+                            <li><a href="/index.html#programs-shooting">High Caliber Hockey Tournaments</a></li>
+                            <li><a href="/women-page/women.html">Women's Hockey</a></li>
+                            <li><a href="/index.html#programs-team">North American Hockey Academy Tours</a></li>
                         </ul>
                     </li>
-                  
-                    <li><a href="app/app.html">App</a></li>
+
+                    <li><a href="/app/app.html">App</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li class="mobile-login"><a href="login/login.html" class="btn-login">Login</a></li>
+                    <li class="mobile-login"><a href="/login/login.html" class="btn-login">Login</a></li>
                 </ul>
-                
             </nav>
-    
+        </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <video class="hero-video" autoplay muted loop playsinline>
-      <source src="https://escex07qwkvrz1em.public.blob.vercel-storage.com/video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+            <source src="https://escex07qwkvrz1em.public.blob.vercel-storage.com/video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+
         <div class="container">
             <div class="hero-content">
                 <div class="hero-img">
-                    <img src="sources/logo.png"/>
+                    <img src="/sources/logo.png" alt="Achieve Logo" />
                 </div>
                 <h1>NOTHING GREAT COMES EASY</h1>
-               <p>The Future of International Hockey </p>
                 <div class="hero-buttons">
                     <a href="#programs" class="btn btn-outline">View Programs</a>
-                    <a href="app/app.html" class="btn">Launch App</a>
+                    <a href="/app/app.html" class="btn">Launch App</a>
                     <a href="#contact" class="btn btn-outline">Contact Us</a>
                 </div>
             </div>
@@ -66,166 +73,156 @@
     </section>
 
     <!-- Programs Section -->
-   <section class="programs-section" id="programs">
-        <div class="container">
-            <div class="section-title">
-                <h2>Elite Training Programs</h2>
-                <p>
-            </div>
-
-            <div class="programs-stack">
-                <!-- Elite Skating -->
-                <div class="program-card active" data-index="0">
-                    <div>
-                        <div class="program-icon">⛸️</div>
-                        <h3>Youth Hockey Camps</h3>
-                        <p>We will host Yout Hockey Camps and bring coaches with extensive playinng experience in NHL, Major Junior and Jr. A. </p>
-                        <ul class="program-features">
-                            <li>Porfessional Coaches</li>
-                            <li>Polish foundational skills</li>
-                            
-                        </ul>
-                    </div>
-                    <button class="program-btn">Program Details</button>
-                </div>
-
-                <!-- Shooting & Scoring -->
-                <div class="program-card right" data-index="1">
-                    <div>
-                        <div class="program-icon">🎯</div>
-                        <h3>North American Academy Tours</h3>
-                        <p>Visit North American Hockey Academies and experience the life of a North American student-athelete.</p>
-                        <ul class="program-features">
-                            <li>Spend a day in each academy</li>
-                            <li>Join current athelets on the ice and classroom</li>
-                          
-                        </ul>
-                    </div>
-                    <button class="program-btn">Program Details</button>
-                </div>
-
-                <!-- Goalie Training -->
-                <div class="program-card left" data-index="2">
-                    <div>
-                        <div class="program-icon">🥅</div>
-                        <h3>High Caliber Hockey Tournaments</h3>
-                        <p>Providing the oppurtunity to participate in the most prestigious tournaments all around the world.</p>
-                        <ul class="program-features">
-                            <li>Elite International exposure</li>
-                            <li>Pathway to Pro oppurtunites</li>
-                            
-                        </ul>
-                    </div>
-                    <button class="program-btn">Program Details</button>
-                </div>
-
-                <div class="program-card far-right" data-index="3">
-                    <div>
-                        <div class="program-icon">🏒</div>
-                        <h3>Women's Hockey</h3>
-                        <p>Specialized training pathway for female athletes focusing on skill, speed, and competitive play development.</p>
-                        <ul class="program-features">
-                            <li>Position-specific skill work</li>
-                            <li>Strength & conditioning for female athletes</li>
-
-                        </ul>
-                    </div>
-              <a href="women-page/women.html">      <button class="program-btn">Program Details</button></a>
-                </div>
-
-              
-
-              
-            </div>
-
-            <div class="program-nav">
-                <div class="nav-dot active" data-nav="0"></div>
-                <div class="nav-dot" data-nav="1"></div>
-                <div class="nav-dot" data-nav="2"></div>
-                <div class="nav-dot" data-nav="3"></div>
-            
-            </div>
+    <section class="programs-section" id="programs">
+        <div class="section-title">
+            <h2>Our Programs</h2>
         </div>
-    </section>
-    <!-- Founder Section -->
-    <section id="coaches" style="background-color: #111;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Founders</h2>
-                <p>Meet the founders of Achieve-Ice</p>
-            </div>
-            <div class="coaches-grid">
-                <div class="coach-card">
-                    <div class="coach-img" style="background-image: url(sources/founders/Solomon.jpg);"></div>
-                    <h3>Seiwon "Solomon" Kim</h3>
-                    <p style="color: white;">Co-Founder | Software development project manager</p>
-               
-                </div>
-                <div class="coach-card" >
-                    <div class="coach-img" style="background-image: url(sources/founders/Thomas.jpg);"></div>
-                    <h3>Thomas Kim</h3>
-                    <p style="color:white">CEO | Founder</p>
-                  
-                </div>
-                <div class="coach-card">
-                    <div class="coach-img" style="background-image: url(sources/founders/Jerry.jpeg);"></div>
-                    <h3>Jerry Kim</h3>
-                    <p style="color:white;"> Chief Client Relations Officer</p>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Testimonials Section -->
-    <!--<section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Success Stories</h2>
-                <p>Hear from players who have transformed their game with Achieve Hockey.</p>
-            </div>
-            <div class="testimonial-slider">
-                <div class="testimonial">
-                    <p>"The training at Achieve Hockey completely changed my game. My skating improved dramatically and I earned a scholarship to play college hockey."</p>
-                    <h4>James Peterson</h4>
-                    <p>NCAA Division I Player</p>
-                </div>
-            </div>
-        </div>
-    </section>
--->
+        <!-- Season Tabs (glass radio group) -->
+        <div class="season-tabs glass" role="tablist" aria-label="Program seasons">
+          <input type="radio" name="season" id="glass-spring" checked>
+          <label for="glass-spring" class="season-tab" data-season="spring" role="tab" aria-selected="true">Spring</label>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p>Ready to take your game to the next level? Contact us today to schedule a training session.</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Hockey Way, Minneapolis, MN 55401</p>
-                    <p><i class="fas fa-phone"></i> (612) 555-HOCKEY</p>
-                    <p><i class="fas fa-envelope"></i> info@achievehockey.org</p>
-                    <p><i class="fas fa-clock"></i> Mon-Fri: 9am-9pm, Sat-Sun: 8am-6pm</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
+          <input type="radio" name="season" id="glass-summer">
+          <label for="glass-summer" class="season-tab" data-season="summer" role="tab" aria-selected="false">Summer</label>
+
+          <input type="radio" name="season" id="glass-fall">
+          <label for="glass-fall" class="season-tab" data-season="fall" role="tab" aria-selected="false">Fall</label>
+
+          <input type="radio" name="season" id="glass-winter">
+          <label for="glass-winter" class="season-tab" data-season="winter" role="tab" aria-selected="false">Winter</label>
+
+          <div class="glass-glider" aria-hidden="true"></div>
+        </div>
+
+        <!-- Season card groups -->
+        <div class="season-cards-wrapper">
+          <div class="season-cards" data-season="spring">
+            <div class="cards-row">
+
+              <!-- Card 3 -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="programs/camps/GlobalInvitational.jpg" alt="Global Invitational">
                 </div>
-                <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="text" placeholder="Subject" required>
-                        <textarea placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
+                <div class="card-body">
+                  <h3>Global Invitational</h3>
+                  <p class="card-desc">High-caliber international tournament exposure and academy visits across Canada.</p>
+
+                  <!-- details shown when card has .expanded -->
+                  <div class="card-details" aria-hidden="true">
+                    <p><strong>When:</strong> Spring & Summer 2026</p>
+                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
+                    <p>Full details, schedule and coach bios are available here when expanded.</p>
+                    <button class="close-card" type="button">Close</button>
+                  </div>
+
+                  <!-- ADDED: Register button -->
+                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
                 </div>
+              </div>
             </div>
+          </div>
+
+          <!-- other seasons: copy same structure or replace content per season -->
+          <div class="season-cards" data-season="summer" hidden>
+            <div class="cards-row">
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/camps_summer.jpg" alt="Summer Camps">
+                </div>
+                <div class="card-body">
+                  <h3>Summer Camps</h3>
+                  <p class="card-desc">Intensive summer development programs focused on skating, skills and game-play.</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/tours_summer.jpg" alt="Summer Academy Tours">
+                </div>
+                <div class="card-body">
+                  <h3>Academy Tours</h3>
+                  <p class="card-desc">Summer academy visits — experience training life and facilities.</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/tournaments_summer.jpg" alt="Summer Tournaments">
+                </div>
+                <div class="card-body">
+                  <h3>Showcase Tournaments</h3>
+                  <p class="card-desc">Elite summer showcases with scouting opportunities and high-level competition.</p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/womens_summer.jpg" alt="Women's Programs">
+                </div>
+                <div class="card-body">
+                  <h3>Women's Programs</h3>
+                  <p class="card-desc">Women-specific summer training sessions and strength programs.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="season-cards" data-season="fall" hidden>
+            <div class="cards-row">
+              <!-- (fall cards removed here — moved to winter) -->
+            </div>
+          </div>
+
+          <!-- WINTER: moved cards -->
+          <div class="season-cards" data-season="winter" hidden>
+            <div class="cards-row">
+              <!-- Card 1 -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="programs/camps/RumbleCup.jpg" alt="Rumble Cup">
+                </div>
+                <div class="card-body">
+                  <h3>Rumble Cup</h3>
+                  <p class="card-desc">Invite-only showcase and coach-led clinics. Details provided to serious applicants.</p>
+
+                  <!-- details shown when card has .expanded -->
+                  <div class="card-details" aria-hidden="true">
+                    <p><strong>When:</strong> Spring & Summer 2026</p>
+                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
+                    <p>Full details, schedule and coach bios are available here when expanded.</p>
+                    <button class="close-card" type="button">Close</button>
+                  </div>
+
+                  <!-- ADDED: Register button -->
+                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="programs/camps/ModoHockey.png" alt="MODO Camp">
+                </div>
+                <div class="card-body">
+                  <h3>MODO Camp</h3>
+                  <p class="card-desc">Skill sessions, hockey IQ video analysis and on-ice development with international staff.</p>
+
+                  <!-- details shown when card has .expanded -->
+                  <div class="card-details" aria-hidden="true">
+                    <p><strong>When:</strong> Spring & Summer 2026</p>
+                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
+                    <p>Full details, schedule and coach bios are available here when expanded.</p>
+                    <button class="close-card" type="button">Close</button>
+                  </div>
+
+                  <!-- ADDED: Register button -->
+                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </section>
 

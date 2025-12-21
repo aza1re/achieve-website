@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Account - Achieve Hockey</title>
+  <link rel="stylesheet" href="../index.css">
+  <style>
+    /* small page-specific styles */
+    .account-section { padding: 120px 20px 60px; display:flex; justify-content:center; }
+    .account-card { background:#111; color:#fff; border-radius:16px; padding:36px; max-width:720px; width:100%; box-shadow:0 20px 40px rgba(0,0,0,0.6); text-align:left; }
+    .profile-row { display:flex; gap:20px; align-items:center; }
+    .avatar { width:96px; height:96px; border-radius:12px; background:#222; object-fit:cover; }
+    .profile-info h2 { margin:0 0 6px; font-size:20px; }
+    .profile-info p { margin:0; color:#cfcfcf; font-size:14px; }
+    .account-actions { margin-top:22px; display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { padding:10px 16px; border-radius:10px; cursor:pointer; border:0; font-weight:600; }
+    .btn-logout { background:#8C2131; color:#fff; }
+    .btn-secondary { background:transparent; color:#8C2131; border:2px solid #8C2131; }
+    .meta { margin-top:16px; color:#999; font-size:13px; }
+    #accountStatus { color:#f3b3b3; margin-bottom:12px; }
+  </style>
+</head>
+<body>
+  <!-- header copied from other pages for consistency -->
+  <header>
+    <div class="container header-container">
+      <div class="logo-container">
+        <a href="../index.html"><img src="../sources/logo.png" class="logo-img" alt="logo"></a>
+        <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="account-section">
+    <div class="account-card" role="main">
+      <div id="accountStatus" aria-live="polite"></div>
+
+      <div id="accountContent" style="display:none">
+        <div class="profile-row">
+          <img id="profilePic" class="avatar" alt="avatar" src="../sources/avatar-placeholder.png">
+          <div class="profile-info">
+            <h2 id="displayName">User</h2>
+            <p id="email">email@example.com</p>
+            <div class="meta" id="providerInfo"></div>
+          </div>
+        </div>
+
+        <div class="account-actions">
+          <button id="signOutBtn" class="btn btn-logout">Sign out</button>
+          <a href="../index.html" class="btn btn-secondary" role="button">Back to Home</a>
+          <a href="../signup/signup.html" class="btn btn-secondary" role="button">Edit / Recreate</a>
+        </div>
+
+        <div class="meta" id="rawMeta"></div>
+      </div>
+
+      <div id="notSignedIn" style="display:none">
+        <p>You are not signed in.</p>
+        <a href="../login/login.html" class="btn btn-secondary">Sign in</a>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="../js/firebase-client.js"></script>
+  <script src="account.js"></script>
+</body>
+</html>

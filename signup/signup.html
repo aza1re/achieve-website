@@ -8,31 +8,39 @@
     <link rel="stylesheet" href="signup.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header (copied from index.html) -->
     <header>
         <div class="container header-container">
-            <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
-            <button class="mobile-menu-btn">
+            <div class="logo-container">
+                <a href="../index.html">
+                    <img src="../sources/logo.png" class="logo-img" alt="Achieve Logo" />
+                </a>
+                <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span>CAMPS</a>
+            </div>
+
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
-           <nav>
-    <ul>
-        <li><a href="../about/about.html">About Us</a></li>
-        <li class="has-dropdown">
-            <a href="../index.html#programs">Programs</a>
-            <ul class="dropdown">
-                <li><a href="../index.html#programs-elite">Elite Skating</a></li>
-                <li><a href="../index.html#programs-shooting">Shooting &amp; Scoring</a></li>
-                <li><a href="../index.html#programs-goalie">Goalie Training</a></li>
-                <li><a href="../index.html#programs-team">Team Training</a></li>
-                <li><a href="../index.html#programs-camps">Camps</a></li>
-            </ul>
-        </li>
-        <li><a href="../app/app.html">App</a></li>
-        <li><a href="../index.html#contact">Contact</a></li>
-        <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
-    </ul>
-</nav>
+
+            <nav>
+                <ul>
+                    <li><a href="../about/about.html">About Us</a></li>
+
+                    <li class="has-dropdown">
+                        <a href="../index.html#programs">Programs</a>
+                        <ul class="dropdown">
+                            <li><a href="../camp/camps.html">Youth Hockey Camps</a></li>
+                            <li><a href="../index.html#programs-shooting">High Caliber Hockey Tournaments</a></li>
+                            <li><a href="../women-page/women.html">Women's Hockey</a></li>
+                            <li><a href="../index.html#programs-team">North American Hockey Academy Tours</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="../app/app.html">App</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -100,10 +108,45 @@
                             Send me updates about tournaments, training programs, and hockey news
                         </label>
                     </div>
+
+                    <!-- ADDED: inline error + submit button -->
+                    <div id="signupError" class="form-error" aria-live="polite" role="alert" style="display:none;"></div>
+
+                    <button type="submit" id="signupBtn" class="btn-primary">Create account</button>
                 </form>
             </div>
             </div>
             </section>
+
+            <!-- Add small nav wiring so mobile toggle + mobile dropdowns work on signup page -->
+<script>
+  (function () {
+    // mobile menu toggle
+    const btn = document.querySelector('.mobile-menu-btn');
+    const navList = document.querySelector('nav > ul');
+    if (btn && navList) {
+      btn.addEventListener('click', () => navList.classList.toggle('show'));
+    }
+
+    // mobile dropdown toggles for .has-dropdown
+    function enableMobileDropdowns() {
+      if (window.innerWidth > 768) return;
+      document.querySelectorAll('nav .has-dropdown > a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const parent = this.parentElement;
+          parent.classList.toggle('open');
+        });
+      });
+    }
+    enableMobileDropdowns();
+    window.addEventListener('resize', enableMobileDropdowns);
+  })();
+</script>
+
+    <!-- Firebase client (module) -->
+    <script type="module" src="../js/firebase-client.js"></script>
+    <!-- existing signup script -->
+    <script src="signup.js"></script>
 </body>
-<script src="../js/script.js"></script>
 </html>
