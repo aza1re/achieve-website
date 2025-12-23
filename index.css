@@ -256,7 +256,7 @@
         .btn {
             display: inline-block;
             background-color: #8C2131;
-            color: #fff;
+            color: #fff !important;
             padding: 12px 30px;
             border-radius: 30px;
             text-decoration: none;
@@ -269,13 +269,19 @@
 
         .btn:hover {
             background-color: transparent;
-            color: #8C2131;
+            color: #8C2131 !important;
         }
 
         .btn-outline {
             background-color: transparent;
             border: 2px solid #fff;
             margin-left: 15px;
+            color: #fff !important;
+        }
+
+        .btn-outline:hover {
+            background-color: #fff;
+            color: #000 !important;
         }
 
         .btn-outline:hover {
