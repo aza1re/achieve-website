@@ -19,33 +19,55 @@
     <header>
         <div class="container header-container">
             <div class="logo-container">
-                <a href="../index.html">
-                    <img src="../sources/logo.png" class="logo-img" alt="Achieve Logo" />
+                <a href="/index.html">
+                    <img src="../sources/logo.png" class="logo-img" alt="Achieve Logo"/>
                 </a>
-                <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span>CAMPS</a>
+                <a href="/index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
             </div>
-
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
-
             <nav>
                 <ul>
-                    <li><a href="../about/about.html">About Us</a></li>
-
+                    <li><a href="#">About Us</a></li>
                     <li class="has-dropdown">
                         <a href="#programs">Programs</a>
                         <ul class="dropdown">
-                            <li><a href="../camp/camps.html">Youth Hockey Camps</a></li>
-                            <li><a href="../index.html#programs-shooting">High Caliber Hockey Tournaments</a></li>
-                            <li><a href="../women-page/women.html">Women's Hockey</a></li>
-                            <li><a href="../index.html#programs-team">North American Hockey Academy Tours</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">Education</a>
+                                <ul class="dropdown flyout">
+                                    <li class="has-dropdown">
+                                        <a href="../packages/packages.html">Admissions Consulting</a>
+                                        <ul class="dropdown flyout">
+                                            <li><a href="">CAIS</a></li>
+                                            <li><a href="">Hockey Academy</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has-dropdown">
+                                <a href="#">Camps</a>
+                                <ul class="dropdown flyout">
+                                    <li><a href="../packages/packages.html">Packages</a></li>
+                                </ul>
+                            </li>
+                                
+                            <li class="has-dropdown">
+                                <a href="#">Tournaments</a>
+                                <ul class="dropdown flyout">
+                                    <li><a href="../packages/packages.html">Bauer Cup</a></li>
+                                    <li><a href="../packages/packages.html">Pre-Quebec</a></li>
+                                    <li><a href="../packages/packages.html">Six-nations</a></li>
+                                </ul>
+                            </li>
+                                
+                             
                         </ul>
                     </li>
-
-                    <li><a href="packages.html">Packages</a></li>
+                    
                     <li><a href="../app/app.html">App</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
                     <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
                 </ul>
             </nav>
@@ -65,7 +87,7 @@
             <!-- Navigation Tabs -->
             <nav class="package-nav">
                 <button class="package-nav-btn active" data-target="youth-camps">YOUTH CAMPS</button>
-                <button class="package-nav-btn" data-target="adult-camps">ADULT CAMPS</button>
+                <button class="package-nav-btn" data-target="adult-camps">JUNIOR CAMPS</button>
                 <button class="package-nav-btn" data-target="goalie-camps">GOALIE CAMPS</button>
             </nav>
 
@@ -73,13 +95,11 @@
             <section id="youth-camps" class="package-section active">
                 <!-- Youth Camp -->
                 <div class="package-item">
-                    <h2>YOUTH CAMP</h2>
-                    <div class="package-price">Price: 970 EUR/week</div>
-                    
+                    <h2>YOUTH CAMP (U16 Above) (Boarding) </h2>
                     <h3>WHAT'S INCLUDED?</h3>
                     <ul class="package-list">
                         <li>15 ice trainings (twice a day with 1 coach/ 5 players maximum ratio + every day optional open ice session), classrooms with coaches and mindset coach, 10 dryland training sessions, final match on Saturday</li>
-                        <li>breakfast, lunch, dinner and snacks</li>
+                        <li>breakfast, lunch, dinner and snacks ( Boarding-only )</li>
                         <li>accommodation in a shared room with other players (six nights), Wednesday's BBQ party (during Summer months only!), swimming pool and jacuzzi</li>
                         <li>24 hour supervision</li>
                     </ul>
@@ -89,9 +109,7 @@
                 <!-- Individual Youth Camp -->
                 <div class="package-item featured">
                     <div class="featured-badge">MOST POPULAR</div>
-                    <h2>INDIVIDUAL YOUTH CAMP</h2>
-                    <div class="package-price">Price: 1310 EUR/week</div>
-                    
+                    <h2>INDIVIDUAL YOUTH CAMP (U16 Above) (Boarding)</h2>                    
                     <h3>WHAT'S INCLUDED?</h3>
                     <ul class="package-list">
                         <li>15 on-ice trainings (twice a day with 1 coach/ 3 players maximum ratio + every day optional open ice session), classrooms with coaches and a mindset coach, 8 dryland training sessions, 2 skatemill sessions, final match on Saturday</li>
@@ -107,7 +125,7 @@
             <!-- Adult Camps Section -->
             <section id="adult-camps" class="package-section">
                 <div class="package-item">
-                    <h2>ADULT CAMPS</h2>
+                    <h2>JUNIOR CAMP (U16 Above) (Boarding) </h2>
                     <p class="package-description">Professional development program designed specifically for adult players of all skill levels. Our adult camps offer customized training sessions with experienced coaching staff.</p>
                     
                     <h3>PROGRAM FEATURES</h3>
@@ -126,7 +144,7 @@
             <!-- Goalie Camps Section -->
             <section id="goalie-camps" class="package-section">
                 <div class="package-item">
-                    <h2>GOALIE CAMPS</h2>
+                    <h2>GOALIE CAMPS (U8 Above) (Boarding)</h2>
                     <p class="package-description">Specialized goaltending program with dedicated goalie coaches and position-specific training designed to elevate your game between the pipes.</p>
                     
                     <h3>PROGRAM FEATURES</h3>
@@ -153,7 +171,7 @@
                     <h2>DISCOUNTS</h2>
                     <ul class="package-list">
                         <li>All returning players are entitled to get 5% discount from camp fee.</li>
-                        <li>All players staying for two weeks are entitled to get 5% discount from camp fee</li>
+                        <li>All early bird registrations are entitled to get maximum 8% discount from camp fee.</li>
                         <li>Family members (siblings, parents and kids) are entitled to get 5% discount from camp fee</li>
                     </ul>
                     <p class="discount-note">Discounts can be combined up to 15% only!</p>
@@ -170,15 +188,12 @@
         <div class="container">
             <div class="content-image-layout reverse">
                 <div class="content-text">
-                    <h2>FAMILY PACKAGES</h2>
+                    <h2>FAMILY PACKAGES (U8 - U13)</h2>
                     
                     <div class="family-options">
+                        
                         <div class="family-option">
-                            <h3>One accompanying family member</h3>
-                            <div class="package-price">490 EUR/week</div>
-                        </div>
-                        <div class="family-option">
-                            <h3>Two accompanying family members</h3>
+                            <h3>Maximum 4 people/room </h3>
                             <div class="package-price">690 EUR/week</div>
                         </div>
                     </div>
@@ -223,11 +238,248 @@
         </div>
     </section>
 
+    <!-- Registration Section -->
+    <section class="contact-section registration-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Registeration</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info-block">
+                    <h3>You must be logged in to register as a player.</h3>
+                    <a href="../login/login.html" class="btn-register">Login</a>
+                </div>
+
+
+                 <!-- Participant info Form (new larger block) -->
+             
+                <div class="contact-info-block participant-card">
+                        <h3>Participant Information</h3>
+                     
+                    <form class="registration-form" action="#" method="post" enctype="multipart/form-data">
+                        <div class="reg-form-grid">
+                                    
+                                    
+                                    <div class="form-row full-width">
+                                        <label for="player-name">Player Name</label>
+                                        <input type="text" id="player-name" name="player_name" placeholder="Enter full name" required>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="birthday">Date of Birth</label>
+                                        <input type="text" id="birthday" name="birthday" placeholder="yyyy/mm/dd" required>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="age-group">Age Group</label>
+                                        <select id="age-group" name="age_group" required>
+                                            <option value="">Select Age Group</option>
+                                            <option value="forward">U9</option>
+                                            <option value="defense">U11</option>
+                                            <option value="goalie">U13</option>
+                                            <option value="goalie">U15</option>
+                                            <option value="goalie">Above</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <select id="position" name="position" required>
+                                            <option value="">Select position</option>
+                                            <option value="forward">Forward</option>
+                                            <option value="defense">Defense</option>
+                                            <option value="goalie">Goalie</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="gender">Gender</label>
+                                        <select id="gender" name="gender" required>
+                                            <option value="">Select gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                
+
+                                    <div class="form-row">
+                                        <label for="jersey">Jersey Number</label>
+                                        <input type="text" id="jersey" name="jersey_number" placeholder="e.g. 12">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="size">Size</label>
+                                        <select id="size" name="size" required>
+                                            <option value="">Select size</option>
+                                            <option value="small">Small</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="large">Large</option>
+                                            <option value="xlarge">X-Large</option>
+                                            <option value="goalie">Goalie</option>
+                                        </select>
+                                    </div>
+                                
+                                    <div class="form-row">
+                                        <label for="shoot">Shoot / Catches</label>
+                                        <select id="shoot" name="shoot_catches" required>
+                                            <option value="">Select shoot/catches</option>
+                                            <option value="left">Left</option>
+                                            <option value="right">Right</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-row">
+                                        <label for="email_address">Email Address</label>
+                                        <input type="text" id="email_address" name="email_address" placeholder="Enter email address" required>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="phonenumber">Phone Number</label>
+                                        <input type="text" id="phonenumber" name="phone_number" placeholder="Enter phone number" required>
+                                    </div>
+
+
+
+                                    <div class="form-row full-width">
+                                        <label for="medical">Medical Notes / Allergies</label>
+                                        <textarea id="medical" name="medical_notes" placeholder="Any medical information"></textarea>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="guardian">Parent / Guardian</label>
+                                        <input type="text" id="guardian" name="guardian_name" placeholder="Parent / Guardian name">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="guardian-phone">Guardian Phone</label>
+                                        <input type="tel" id="guardian-phone" name="guardian_phone" placeholder="+1 612-555-0000">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="emergency">Emergency Contact</label>
+                                        <input type="tel" id="emergency" name="emergency_contact" placeholder="+1 612-555-0000">
+                                    </div>
+
+                                    <div class="form-row full-width file-input">
+                                        <label for="photo">Player Photo</label>
+                                        <input type="file" id="photo" name="player_photo" accept="image/*">
+                                    </div>
+
+                                    <div class="form-row full-width">
+                                        <div class="form-actions">
+                                            <button type="save" class="btn btn-primary">Save Information</button>
+                                            <button type="reset" class="btn btn-outline">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                    </form>
+                </div>
+
+
+
+                <div class="contact-info-block participant-card">
+                        <h3>Parent / Guardian Information</h3>
+                     
+                    <form class="registration-form" action="#" method="post" enctype="multipart/form-data">
+                        <div class="reg-form-grid">
+                                    
+                                    <div class="form-row">
+                                        <label for="guardian1">Guardian Name 1 </label>
+                                        <input type="text" id="guardian1" name="guardian_name_1" placeholder="Parent / Guardian name">
+                                        <input type="text" id="email_guardian1" name="email_guardian1" placeholder="Email address">
+                                        <input type="text" id="phonenumber_guardian1" name="phonenumber_guardian1" placeholder="+1 612-555-0000">
+                                        <input type="text" id="relationship_guardian1" name="relationship_guardian1" placeholder="Relationship to player">
+
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="guardian2">Guardian Name 2 </label>
+                                        <input type="text" id="guardian2" name="guardian_name_2" placeholder="Parent / Guardian name">
+                                        <input type="text" id="email_guardian2" name="email_guardian2" placeholder="Email address">
+                                        <input type="text" id="phonenumber_guardian2" name="phonenumber_guardian2" placeholder="+1 612-555-0000">
+                                        <input type="text" id="relationship_guardian2" name="relationship_guardian2" placeholder="Relationship to player">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="emergency">Emergency Contact</label>
+                                        <input type="tel" id="emergency" name="emergency_contact" placeholder="+1 612-555-0000">
+                                    </div>
+
+                                    <div class="form-row full-width file-input">
+                                        <label for="photo">Player Photo</label>
+                                        <input type="file" id="photo" name="player_photo" accept="image/*">
+                                    </div>
+
+                                    <div class="form-row full-width">
+                                        <div class="form-actions">
+                                            <button type="save" class="btn btn-primary">Save Information</button>
+                                            <button type="reset" class="btn btn-outline">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                    </form>
+                </div>
+
+                <div class="guidelines-pair">
+                    <div class="contact-info-block participant-card guidelines-card">
+                        <div class="card-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Guidelines</h3>
+                        </div>
+
+                        <div class="guidelines-content">
+                            <ul class="guidelines-list">
+                                <li>Players are required to wear full gear according to the Organizer's equipment standards.</li>
+                                <li>If any games are cancelled for unforeseen circumstances, players will be notified of the reschedule.</li>
+                                <li>Players will follow the guidelines of the ice rink or any schools or venues.</li>
+                                <li>Players are responsible and liable for any damages caused by negligence or misconduct.</li>
+                            </ul>
+
+                            <div class="medical-question">
+                                <label>Is there any medical history that the Organizers should be aware of?</label>
+                                <div class="inline-group">
+                                    <label><input type="radio" name="medical_history_guidelines" value="no" checked> No</label>
+                                    <label><input type="radio" name="medical_history_guidelines" value="yes"> Yes</label>
+                                </div>
+
+                                <label for="medical-specify-guidelines">If yes, please specify</label>
+                                <input type="text" id="medical-specify-guidelines" name="medical_specify_guidelines" placeholder="Specify medical history">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-block participant-card guidelines-card disclaimer-card">
+                        <div class="card-header">
+                            <i class="fas fa-file-contract"></i>
+                            <h3>Disclaimer</h3>
+                        </div>
+
+                        <div class="disclaimer-content">
+                            <div class="disclaimer-inner-box">
+                                <p class="disclaimer-text">I hereby declare that I am healthy, physically fit and suitable to participate in the activity and agree to abide by all rules and regulations from the Organizers. I shall not hold the Organizers liable for any injury, death, loss or damage I may suffer during this activity, use of venue, equipment or facilities due to my negligence or inadequacy in health and fitness. I agree to authorize the Organizers to use my portrait, voice and personal information for promotional purposes without further examination.</p>
+                            </div>
+
+                            <label class="agree"><input type="checkbox" name="agree_disclaimer"> I have read and agree to the disclaimer</label>
+
+                            <label for="signature">Upload signature (optional)</label>
+                            <input type="file" id="signature" name="signature" accept="image/*">
+                        </div>
+                    </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-secondary">Submit</button>
+
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="section-title">
-                <h2>READY TO REGISTER?</h2>
+                <h2>Contacts</h2>
                 <p>Contact us to secure your spot or ask any questions</p>
             </div>
             <div class="contact-grid">

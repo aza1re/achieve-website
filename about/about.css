@@ -109,6 +109,45 @@
             transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
         }
 
+        /* Nested flyout (right-side) for submenus like Packages beside Camps */
+        nav ul li .dropdown li.has-dropdown {
+            position: relative;
+        }
+
+        /* target only the nested submenu when it has the `flyout` class */
+        nav ul li .dropdown li .dropdown.flyout {
+            position: absolute;
+            top: 0;
+            right: calc(100% + 8px);
+            left: auto;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            -webkit-backdrop-filter: blur(8px) saturate(120%);
+            backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            min-width: 200px;
+            list-style: none;
+            padding: 6px 6px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            z-index: 3000;
+            opacity: 0;
+            transform: translateX(-6px); /* start slightly left for a smooth slide-in to the right */
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s; /* match parent timings */
+            display: block; /* keep block for absolute layout */
+        }
+
+        /* show flyout only when hovering or focusing the Camps parent (smooth fade + slide like parent) */
+        nav ul li .dropdown li.has-dropdown:hover > .dropdown.flyout,
+        nav ul li .dropdown li.has-dropdown:focus-within > .dropdown.flyout,
+        nav ul li .dropdown li.has-dropdown.open > .dropdown.flyout {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
         /* show on hover / keyboard focus */
         nav ul li.has-dropdown:hover .dropdown,
         nav ul li.has-dropdown:focus-within .dropdown,
@@ -143,6 +182,46 @@
                 overflow: hidden;
                 padding: 0 0 0 18px;
                 transition: max-height 0.28s ease, padding 0.22s ease;
+            }
+
+            /* mobile: nested dropdowns become stacked and collapsible */
+            nav ul li .dropdown li .dropdown {
+                position: static;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 0 0 18px;
+                transition: max-height 0.28s ease, padding 0.22s ease;
+            }
+            nav ul li .dropdown li.has-dropdown.open .dropdown {
+                max-height: 480px;
+                padding: 10px 0 10px 18px;
+            }
+            /* ensure flyout is collapsed on mobile until explicitly opened */
+            nav ul li .dropdown li .dropdown.flyout {
+                display: block; /* keep flow behavior for mobile */
+                max-height: 0;
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+            }
+            nav ul li .dropdown li.has-dropdown.open > .dropdown.flyout {
+                max-height: 480px;
+                visibility: visible;
+                opacity: 1;
+                pointer-events: auto;
+                padding-left: 18px;
+            }
+            /* mobile: nested dropdowns become stacked and collapsible */
+            nav ul li .dropdown li .dropdown {
+                position: static;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 0 0 18px;
+                transition: max-height 0.28s ease, padding 0.22s ease;
+            }
+            nav ul li .dropdown li.has-dropdown.open .dropdown {
+                max-height: 480px;
+                padding: 10px 0 10px 18px;
             }
             nav ul li .dropdown li a {
                 padding: 10px 0 10px 6px;

@@ -19,33 +19,55 @@
         <div class="container header-container">
             <div class="logo-container">
                 <a href="/index.html">
-                    <img src="sources/logo.png" class="logo-img" alt="Achieve Logo" />
+                    <img src="../sources/logo.png" class="logo-img" alt="Achieve Logo"/>
                 </a>
-                <a href="/index.html" class="logo">ACHIEVE<span>HOCKEY</span>CAMPS</a>
+                <a href="/index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
             </div>
-
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
-
             <nav>
                 <ul>
-                    <li><a href="about/about.html">About Us</a></li>
-
+                    <li><a href="#">About Us</a></li>
                     <li class="has-dropdown">
                         <a href="#programs">Programs</a>
                         <ul class="dropdown">
-                            <li><a href="/camp/camps.html">Youth Hockey Camps</a></li>
-                            <li><a href="/index.html#programs-shooting">High Caliber Hockey Tournaments</a></li>
-                            <li><a href="/women-page/women.html">Women's Hockey</a></li>
-                            <li><a href="/index.html#programs-team">North American Hockey Academy Tours</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">Education</a>
+                                <ul class="dropdown flyout">
+                                    <li class="has-dropdown">
+                                        <a href="../packages/packages.html">Admissions Consulting</a>
+                                        <ul class="dropdown flyout">
+                                            <li><a href="">CAIS</a></li>
+                                            <li><a href="">Hockey Academy</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has-dropdown">
+                                <a href="#">Camps</a>
+                                <ul class="dropdown flyout">
+                                    <li><a href="../packages/packages.html">Packages</a></li>
+                                </ul>
+                            </li>
+                                
+                            <li class="has-dropdown">
+                                <a href="#">Tournaments</a>
+                                <ul class="dropdown flyout">
+                                    <li><a href="../packages/packages.html">Bauer Cup</a></li>
+                                    <li><a href="../packages/packages.html">Pre-Quebec</a></li>
+                                    <li><a href="../packages/packages.html">Six-nations</a></li>
+                                </ul>
+                            </li>
+                                
+                             
                         </ul>
                     </li>
-
-                    <li><a href="packages/packages.html">Packages</a></li>
-                    <li><a href="app/app.html">App</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="mobile-login"><a href="login/login.html" class="btn-login">Login</a></li>
+                    
+                    <li><a href="../app/app.html">App</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -81,8 +103,9 @@
 
         <!-- Season Tabs (glass radio group) -->
         <div class="season-tabs glass" role="tablist" aria-label="Program seasons">
-          <input type="radio" name="season" id="glass-spring" checked>
-          <label for="glass-spring" class="season-tab" data-season="spring" role="tab" aria-selected="true">Spring</label>
+
+          <input type="radio" name="season" id="glass-spring">
+          <label for="glass-spring" class="season-tab" data-season="spring" role="tab" aria-selected="false">Spring</label>
 
           <input type="radio" name="season" id="glass-summer">
           <label for="glass-summer" class="season-tab" data-season="summer" role="tab" aria-selected="false">Summer</label>
@@ -93,93 +116,46 @@
           <input type="radio" name="season" id="glass-winter">
           <label for="glass-winter" class="season-tab" data-season="winter" role="tab" aria-selected="false">Winter</label>
 
+           <input type="radio" name="season" id="glass-all-year" checked>
+          <label for="glass-all-year" class="season-tab" data-season="all-year" role="tab" aria-selected="true">All Year</label>
+
           <div class="glass-glider" aria-hidden="true"></div>
         </div>
 
         <!-- Season card groups -->
         <div class="season-cards-wrapper">
-          <div class="season-cards" data-season="spring">
+          
+            <div class="season-cards" data-season="all-year">
             <div class="cards-row">
-
-              <!-- Card 3 -->
+    
+               <!-- Student-athlete School Tours -->
               <div class="card">
                 <div class="card-media">
-                  <img src="programs/camps/GlobalInvitational.jpg" alt="Global Invitational">
+                  <img src="/sources/placeholders/schooltour.jpg" alt="Student-athlete School Tours">
                 </div>
                 <div class="card-body">
-                  <h3>Global Invitational</h3>
-                  <p class="card-desc">High-caliber international tournament exposure and academy visits across Canada.</p>
+                  <h3>Student-athlete School Tours</h3>
+                  <p class="card-desc">tour on student-athlete schools </p>
+                </div>
+              </div>
 
-                  <!-- details shown when card has .expanded -->
-                  <div class="card-details" aria-hidden="true">
-                    <p><strong>When:</strong> Spring & Summer 2026</p>
-                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
-                    <p>Full details, schedule and coach bios are available here when expanded.</p>
-                    <button class="close-card" type="button">Close</button>
-                  </div>
-
-                  <!-- ADDED: Register button -->
-                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
+              <!--Junior Hockey -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/juniorhockey.jpg" alt="Junior Hockey">
+                </div>
+                <div class="card-body">
+                  <h3>Junior Hockey</h3>
+                  <p class="card-desc"> hockey programs for juniors </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- other seasons: copy same structure or replace content per season -->
-          <div class="season-cards" data-season="summer" hidden>
+            <div class="season-cards" data-season="spring" hidden>
             <div class="cards-row">
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/camps_summer.jpg" alt="Summer Camps">
-                </div>
-                <div class="card-body">
-                  <h3>Summer Camps</h3>
-                  <p class="card-desc">Intensive summer development programs focused on skating, skills and game-play.</p>
-                </div>
-              </div>
 
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/tours_summer.jpg" alt="Summer Academy Tours">
-                </div>
-                <div class="card-body">
-                  <h3>Academy Tours</h3>
-                  <p class="card-desc">Summer academy visits — experience training life and facilities.</p>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/tournaments_summer.jpg" alt="Summer Tournaments">
-                </div>
-                <div class="card-body">
-                  <h3>Showcase Tournaments</h3>
-                  <p class="card-desc">Elite summer showcases with scouting opportunities and high-level competition.</p>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/womens_summer.jpg" alt="Women's Programs">
-                </div>
-                <div class="card-body">
-                  <h3>Women's Programs</h3>
-                  <p class="card-desc">Women-specific summer training sessions and strength programs.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="season-cards" data-season="fall" hidden>
-            <div class="cards-row">
-              <!-- (fall cards removed here — moved to winter) -->
-            </div>
-          </div>
-
-          <!-- WINTER: moved cards -->
-          <div class="season-cards" data-season="winter" hidden>
-            <div class="cards-row">
-              <!-- Card 1 -->
+              <!-- Rumble Cup -->
               <div class="card">
                 <div class="card-media">
                   <img src="programs/camps/RumbleCup.jpg" alt="Rumble Cup">
@@ -200,8 +176,64 @@
                   <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
                 </div>
               </div>
+              
+            </div>
 
-              <!-- Card 2 -->
+          </div>
+
+          <!-- other seasons: copy same structure or replace content per season -->
+          <div class="season-cards" data-season="summer" hidden>
+            <div class="cards-row">
+
+               <!-- Rumble Cup -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="programs/camps/RumbleCup.jpg" alt="Rumble Cup">
+                </div>
+                <div class="card-body">
+                  <h3>Rumble Cup</h3>
+                  <p class="card-desc">Invite-only showcase and coach-led clinics. Details provided to serious applicants.</p>
+
+                  <!-- details shown when card has .expanded -->
+                  <div class="card-details" aria-hidden="true">
+                    <p><strong>When:</strong> Spring & Summer 2026</p>
+                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
+                    <p>Full details, schedule and coach bios are available here when expanded.</p>
+                    <button class="close-card" type="button">Close</button>
+                  </div>
+
+                  <!-- ADDED: Register button -->
+                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
+                </div>
+              </div>
+            
+              <!-- Brick International -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/brickinternational.jpg" alt="Brick International">
+                </div>
+                <div class="card-body">
+                  <h3>Brick International</h3>
+                  <p class="card-desc"> Brick international </p>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+          <div class="season-cards" data-season="fall" hidden>
+            <div class="cards-row">
+              <!-- (fall cards removed here — moved to winter) -->
+            </div>
+          </div>
+
+          <!-- WINTER: moved cards -->
+          <div class="season-cards" data-season="winter" hidden>
+            <div class="cards-row">
+
+              <!-- Modo Hockey -->
               <div class="card">
                 <div class="card-media">
                   <img src="programs/camps/ModoHockey.png" alt="MODO Camp">
@@ -222,6 +254,88 @@
                   <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
                 </div>
               </div>
+
+
+              <!-- Paradise Cup -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/paradisecup.jpg" alt="Paradise Cup">
+                </div>
+                <div class="card-body">
+                  <h3>Paradise Cup</h3>
+                  <p class="card-desc">Tournament, Thailand </p>
+                </div>
+              </div>
+
+              <!-- Paradise Cup -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/paradisecup.jpg" alt="Paradise Cup">
+                </div>
+                <div class="card-body">
+                  <h3>Paradise Cup</h3>
+                  <p class="card-desc">Tournament, Thailand </p>
+                </div>
+              </div>
+
+              <!-- Bauer Cup -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/bauercup.jpg" alt="Bauer Cup">
+                </div>
+                <div class="card-body">
+                  <h3>Bauer Cup</h3>
+                  <p class="card-desc"> Tournament, Korea (Completed)</p>
+                </div>
+              </div>
+
+              <!-- Pre-Quebec -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/prequebec.jpg" alt="Pre-Quebec">
+                </div>
+                <div class="card-body">
+                  <h3>Pre-Quebec</h3>
+                  <p class="card-desc"> Tournament, Canada (Completed)</p>
+                </div>
+              </div>
+
+              <!-- Quebec Peewee -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/quebecpeewee.jpg" alt="Quebec Peewee">
+                </div>
+                <div class="card-body">
+                  <h3>Quebec Peewee</h3>
+                  <p class="card-desc"> External Tournament ( Quebec, Canada ) </p>
+                </div>
+              </div>
+
+              <!-- Peewee Bernieres -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/peeweebernieres.jpg" alt="Peewee Bernieres">
+                </div>
+                <div class="card-body">
+                  <h3>Peewee Bernieres</h3>
+                  <p class="card-desc"> External Tournament, Canada (Completed)</p>
+                </div>
+              </div>
+
+              <!-- Grand Montreal International Tournament -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/grandmontrealinternational.jpg" alt="Grand Montreal International Tournament">
+                </div>
+                <div class="card-body">
+                  <h3>Grand Montreal International Tournament</h3>
+                  <p class="card-desc"> External Tournament, Canada (Completed)</p>
+                </div>
+              </div>
+
+            
+
+
             </div>
           </div>
         </div>
