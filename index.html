@@ -119,11 +119,14 @@
           <input type="radio" name="season" id="glass-winter">
           <label for="glass-winter" class="season-tab" data-season="winter" role="tab" aria-selected="false">Winter</label>
 
-           <input type="radio" name="season" id="glass-all-year" checked>
-          <label for="glass-all-year" class="season-tab" data-season="all-year" role="tab" aria-selected="true">All Year</label>
+                    <div class="glass-glider" aria-hidden="true"></div>
+                </div>
 
-          <div class="glass-glider" aria-hidden="true"></div>
-        </div>
+                <!-- All Year control (separate, styled like the seasons bar) -->
+                <div class="season-tabs glass allyear" role="tablist" aria-label="All year programs">
+                    <input type="radio" name="season" id="glass-allyear">
+                    <label for="glass-allyear" class="season-tab all-year-pill" data-season="all-year" role="tab" aria-selected="false" aria-pressed="false">All Year</label>
+                </div>
 
         <!-- Season card groups -->
         <div class="season-cards-wrapper">
@@ -422,7 +425,24 @@
 
                 
             </div>
+
+            <div class="accommodation-grid">
+                <div class="accommodation-card">
+                    <div class="accommodation-image">
+                        <img src="sources/photos/lecky_house.jpg" alt="Player's Camp Hotel">
+                    </div>
+                    <div class="accommodation-content">
+                        <h3>LECKY HOUSE at SHAWNIGAN LAKE SCHOOL</h3>
+                        <p>a guest boarding house, built in 2003 (originally 'Canada House'), providing a "home-away-from-home" for visiting sports teams and groups to foster bonding, with its focus on team spirit and connection.</p>
+                    </div>
+                </div>
+
+                
+            </div>
+
         </div>
+
+        
     </section>
 
     <!-- Transportation Section -->
@@ -463,12 +483,12 @@
     <section class="team-section" id="our-team">
         <div class="container">
             <div class="section-title">
-                <h2>OUR COACHES</h2>
+                <h2>OUR COACHING STAFF</h2>
             </div>
             <div class="team-grid">
                 <div class="team-member">
                     <div class="team-photo">
-                        <img src="#" alt="Jamie Edward">
+                        <img src="sources/coaches/jamie_edwards.png" alt="Jamie Edward">
                     </div>
                     <h3>Jamie Edward</h3>
                     <p>Don Mills Flyer, GTHL</p>
@@ -485,7 +505,9 @@
                         <img src="sources/coaches/darren_rumble.png" alt="Darren Rumble">
                     </div>
                     <h3>Darren Rumble</h3>
-                    <p>Owen Sound / Gatineau Olympiques / Universel College Gatineau, OHL/QMJHL/USPHL</p>
+                    <p>Universel College Gatineau, USPHL</p>
+                    <p>Owen Sound, OHL</p>
+                    <p>Gatineau Olympiques, QMJHL</p>
                 </div>
 
                 <div class="team-member">
