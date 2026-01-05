@@ -1731,8 +1731,9 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  align-items: start;
+  align-items: stretch; /* allow children to stretch to equal height */
   grid-template-columns: repeat(1, 1fr); /* default single column on very small screens */
+  grid-auto-rows: 1fr; /* make each row equal height so cards match */
 }
 
 /* Responsive columns: 2 columns on medium, 3 on wide */
@@ -1744,12 +1745,17 @@
 }
 
 .team-member {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.02);
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%; /* fill the grid cell so all cards match height */
 }
 
 .team-member:hover {
