@@ -230,6 +230,22 @@ document.addEventListener('DOMContentLoaded', function () {
     labels.forEach((label, i) => {
       label.addEventListener('click', (e) => {
         e.preventDefault();
+        // clear standalone All Year pill active state when a season is chosen
+        document.querySelectorAll('.all-year-pill').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed','false');
+          b.style.background = '';
+          b.style.boxShadow = '';
+        });
+        // remove `all-year-active` from the allyear container so its glider collapses
+        const allyearContainer = document.querySelector('.season-tabs.glass.allyear');
+        if (allyearContainer) allyearContainer.classList.remove('all-year-active');
+
+        // ensure the season glider is visible again (in case All Year hid it)
+        const seasonGlider = document.querySelector('.season-tabs.glass .glass-glider');
+        if (seasonGlider) {
+          seasonGlider.style.opacity = 1;
+        }
         activateSeason(label.dataset.season, i);
       });
     });
@@ -258,6 +274,103 @@ document.addEventListener('DOMContentLoaded', function () {
   const current = getCurrentSeason();
   makeCurrentTabFirst(current);
   initTabs();
+
+  // inject a glider into the standalone All Year row so it behaves like the seasons row
+  (function ensureAllYearGlider() {
+    const allyearContainer = document.querySelector('.season-tabs.glass.allyear');
+    if (!allyearContainer) return;
+    if (!allyearContainer.querySelector('.glass-glider')) {
+      const g = document.createElement('div');
+      g.className = 'glass-glider';
+      allyearContainer.appendChild(g);
+    }
+  })();
+
+  // Keep the All Year pill width in sync with the main season tabs
+  function syncAllYearWidth() {
+    const mainTabs = document.querySelector('.season-tabs:not(.allyear)');
+    const allyearContainer = document.querySelector('.season-tabs.glass.allyear');
+    const btn = document.querySelector('.all-year-pill');
+    if (!mainTabs || !allyearContainer || !btn) return;
+    // prefer matching the visual width of the seasons row, but constrain to the allyear container
+    const target = Math.max(140, Math.min(mainTabs.clientWidth - 20, allyearContainer.clientWidth - 12));
+    btn.style.minWidth = target + 'px';
+    // update CSS variable used by the glider animation
+    allyearContainer.style.setProperty('--allyear-width', `${btn.offsetWidth}px`);
+  }
+  // sync on load and when the viewport changes
+  window.addEventListener('resize', syncAllYearWidth);
+  document.addEventListener('DOMContentLoaded', syncAllYearWidth);
+
+  // wire standalone All Year pill (below the seasons) to show the all-year group
+  const allYearBtn = document.querySelector('.all-year-pill');
+  if (allYearBtn) {
+    allYearBtn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+        console.log('All Year pill clicked');
+      // hide other season groups, show all-year
+      groups.forEach(g => {
+        if (g.dataset.season === 'all-year') g.removeAttribute('hidden');
+        else g.setAttribute('hidden', '');
+      });
+
+      // clear active state from season labels
+      document.querySelectorAll('.season-tabs .season-tab').forEach(l => { l.classList.remove('active'); l.setAttribute('aria-selected', 'false'); });
+
+      // uncheck any season radio inputs so no season remains selected
+      document.querySelectorAll('.season-tabs input[type="radio"]').forEach(r => { r.checked = false; });
+
+      // hide the season row glider so it doesn't appear filled
+      const seasonGlider = document.querySelector('.season-tabs.glass .glass-glider');
+      if (seasonGlider) { seasonGlider.style.opacity = 0; }
+
+      // set button active/pressed
+      document.querySelectorAll('.all-year-pill').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+      allYearBtn.classList.add('active');
+      allYearBtn.setAttribute('aria-pressed','true');
+
+      // animate the All Year glider: set CSS variable for width and add parent class
+      const allyearContainer = document.querySelector('.season-tabs.glass.allyear');
+      console.log('allyearContainer:', allyearContainer);
+      if (allyearContainer) {
+        // set a CSS variable so the CSS rule can size the glider to the pill width
+        allyearContainer.style.setProperty('--allyear-width', `${allYearBtn.offsetWidth}px`);
+        // position the glider at the right edge first so it can slide into center
+        const g = allyearContainer.querySelector('.glass-glider');
+        console.log('allyear glider element:', g);
+        if (g) {
+          // use transform-based starting state (matches season glider's GPU-friendly animation)
+          g.style.transform = 'translateX(calc(100% - 6px)) scaleX(0)';
+          g.style.opacity = '1';
+          console.log('set starting styles on glider (transform-based):', { transform: g.style.transform, opacity: g.style.opacity });
+        }
+        // ensure the browser applies the starting position, then add the class on
+        // the next animation frame so the transition animates left/width smoothly
+        allyearContainer.classList.remove('all-year-active');
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          allyearContainer.classList.add('all-year-active');
+          console.log('added .all-year-active');
+        }));
+      }
+
+      // Apply the same season palette to the All Year pill so it matches
+      // the colored look used by the season tabs' glider.
+      const palette = {
+        spring: 'linear-gradient(90deg, #34d399, #8b5cf6)',
+        summer: 'linear-gradient(90deg, #06b6d4, #f97316)',
+        fall:   'linear-gradient(90deg, #fb923c, #ef4444)',
+        winter: 'linear-gradient(90deg, #60a5fa, #7c3aed)'
+      };
+      // Force All Year pill to use the Summer palette for a consistent look
+      const bg = palette.summer;
+      allYearBtn.style.background = bg;
+      allYearBtn.style.boxShadow = '0 8px 26px rgba(0,0,0,0.45)';
+
+      // scroll into view the programs section for context
+      const programsSection = document.getElementById('programs');
+      if (programsSection) programsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 });
 
 // Ensure stacking by toggling a helper class when viewport <= breakpoint

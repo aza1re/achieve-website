@@ -14,47 +14,72 @@
     <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-    <!-- Header -->
+
+
+    <!-- navigation bar -->
     <header>
         <div class="container header-container">
             <div class="logo-container">
-                <a href="/index.html">
-                    <img src="sources/logo.png" class="logo-img" alt="Achieve Logo" />
+                <a href="index.html">
+                    <img src="sources/logo.png" class="logo-img" alt="Achieve Logo"/>
                 </a>
-                <a href="/index.html" class="logo">ACHIEVE<span>HOCKEY</span>CAMPS</a>
+                <a href="index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
             </div>
-
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
-
             <nav>
                 <ul>
                     <li><a href="about/about.html">About Us</a></li>
-
                     <li class="has-dropdown">
                         <a href="#programs">Programs</a>
                         <ul class="dropdown">
-                            <li><a href="/camp/camps.html">Youth Hockey Camps</a></li>
-                            <li><a href="/index.html#programs-shooting">High Caliber Hockey Tournaments</a></li>
-                            <li><a href="/women-page/women.html">Women's Hockey</a></li>
-                            <li><a href="/index.html#programs-team">North American Hockey Academy Tours</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">Education</a>
+                                <ul class="dropdown flyout">
+                                    <li class="has-dropdown">
+                                        <a href="packages/packages.html">Admissions Consulting</a>
+                                        <ul class="dropdown flyout">
+                                            <li><a href="">CAIS</a></li>
+                                            <li><a href="">Hockey Academy</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="packages/packages.html">Camps</a>
+                            </li>
+                                
+                            <li class="has-dropdown">
+                                <a href="#">Tournaments</a>
+                                <ul class="dropdown flyout">
+                                    <li><a href="../packages/packages.html">Bauer Cup</a></li>
+                                    <li><a href="../packages/packages.html">Pre-Quebec</a></li>
+                                    <li><a href="../packages/packages.html">Six-nations</a></li>
+                                </ul>
+                            </li>
+                                
+                             
                         </ul>
                     </li>
-
-                    <li><a href="packages/packages.html">Packages</a></li>
+                    
                     <li><a href="app/app.html">App</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="mobile-login"><a href="login/login.html" class="btn-login">Login</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+
+
+    
+
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="https://escex07qwkvrz1em.public.blob.vercel-storage.com/video.mp4" type="video/mp4" />
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+            <source src="sources/video.mp4" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
 
@@ -81,8 +106,9 @@
 
         <!-- Season Tabs (glass radio group) -->
         <div class="season-tabs glass" role="tablist" aria-label="Program seasons">
-          <input type="radio" name="season" id="glass-spring" checked>
-          <label for="glass-spring" class="season-tab" data-season="spring" role="tab" aria-selected="true">Spring</label>
+
+          <input type="radio" name="season" id="glass-spring">
+          <label for="glass-spring" class="season-tab" data-season="spring" role="tab" aria-selected="false">Spring</label>
 
           <input type="radio" name="season" id="glass-summer">
           <label for="glass-summer" class="season-tab" data-season="summer" role="tab" aria-selected="false">Summer</label>
@@ -93,93 +119,49 @@
           <input type="radio" name="season" id="glass-winter">
           <label for="glass-winter" class="season-tab" data-season="winter" role="tab" aria-selected="false">Winter</label>
 
-          <div class="glass-glider" aria-hidden="true"></div>
-        </div>
+                    <div class="glass-glider" aria-hidden="true"></div>
+                </div>
+
+                <!-- All Year control (separate, styled like the seasons bar) -->
+                <div class="season-tabs glass allyear" role="tablist" aria-label="All year programs">
+                    <input type="radio" name="season" id="glass-allyear">
+                    <label for="glass-allyear" class="season-tab all-year-pill" data-season="all-year" role="tab" aria-selected="false" aria-pressed="false">All Year</label>
+                </div>
 
         <!-- Season card groups -->
         <div class="season-cards-wrapper">
-          <div class="season-cards" data-season="spring">
+          
+            <div class="season-cards" data-season="all-year">
             <div class="cards-row">
-
-              <!-- Card 3 -->
+    
+               <!-- Student-athlete School Tours -->
               <div class="card">
                 <div class="card-media">
-                  <img src="programs/camps/GlobalInvitational.jpg" alt="Global Invitational">
+                  <img src="/sources/placeholders/schooltour.jpg" alt="Student-athlete School Tours">
                 </div>
                 <div class="card-body">
-                  <h3>Global Invitational</h3>
-                  <p class="card-desc">High-caliber international tournament exposure and academy visits across Canada.</p>
+                  <h3>Student-athlete School Tours</h3>
+                  <p class="card-desc">tour on student-athlete schools </p>
+                </div>
+              </div>
 
-                  <!-- details shown when card has .expanded -->
-                  <div class="card-details" aria-hidden="true">
-                    <p><strong>When:</strong> Spring & Summer 2026</p>
-                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
-                    <p>Full details, schedule and coach bios are available here when expanded.</p>
-                    <button class="close-card" type="button">Close</button>
-                  </div>
-
-                  <!-- ADDED: Register button -->
-                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
+              <!--Junior Hockey -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/juniorhockey.jpg" alt="Junior Hockey">
+                </div>
+                <div class="card-body">
+                  <h3>Junior Hockey</h3>
+                  <p class="card-desc"> hockey programs for juniors </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- other seasons: copy same structure or replace content per season -->
-          <div class="season-cards" data-season="summer" hidden>
+            <div class="season-cards" data-season="spring" hidden>
             <div class="cards-row">
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/camps_summer.jpg" alt="Summer Camps">
-                </div>
-                <div class="card-body">
-                  <h3>Summer Camps</h3>
-                  <p class="card-desc">Intensive summer development programs focused on skating, skills and game-play.</p>
-                </div>
-              </div>
 
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/tours_summer.jpg" alt="Summer Academy Tours">
-                </div>
-                <div class="card-body">
-                  <h3>Academy Tours</h3>
-                  <p class="card-desc">Summer academy visits — experience training life and facilities.</p>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/tournaments_summer.jpg" alt="Summer Tournaments">
-                </div>
-                <div class="card-body">
-                  <h3>Showcase Tournaments</h3>
-                  <p class="card-desc">Elite summer showcases with scouting opportunities and high-level competition.</p>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/womens_summer.jpg" alt="Women's Programs">
-                </div>
-                <div class="card-body">
-                  <h3>Women's Programs</h3>
-                  <p class="card-desc">Women-specific summer training sessions and strength programs.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="season-cards" data-season="fall" hidden>
-            <div class="cards-row">
-              <!-- (fall cards removed here — moved to winter) -->
-            </div>
-          </div>
-
-          <!-- WINTER: moved cards -->
-          <div class="season-cards" data-season="winter" hidden>
-            <div class="cards-row">
-              <!-- Card 1 -->
+              <!-- Rumble Cup -->
               <div class="card">
                 <div class="card-media">
                   <img src="programs/camps/RumbleCup.jpg" alt="Rumble Cup">
@@ -200,8 +182,64 @@
                   <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
                 </div>
               </div>
+              
+            </div>
 
-              <!-- Card 2 -->
+          </div>
+
+          <!-- other seasons: copy same structure or replace content per season -->
+          <div class="season-cards" data-season="summer" hidden>
+            <div class="cards-row">
+
+               <!-- Rumble Cup -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="programs/camps/RumbleCup.jpg" alt="Rumble Cup">
+                </div>
+                <div class="card-body">
+                  <h3>Rumble Cup</h3>
+                  <p class="card-desc">Invite-only showcase and coach-led clinics. Details provided to serious applicants.</p>
+
+                  <!-- details shown when card has .expanded -->
+                  <div class="card-details" aria-hidden="true">
+                    <p><strong>When:</strong> Spring & Summer 2026</p>
+                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
+                    <p>Full details, schedule and coach bios are available here when expanded.</p>
+                    <button class="close-card" type="button">Close</button>
+                  </div>
+
+                  <!-- ADDED: Register button -->
+                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
+                </div>
+              </div>
+            
+              <!-- Brick International -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="/sources/placeholders/brickinternational.jpg" alt="Brick International">
+                </div>
+                <div class="card-body">
+                  <h3>Brick International</h3>
+                  <p class="card-desc"> Brick international </p>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+          <div class="season-cards" data-season="fall" hidden>
+            <div class="cards-row">
+              <!-- (fall cards removed here — moved to winter) -->
+            </div>
+          </div>
+
+          <!-- WINTER: moved cards -->
+          <div class="season-cards" data-season="winter" hidden>
+            <div class="cards-row">
+
+              <!-- Modo Hockey -->
               <div class="card">
                 <div class="card-media">
                   <img src="programs/camps/ModoHockey.png" alt="MODO Camp">
@@ -222,6 +260,74 @@
                   <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
                 </div>
               </div>
+
+
+              <!-- Paradise Cup -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="sources/photos/paradise_cup.jpg" alt="Paradise Cup">
+                </div>
+                <div class="card-body">
+                  <h3>Paradise Cup</h3>
+                  <p class="card-desc">Tournament, Thailand </p>
+                </div>
+              </div>
+
+              <!-- Bauer Cup -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="sources/photos/bauer_cup.jpg" alt="Bauer Cup">
+                </div>
+                <div class="card-body">
+                  <h3>Bauer Cup</h3>
+                  <p class="card-desc"> Tournament, Korea (Completed)</p>
+                </div>
+              </div>
+
+              <!-- Pre-Quebec -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="sources/photos/pre-quebec-peewee.png" alt="Pre-Quebec">
+                </div>
+                <div class="card-body">
+                  <h3>Pre-Quebec</h3>
+                  <p class="card-desc"> Tournament, Canada (Completed)</p>
+                </div>
+              </div>
+
+              <!-- Quebec Peewee -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="sources/photos/quebec_peewee.png" alt="Quebec Peewee">
+                </div>
+                <div class="card-body">
+                  <h3>Quebec Peewee</h3>
+                  <p class="card-desc"> External Tournament ( Quebec, Canada ) </p>
+                </div>
+              </div>
+
+              <!-- Peewee Bernieres -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="sources/photos/peewee_bernieres.png" alt="Peewee Bernieres">
+                </div>
+                <div class="card-body">
+                  <h3>Peewee Bernieres</h3>
+                  <p class="card-desc"> External Tournament, Canada (Completed)</p>
+                </div>
+              </div>
+
+              <!-- Grand Montreal International Tournament -->
+              <div class="card">
+                <div class="card-media">
+                  <img src="sources/photos/grand_montreal.png" alt="Grand Montreal International Tournament">
+                </div>
+                <div class="card-body">
+                  <h3>Grand Montreal International Tournament</h3>
+                  <p class="card-desc"> External Tournament, Canada (Completed)</p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -238,7 +344,7 @@
                     <p><strong>Mid-week trip to Prague</strong> - On Wednesdays we organize a half-day trip to Prague. We want to show the participants all the beauties of the historical city center, but it's also a great way to take a break from all the trainings and relax a bit.</p>
                 </div>
                 <div class="content-image">
-                    <img src="sources/placeholders/typical-week.jpg" alt="Typical week at the Camp">
+                    <img src="sources/photos/typical_week_at_camp.jpg" alt="Typical week at the Camp">
                 </div>
             </div>
         </div>
@@ -256,7 +362,7 @@
                     <a href="https://www.youtube.com/c/CzechInternationalHockeyCamp/videos" class="btn" target="_blank">Training videos</a>
                 </div>
                 <div class="content-image">
-                    <img src="sources/placeholders/on-ice-training.jpg" alt="On-ice trainings">
+                    <img src="sources/photos/on_ice_training.jpg" alt="On-ice trainings">
                 </div>
             </div>
         </div>
@@ -273,7 +379,7 @@
                     <p>Important part of each Camp is also Classroom, where coaches discuss player's techniques and skills during video review, as well as ice hockey theory, rules and tactics. And last but not least - we are trying to teach players personal responsibility, self-discipline, motivation and how to be a good team player.</p>
                 </div>
                 <div class="content-image">
-                    <img src="sources/placeholders/off-ice-training.jpg" alt="Off-ice training">
+                    <img src="sources/photos/off_ice_training.jpg" alt="Off-ice training">
                 </div>
             </div>
         </div>
@@ -292,7 +398,7 @@
                     <p>Full board is optional for 180 EUR/week. <a href="#packages">More about packages</a></p>
                 </div>
                 <div class="content-image">
-                    <img src="sources/placeholders/parents-families.jpg" alt="Parents and Families">
+                    <img src="sources/photos/parents_and_families.jpg" alt="Parents and Families">
                 </div>
             </div>
         </div>
@@ -309,7 +415,7 @@
             <div class="accommodation-grid">
                 <div class="accommodation-card">
                     <div class="accommodation-image">
-                        <img src="sources/placeholders/camp-hotel.jpg" alt="Player's Camp Hotel">
+                        <img src="sources/photos/university_of_ottawa_dormitory_2.jpg" alt="Player's Camp Hotel">
                     </div>
                     <div class="accommodation-content">
                         <h3>PLAYER'S CAMP HOTEL: YOUR STAY AT CIHC</h3>
@@ -317,17 +423,26 @@
                     </div>
                 </div>
 
-                <div class="accommodation-card reverse">
+                
+            </div>
+
+            <div class="accommodation-grid">
+                <div class="accommodation-card">
                     <div class="accommodation-image">
-                        <img src="sources/placeholders/parents-hotel.jpg" alt="Parents Hotel">
+                        <img src="sources/photos/lecky_house.jpg" alt="Player's Camp Hotel">
                     </div>
                     <div class="accommodation-content">
-                        <h3>HOTEL BÍLÝ PÁV (PARENTS HOTEL): COMFORT AND PRIVACY NEARBY</h3>
-                        <p>Bílý Páv, our choice for parents and adult players, offers private, comfortable lodging just an 8-minute walk from the ice arena. Available for an additional fee, the hotel provides 2-bedroom en suites and single rooms, plus limited "Apartment rooms" with extra sofa beds. Each room features an en suite bathroom and towels. Enjoy the independence of this unsupervised option, complete with an in-house restaurant and parking.</p>
+                        <h3>LECKY HOUSE at SHAWNIGAN LAKE SCHOOL</h3>
+                        <p>a guest boarding house, built in 2003 (originally 'Canada House'), providing a "home-away-from-home" for visiting sports teams and groups to foster bonding, with its focus on team spirit and connection.</p>
                     </div>
                 </div>
+
+                
             </div>
+
         </div>
+
+        
     </section>
 
     <!-- Transportation Section -->
@@ -335,13 +450,13 @@
         <div class="container">
             <div class="content-image-layout">
                 <div class="content-text">
-                    <h2>TRANSPORTATION</h2>
+                    <h2>TRANSPORTATION (OPTIONAL)</h2>
                     <p>Travel in comfort and style to the Camp site with our transfer options. Take the Hockey Shuttle, leaving from the Prague airport at noon on Camp day one, with a stop near the main train station in the city center. Or, elevate your journey with the Hockey taxi - a private car that can accommodate up to 9 passengers, anywhere and anytime.</p>
                     <p>To secure your transfer, book in advance through our email at <a href="mailto:Achieve@achievehockey.org">Achieve@achievehockey.org</a>. You'll receive a confirmation with all the details, ensuring a seamless arrival at the camp.</p>
                     <a href="#packages" class="btn">More about packages</a>
                 </div>
                 <div class="content-image">
-                    <img src="sources/placeholders/transportation.jpg" alt="Transportation">
+                    <img src="sources/photos/transportation.jpg" alt="Transportation">
                 </div>
             </div>
         </div>
@@ -358,11 +473,72 @@
                     <p>At Czech International Hockey Camp, our goal is to help campers reach their full potential as athletes and individuals.</p>
                 </div>
                 <div class="content-image">
-                    <img src="sources/placeholders/coaching-staff.jpg" alt="Coaching Staff">
+                    <img src="sources/photos/coaching_staff.jpg" alt="Coaching Staff">
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Our Coaches Section -->
+    <section class="team-section" id="our-team">
+        <div class="container">
+            <div class="section-title">
+                <h2>OUR COACHING STAFF</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="sources/coaches/jamie_edwards.png" alt="Jamie Edward">
+                    </div>
+                    <h3>Jamie Edward</h3>
+                    <p>Don Mills Flyer, GTHL</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="sources/coaches/nevin_guy.png" alt="Nevin Guy">
+                    </div>
+                    <h3>Nevin Guy</h3>
+                    <p>Rockland Nats, CCHL</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="sources/coaches/darren_rumble.png" alt="Darren Rumble">
+                    </div>
+                    <h3>Darren Rumble</h3>
+                    <p>Universel College Gatineau, USPHL</p>
+                    <p>Owen Sound, OHL</p>
+                    <p>Gatineau Olympiques, QMJHL</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="sources/coaches/jarrod_skalde.jpg" alt="Jarrod Skalde">
+                    </div>
+                    <h3>Jarrod Skalde</h3>
+                    <p>Japan U20, IIHF</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="sources/coaches/jeff_compton.jpg" alt="Jeff Compton">
+                    </div>
+                    <h3>Jeff Compton</h3>
+                    <p>Victoria Royals, WHL</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="sources/coaches/ryan_hand_2.png" alt="Ryan Hand">
+                    </div>
+                    <h3>Ryan Hand</h3>
+                    <p>UOttawa Gee Gees, USports</p>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
 
     <!-- Supervision Section -->
     <section class="supervision-section" id="supervision">
@@ -376,7 +552,7 @@
                     <p>We take the safety and well-being of our campers seriously, and our supervisors are an integral part of ensuring that our campers have a positive and memorable experience. Parents can feel confident leaving their children at the Czech International Hockey Camp, knowing they are in good hands with our team of experienced and dedicated supervisors.</p>
                 </div>
                 <div class="content-image">
-                    <img src="sources/placeholders/supervision.jpg" alt="Supervision">
+                    <img src="sources/photos/supervision.jpg" alt="Supervision">
                 </div>
             </div>
         </div>
@@ -393,7 +569,7 @@
                     <p>We believe in building not just better hockey players, but better people. Through our comprehensive approach to player development, we emphasize character, teamwork, discipline, and sportsmanship. Our mission is to provide every athlete with the tools, knowledge, and support they need to achieve their hockey dreams.</p>
                 </div>
                 <div class="content-image">
-                    <img src="sources/placeholders/about-us.jpg" alt="About us">
+                    <img src="sources/photos/about_us.png" alt="About us">
                 </div>
             </div>
         </div>
@@ -403,7 +579,7 @@
     <section class="team-section" id="our-team">
         <div class="container">
             <div class="section-title">
-                <h2>OUR TEAM</h2>
+                <h2>OUR AGENCY TEAM</h2>
             </div>
             <div class="team-grid">
                 <div class="team-member">
@@ -411,21 +587,21 @@
                         <img src="sources/founders/Thomas.jpg" alt="Thomas Kim">
                     </div>
                     <h3>Thomas Kim</h3>
-                    <p>Camp director / Founder of CIHC</p>
+                    <p>Director, CEO & Founder</p>
                 </div>
                 <div class="team-member">
                     <div class="team-photo">
                         <img src="sources/founders/Solomon.jpg" alt="Seiwon Kim">
                     </div>
                     <h3>Seiwon "Solomon" Kim</h3>
-                    <p>Head coach / Founder of CIHC</p>
+                    <p>S/W Engineering & Finances</p>
                 </div>
                 <div class="team-member">
                     <div class="team-photo">
                         <img src="sources/founders/Jerry.jpeg" alt="Jerry Kim">
                     </div>
                     <h3>Jerry Kim</h3>
-                    <p>Office director</p>
+                    <p>International Customer Relations</p>
                 </div>
             </div>
         </div>

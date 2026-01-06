@@ -109,6 +109,45 @@
             transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
         }
 
+        /* Nested flyout (right-side) for submenus like Packages beside Camps */
+        nav ul li .dropdown li.has-dropdown {
+            position: relative;
+        }
+
+        /* target only the nested submenu when it has the `flyout` class */
+        nav ul li .dropdown li .dropdown.flyout {
+            position: absolute;
+            top: 0;
+            right: calc(100% + 8px);
+            left: auto;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            -webkit-backdrop-filter: blur(8px) saturate(120%);
+            backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            min-width: 200px;
+            list-style: none;
+            padding: 6px 6px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            z-index: 3000;
+            opacity: 0;
+            transform: translateX(-6px); /* start slightly left for a smooth slide-in to the right */
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s; /* match parent timings */
+            display: block; /* keep block for absolute layout */
+        }
+
+        /* show flyout only when hovering or focusing the Camps parent (smooth fade + slide like parent) */
+        nav ul li .dropdown li.has-dropdown:hover > .dropdown.flyout,
+        nav ul li .dropdown li.has-dropdown:focus-within > .dropdown.flyout,
+        nav ul li .dropdown li.has-dropdown.open > .dropdown.flyout {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
         /* show on hover / keyboard focus */
         nav ul li.has-dropdown:hover .dropdown,
         nav ul li.has-dropdown:focus-within .dropdown,
@@ -144,6 +183,48 @@
                 padding: 0 0 0 18px;
                 transition: max-height 0.28s ease, padding 0.22s ease;
             }
+
+
+            /* mobile: nested dropdowns become stacked and collapsible */
+            nav ul li .dropdown li .dropdown {
+                position: static;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 0 0 18px;
+                transition: max-height 0.28s ease, padding 0.22s ease;
+            }
+            nav ul li .dropdown li.has-dropdown.open .dropdown {
+                max-height: 480px;
+                padding: 10px 0 10px 18px;
+            }
+            /* ensure flyout is collapsed on mobile until explicitly opened */
+            nav ul li .dropdown li .dropdown.flyout {
+                display: block; /* keep flow behavior for mobile */
+                max-height: 0;
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+            }
+            nav ul li .dropdown li.has-dropdown.open > .dropdown.flyout {
+                max-height: 480px;
+                visibility: visible;
+                opacity: 1;
+                pointer-events: auto;
+                padding-left: 18px;
+            }
+            /* mobile: nested dropdowns become stacked and collapsible */
+            nav ul li .dropdown li .dropdown {
+                position: static;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 0 0 18px;
+                transition: max-height 0.28s ease, padding 0.22s ease;
+            }
+            nav ul li .dropdown li.has-dropdown.open .dropdown {
+                max-height: 480px;
+                padding: 10px 0 10px 18px;
+            }
+
             nav ul li .dropdown li a {
                 padding: 10px 0 10px 6px;
             }
@@ -861,6 +942,18 @@
   box-shadow: 0 10px 28px rgba(140,33,49,0.07);
 }
 
+/* When the standalone All Year pill is active, give it a filled gradient
+   so it visually matches the season tabs' filled appearance. */
+.season-tab.all-year-pill.active {
+  /* Use the same subtle glass-filled gradient used by the season tabs' active state */
+  background: linear-gradient(90deg, rgba(140,33,49,0.16), rgba(140,33,49,0.06));
+  color: #fff;
+  border-color: rgba(140,33,49,0.85);
+  box-shadow: 0 10px 28px rgba(140,33,49,0.07);
+  /* make corner rounding match the main glider/container for visual parity */
+  border-radius: 1rem;
+}
+
 /* make tabs responsive on small screens */
 @media (max-width: 520px) {
   .season-tabs {
@@ -1085,6 +1178,91 @@
 
 /* EOF - end of overrides */
 
+/* ----- All Year tab special styling ----- */
+/* Make the All Year pill visually match the main season tabs but sit on its own row */
+.season-tabs .season-tab[data-season="all-year"] {
+  /* keep a subtle default so JS can override with palette when active */
+  background: transparent;
+  color: #d6d6d6;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 14px 26px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  box-shadow: none;
+  transform: translateY(0);
+  font-size: 18px;
+  border-radius: 999px;
+  min-width: 140px;
+}
+.season-tabs .season-tab[data-season="all-year"]:hover { transform: translateY(-3px); }
+.season-tabs .season-tab[data-season="all-year"].active {
+  color: #fff;
+  box-shadow: 0 10px 28px rgba(140,33,49,0.07);
+}
+
+.season-tabs .glass-glider { will-change: transform; }
+
+/* standalone All Year pill (below the seasons) - align and size like the primary tabs */
+.season-tabs.glass.allyear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px auto 28px; /* top, horiz-centering, bottom */
+  padding: 6px;
+  --bg: rgba(255,255,255,0.02);
+  --text: #d6d6d6;
+  background: transparent;
+  border-radius: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: none;
+  width: 100%;
+  max-width: 1200px; /* match main season tabs max width */
+}
+.season-tabs.glass.allyear .season-tab.all-year-pill {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border: 0px solid rgba(255,255,255,0.08);
+  padding: 14px 26px;
+  min-width: 140px;
+  border-radius: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color .25s ease, transform .18s ease, box-shadow .18s, background .18s, border-color .18s;
+  text-align: center;
+  font-size: 18px;
+}
+.season-tabs.glass.allyear .season-tab.all-year-pill:hover { color: #fff; transform: translateY(-3px); }
+.season-tabs.glass.allyear .season-tab.all-year-pill.active,
+.season-tabs.glass.allyear .season-tab.all-year-pill[aria-pressed="true"] {
+  /* Keep the All Year pill visually consistent with the unselected season tabs
+     — no red outline or heavy shadow when clicked. */
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: none;
+  transform: translateY(-3px);
+  font-weight: 800;
+  border-radius: 1rem; /* match the glider/container corner radius */
+}
+
+/* keyboard focus ring */
+.season-tabs.glass.allyear .season-tab.all-year-pill:focus { outline: none; box-shadow: 0 0 0 4px rgba(255,255,255,0.04); border-radius: 1rem; }
+
+/* glider for the standalone All Year row so it visually matches the main season glider */
+.season-tabs.glass.allyear { position: relative; }
+.season-tabs.glass.allyear .glass-glider {
+  position: absolute;
+  inset: 6px 6px 6px 6px;
+  border-radius: 1rem;
+  z-index: 1;
+  transition: background .35s ease, box-shadow .35s ease, opacity .28s ease;
+  background: transparent;
+  box-shadow: 0 6px 18px rgba(140,33,49,0.04);
+}
+
+.season-tabs.glass.allyear .season-tab.all-year-pill { position: relative; z-index: 2; }
+
+
 /* Register button style (as requested) */
 .button {
   position: relative;
@@ -1258,6 +1436,7 @@
 #glass-fall:checked   ~ .glass-glider { transform: translateX(200%); }
 #glass-winter:checked ~ .glass-glider { transform: translateX(300%); }
 
+
 /* Make checked label text white */
 .season-tabs.glass input:checked + label { color: #fff; }
 
@@ -1326,6 +1505,7 @@
 #glass-summer:checked ~ .glass-glider { transform: translateX(100%); }
 #glass-fall:checked   ~ .glass-glider { transform: translateX(200%); }
 #glass-winter:checked ~ .glass-glider { transform: translateX(300%); }
+
 
 /* small screen tweaks */
 @media (max-width: 520px) {
@@ -1545,19 +1725,37 @@
 }
 
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin-top: 40px;
+  display: grid;
+  gap: 40px;
+  margin-top: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: stretch; /* allow children to stretch to equal height */
+  grid-template-columns: repeat(1, 1fr); /* default single column on very small screens */
+  grid-auto-rows: 1fr; /* make each row equal height so cards match */
+}
+
+/* Responsive columns: 2 columns on medium, 3 on wide */
+@media (min-width: 640px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1100px) {
+  .team-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 .team-member {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.02);
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%; /* fill the grid cell so all cards match height */
 }
 
 .team-member:hover {
@@ -1727,4 +1925,5 @@
         height: 250px;
     }
 }
+
 

@@ -421,105 +421,574 @@ nav ul li .dropdown li a:hover {
         }
 
       /* Navbar Styles */
-nav ul {
+ 
+        /* Top-level navigation (keeps nested dropdown ULs unaffected) */
+        nav > ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav > ul > li {
+            margin-left: 30px;
+        }
+
+        nav > ul > li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.22s ease, transform 0.15s ease;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            color: #8C2131;
+            transform: translateY(-1px);
+        }
+
+        /* Dropdown for Programs - smooth glass panel, positioned directly under Programs */
+        nav ul li.has-dropdown {
+            position: relative;
+        }
+
+        /* dropdown ul (vertical) */
+        nav ul li .dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            -webkit-backdrop-filter: blur(8px) saturate(120%);
+            backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            min-width: 220px;
+            list-style: none;
+            padding: 6px 6px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            z-index: 2000;
+            opacity: 0;
+            transform: translateY(6px);
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+        }
+
+        /* Nested flyout (right-side) for submenus like Packages beside Camps */
+        nav ul li .dropdown li.has-dropdown {
+            position: relative;
+        }
+
+        /* target only the nested submenu when it has the `flyout` class */
+        nav ul li .dropdown li .dropdown.flyout {
+            position: absolute;
+            top: 0;
+            right: calc(100% + 8px);
+            left: auto;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            -webkit-backdrop-filter: blur(8px) saturate(120%);
+            backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            min-width: 200px;
+            list-style: none;
+            padding: 6px 6px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            z-index: 3000;
+            opacity: 0;
+            transform: translateX(-6px); /* start slightly left for a smooth slide-in to the right */
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s; /* match parent timings */
+            display: block; /* keep block for absolute layout */
+        }
+
+        /* show flyout only when hovering or focusing the Camps parent (smooth fade + slide like parent) */
+        nav ul li .dropdown li.has-dropdown:hover > .dropdown.flyout,
+        nav ul li .dropdown li.has-dropdown:focus-within > .dropdown.flyout,
+        nav ul li .dropdown li.has-dropdown.open > .dropdown.flyout {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* show on hover / keyboard focus */
+        nav ul li.has-dropdown:hover .dropdown,
+        nav ul li.has-dropdown:focus-within .dropdown,
+        nav ul li.has-dropdown.open .dropdown {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        nav ul li .dropdown li a {
+            display: block;
+            padding: 10px 14px;
+            color: #e9eef5;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+        }
+
+        nav ul li .dropdown li a:hover {
+            background: rgba(140,33,49,0.07);
+            color: #fff;
+            transform: translateX(4px);
+        }
+
+        /* Mobile: collapse dropdowns inside mobile menu until tapped */
+        @media (max-width: 768px) {
+            nav ul li .dropdown {
+                position: static;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 0 0 18px;
+                transition: max-height 0.28s ease, padding 0.22s ease;
+            }
+
+            /* mobile: nested dropdowns become stacked and collapsible */
+            nav ul li .dropdown li .dropdown {
+                position: static;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 0 0 18px;
+                transition: max-height 0.28s ease, padding 0.22s ease;
+            }
+            nav ul li .dropdown li.has-dropdown.open .dropdown {
+                max-height: 480px;
+                padding: 10px 0 10px 18px;
+            }
+            /* ensure flyout is collapsed on mobile until explicitly opened */
+            nav ul li .dropdown li .dropdown.flyout {
+                display: block; /* keep flow behavior for mobile */
+                max-height: 0;
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+            }
+            nav ul li .dropdown li.has-dropdown.open > .dropdown.flyout {
+                max-height: 480px;
+                visibility: visible;
+                opacity: 1;
+                pointer-events: auto;
+                padding-left: 18px;
+            }
+            /* mobile: nested dropdowns become stacked and collapsible */
+            nav ul li .dropdown li .dropdown {
+                position: static;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 0 0 18px;
+                transition: max-height 0.28s ease, padding 0.22s ease;
+            }
+            nav ul li .dropdown li.has-dropdown.open .dropdown {
+                max-height: 480px;
+                padding: 10px 0 10px 18px;
+            }
+            nav ul li .dropdown li a {
+                padding: 10px 0 10px 6px;
+            }
+            /* when the dropdown parent is toggled open on mobile */
+            nav ul li.has-dropdown.open .dropdown {
+                max-height: 480px; /* plenty for list items */
+                padding: 10px 0 10px 18px;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+
+            .btn-login {
+                background-color:#8C2131;
+                color: #fff;
+                padding: 10px 25px;
+                border-radius: 25px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+                transition: all 0.3s;
+                border: 2px solid #8C2131;
+            }
+
+            .btn-login:hover {
+                background-color: transparent;
+                color: #8C2131;
+            }
+
+
+        /* Hero Section */
+        .hero {
+    height: 100vh;
     display: flex;
-    list-style: none;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+        .hero-content {
+            max-width: 600px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+       
+        }
+     
+        .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
 
-nav ul li {
-    margin-left: 30px;
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-    font-size: 16px;
-}
+        .hero h1 {
+            font-size: 50px;
+            
+            
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
 
-nav ul li a:hover {
-    color: #8C2131;
-}
+        .hero img{
+            width: 140px;
+            margin-bottom: 12px;
+        }
+        .hero h1 span{
+            color: #8C2131;
+            font-weight: bolder;
+        }
 
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-}
+        .hero p {
+            font-size: 30px;
+            margin-bottom: 30px;
+            color: #ccc;
+             font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
 
-.btn-login {
-    background-color:#8C2131;
-    color: #fff;
-    padding: 10px 25px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.3s;
-    border: 2px solid #8C2131;
-}
+        .btn {
+            display: inline-block;
+            background-color: #8C2131;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid #8C2131;
+            justify-self: center;
+            margin: 0px 10px 15px 10px;
+        }
 
-.btn-login:hover {
-    background-color: transparent;
-    color: #8C2131;
-}
+        .btn:hover {
+            background-color: transparent;
+            color: #8C2131;
+        }
 
-/* Mobile: collapse dropdowns inside mobile menu until tapped */
-@media (max-width: 768px) {
-    nav ul li .dropdown {
-        position: static;
-        max-height: 0;
-        overflow: hidden;
-        padding: 0 0 0 18px;
-        transition: max-height 0.28s ease, padding 0.22s ease;
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #fff;
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+
+        /*animations*/
+        /* Text animation styles */
+          .hero-content h1,
+          .hero-img,
+          .hero-content p,
+          .hero-content .btn {
+              opacity: 0;
+              transform: translateY(30px);
+              animation: fadeInUp 0.8s ease forwards;
+          }
+
+          .hero-content h1 {
+              animation-delay: 0.3s;
+          }
+
+          .hero-content p {
+              animation-delay: 0.6s;  
+          }
+
+          .hero-content .btn {
+              animation-delay: 0.9s;
+              margin: 5px;
+          }
+
+          .hero-content .btn-outline {
+              animation-delay: 1.1s;
+          }
+
+          @keyframes fadeInUp {
+              to {
+                  opacity: 1;
+                  transform: translateY(0);
+              }
+          }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Programs Section */
+ .programs-section {
+            padding: 100px 0;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #ccc;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Interactive Card Stack */
+        .programs-stack {
+            position: relative;
+            height: 600px;
+            max-width: 1200px;
+            margin: 0 auto;
+            perspective: 1000px;
+              display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .program-card {
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            background: #111;
+            border-radius: 20px;
+            border: 1px solid #333;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 20px 40px rgba(140, 33, 49, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .program-card.active {
+            transform: translateX(0) scale(1) rotateY(0deg) !important;
+            z-index: 10;
+            border-color: #8C2131;
+            box-shadow: 0 25px 50px rgba(140, 33, 49, 0.3);
+        }
+
+        .program-card.left {
+            transform: translateX(-280px) scale(0.85) rotateY(15deg);
+            z-index: 3;
+            opacity: 0.7;
+        }
+
+        .program-card.right {
+            transform: translateX(280px) scale(0.85) rotateY(-15deg);
+            z-index: 3;
+            opacity: 0.7;
+        }
+
+        .program-card.far-left {
+            transform: translateX(-500px) scale(0.7) rotateY(25deg);
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        .program-card.far-right {
+            transform: translateX(500px) scale(0.7) rotateY(-25deg);
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        .program-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8C2131, #a52c3f);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .program-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .program-card p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .program-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .program-features li {
+            color: #8C2131;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .program-features li:before {
+            content: "✓";
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .program-btn {
+            background: #8C2131;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .program-btn:hover {
+            background: #a52c3f;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Dots */
+        .program-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: #8C2131;
+            transform: scale(1.2);
+        }
+
+        /* Mobile Styles */
+      @media (max-width: 768px) {
+    .program-card.left {
+        transform: translateX(calc(-50% - 200px)) scale(0.8) rotateY(20deg);
     }
-    nav ul li .dropdown li a {
-        padding: 10px 0 10px 6px;
-    }
-    /* when the dropdown parent is toggled open on mobile */
-    nav ul li.has-dropdown.open .dropdown {
-        max-height: 480px; /* plenty for list items */
-        padding: 10px 0 10px 18px;
+
+    .program-card.right {
+        transform: translateX(calc(-50% + 200px)) scale(0.8) rotateY(-20deg);
     }
 
-    .mobile-menu-btn {
-        display: block;
+    .program-card.far-left {
+        transform: translateX(calc(-50% - 350px)) scale(0.6) rotateY(30deg);
     }
 
-    nav > ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(10,10,10,0.55);
-        -webkit-backdrop-filter: blur(8px) saturate(120%);
-        backdrop-filter: blur(8px) saturate(120%);
-        border-top: 1px solid rgba(255,255,255,0.04);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-        flex-direction: column;
-        padding: 20px 0;
-        transform: translateY(-8px);
-        opacity: 0;
-        transition: transform 0.28s cubic-bezier(.2,.9,.2,1), opacity 0.22s ease;
-        overflow: hidden;
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 12px;
-    }
-
-    nav > ul.show {
-        transform: translateY(0);
-        opacity: 1;
-        display: flex;
-    }
-
-    nav > ul > li {
-        margin: 0;
-        text-align: center;
-        padding: 10px 0;
+    .program-card.far-right {
+        transform: translateX(calc(-50% + 350px)) scale(0.6) rotateY(-30deg);
     }
 }
+
+@media (max-width: 480px) {
+    .program-card.left {
+        transform: translateX(calc(-50% - 150px)) scale(0.75) rotateY(25deg);
+    }
+
+    .program-card.right {
+        transform: translateX(calc(-50% + 150px)) scale(0.75) rotateY(-25deg);
+    }
+}
+
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .programs-section {
+            animation: slideIn 0.8s ease-out;
+        }
