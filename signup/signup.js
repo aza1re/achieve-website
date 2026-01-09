@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('signupBtn');
   const errBox = document.getElementById('signupError');
 
+  const params = new URLSearchParams(window.location.search);
+  const next = (params.get('next') || '').toLowerCase(); // e.g. ?next=login
+
   function showError(msg) {
     errBox.style.display = msg ? 'block' : 'none';
     errBox.textContent = msg || '';
@@ -38,9 +41,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return '';
   }
 
+  function addDevUser(payload) {
+    const users = JSON.parse(localStorage.getItem('dev_users') || '[]');
+    const exists = users.some(u => (u.email || '').toLowerCase() === payload.email);
+    if (exists) return { ok: false, reason: 'exists' };
+
+    users.push({
+      email: payload.email,
+      password: payload.password,
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      userType: payload.userType,
+      newsletter: payload.newsletter
+    });
+
+    localStorage.setItem('dev_users', JSON.stringify(users));
+    return { ok: true };
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     showError('');
+
     const payload = {
       firstName: document.getElementById('firstName').value.trim(),
       lastName: document.getElementById('lastName').value.trim(),
@@ -49,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userType: document.getElementById('userType').value,
       newsletter: !!document.getElementById('newsletter').checked
     };
+
     const confirm = document.getElementById('confirmPassword').value;
     const v = validate(payload, confirm);
     if (v) return showError(v);
@@ -60,7 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         await window.firebaseAuth.signupEmail(payload.email, payload.password);
         await window.firebaseAuth.waitForSignIn(4000);
-        // redirect to account (use relative path from signup page)
+
+        // If you want to test login immediately after signup:
+        if (next === 'login') {
+          if (typeof window.firebaseAuth.signOut === 'function') {
+            await window.firebaseAuth.signOut();
+          }
+          window.location.href = '../login/login.html';
+          return;
+        }
+
         window.location.href = '../account/account.html';
         return;
       } catch (fbErr) {
@@ -71,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // existing server fallback / localStorage dev fallback
+    // server fallback / localStorage dev fallback
     setLoading(true);
     try {
       const res = await fetch('/api/signup', {
@@ -83,19 +115,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const json = await res.json().catch(() => null);
       if (res.ok && json && json.success) {
-        window.location.href = json.redirect || '/login/login.html';
+        window.location.href = json.redirect || '../login/login.html';
         return;
       }
 
-      const users = JSON.parse(localStorage.getItem('dev_users') || '[]');
-      users.push({ email: payload.email, password: payload.password, firstName: payload.firstName, lastName: payload.lastName });
-      localStorage.setItem('dev_users', JSON.stringify(users));
-      window.location.href = '/login/login.html';
+      const saved = addDevUser(payload);
+      if (!saved.ok && saved.reason === 'exists') {
+        showError('An account with that email already exists (local). Try logging in.');
+        return;
+      }
+
+      window.location.href = '../login/login.html';
     } catch (err) {
-      const users = JSON.parse(localStorage.getItem('dev_users') || '[]');
-      users.push({ email: payload.email, password: payload.password, firstName: payload.firstName, lastName: payload.lastName });
-      localStorage.setItem('dev_users', JSON.stringify(users));
-      window.location.href = '/login/login.html';
+      const saved = addDevUser(payload);
+      if (!saved.ok && saved.reason === 'exists') {
+        showError('An account with that email already exists (local). Try logging in.');
+        return;
+      }
+
+      window.location.href = '../login/login.html';
     } finally {
       setLoading(false);
     }

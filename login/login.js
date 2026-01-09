@@ -45,14 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ? window.firebaseAuth.onAuthStateChanged(user => {
             if (settled) return;
             settled = true;
-            try { off && off(); } catch(e){}
+            try { off && off(); } catch (e) {}
             resolve(user || null);
           })
         : null;
+
       const to = setTimeout(() => {
         if (settled) return;
         settled = true;
-        try { off && off(); } catch(e){}
+        try { off && off(); } catch (e) {}
         resolve(null);
       }, timeout);
     });
@@ -68,9 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return window.firebaseAuth.signInWithGooglePopup();
   }
 
+  function tryLocalLogin(email, password) {
+    const users = JSON.parse(localStorage.getItem('dev_users') || '[]');
+    return users.find(u => (u.email || '').toLowerCase() === email && u.password === password) || null;
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     showError('');
+
     const email = document.getElementById('email').value.trim().toLowerCase();
     const password = document.getElementById('password').value;
 
@@ -78,18 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fbReady = await waitForFirebase();
 
+    // Prefer Firebase if available
     if (fbReady && window.firebaseAuth && window.firebaseAuth.signInEmail) {
       try {
         await firebaseEmailSignIn(email, password);
-        // wait for onAuthStateChanged to report the user
         const user = await waitForUser(5000);
         if (user) {
-          // Auth succeeded but navigation to account.html is disabled.
           console.log('[login] sign-in successful (navigation disabled). user=', user);
           showError('Login successful — navigation to account is disabled for testing.');
-           return;
+          return;
         }
-        // If auth succeeded but state not observed, show message (rare)
         showError('Sign-in succeeded but auth state not available yet. Try refreshing.');
         return;
       } catch (fbErr) {
@@ -101,11 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (code === 'auth/wrong-password') showError('Incorrect password.');
         else if (code === 'auth/operation-not-allowed') showError('Email/password sign-in is not enabled in Firebase.');
         else showError((fbErr && fbErr.message) || 'Login failed with Firebase.');
-        // fall back to server/local after showing message
+        // continue to server/local fallback after showing message
       }
     }
 
-    // server / local fallback...
+    // Server fallback, then localStorage fallback
     try {
       const res = await fetch('/api/login', {
         method: 'POST',
@@ -113,20 +118,32 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ email, password }),
         credentials: 'include'
       });
+
       const json = await res.json().catch(() => null);
       if (res.ok && json && json.success) {
         console.log('[login] server login successful (navigation disabled). resp=', json);
         showError('Login successful (server) — navigation to account is disabled for testing.');
-         return;
+        return;
       }
 
-      const users = JSON.parse(localStorage.getItem('dev_users') || '[]');
-      const u = users.find(u => u.email === email && u.password === password);
+      // ✅ localStorage fallback success
+      const u = tryLocalLogin(email, password);
+      if (u) {
+        console.log('[login] local login successful (navigation disabled). user=', { email: u.email });
+        showError('Login successful (local) — navigation to account is disabled for testing.');
+        return;
+      }
 
       showError((json && json.message) || 'Invalid credentials.');
     } catch (err) {
-      const users = JSON.parse(localStorage.getItem('dev_users') || '[]');
-      const u = users.find(u => u.email === email && u.password === password);
+      // ✅ localStorage fallback if server is unreachable
+      const u = tryLocalLogin(email, password);
+      if (u) {
+        console.log('[login] local login successful (navigation disabled). user=', { email: u.email });
+        showError('Login successful (local) — navigation to account is disabled for testing.');
+        return;
+      }
+      showError('Login failed (network).');
     }
   });
 
@@ -141,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
           await window.firebaseAuth.waitForSignIn(4000);
           console.log('[login] google sign-in successful (navigation disabled).');
           showError('Google sign-in successful — navigation to account is disabled for testing.');
-           return;
+          return;
         } catch (err) {
           console.warn('Firebase Google sign-in error', err);
           showError((err && err.message) || 'Google sign-in failed.');
