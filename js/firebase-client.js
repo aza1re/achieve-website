@@ -10,8 +10,15 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut as fbSignOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  updateProfile
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAXYi7MCm-aMBeh3bEjs0eJ5eHcGjf9-bw",
@@ -26,6 +33,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const storage = getStorage(app);
 const googleProvider = new GoogleAuthProvider();
 
 // ensure local persistence (keeps user signed in across reloads)
@@ -36,14 +44,14 @@ setPersistence(auth, browserLocalPersistence).catch((e) => {
 
 // helper: wait for currentUser to be non-null (with timeout)
 function waitForSignIn(timeout = 3000) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (auth.currentUser) return resolve(auth.currentUser);
-    const unsubs = [];
     let settled = false;
+
     const timer = setTimeout(() => {
       if (settled) return;
       settled = true;
-      unsubs.forEach(u => u && u());
+      try { off && off(); } catch {}
       resolve(null);
     }, timeout);
 
@@ -52,12 +60,43 @@ function waitForSignIn(timeout = 3000) {
       if (user) {
         settled = true;
         clearTimeout(timer);
-        unsubs.forEach(u => u && u());
+        try { off && off(); } catch {}
         resolve(user);
       }
     });
-    unsubs.push(off);
   });
+}
+
+function safeFilename(name) {
+  return String(name || 'photo')
+    .replace(/[^a-z0-9._-]+/gi, '_')
+    .slice(0, 80);
+}
+
+async function updateProfilePhoto(file) {
+  const user = auth.currentUser || await waitForSignIn(4000);
+  if (!user) throw new Error('Not signed in.');
+
+  if (!file || !file.type || !file.type.startsWith('image/')) {
+    throw new Error('Please choose an image file.');
+  }
+
+  // Store under a user-scoped path to avoid collisions
+  const filename = safeFilename(file.name);
+  const path = `profilePhotos/${user.uid}/${Date.now()}_${filename}`;
+  const objRef = storageRef(storage, path);
+
+  await uploadBytes(objRef, file, {
+    contentType: file.type,
+    cacheControl: 'public,max-age=3600'
+  });
+
+  const url = await getDownloadURL(objRef);
+
+  // Persist photoURL on the Firebase Auth user profile
+  await updateProfile(user, { photoURL: url });
+
+  return url;
 }
 
 // expose simple API for other scripts
@@ -78,5 +117,6 @@ window.firebaseAuth = {
   onAuthStateChanged(cb) {
     return onAuthStateChanged(auth, cb);
   },
-  waitForSignIn
+  waitForSignIn,
+  updateProfilePhoto
 };

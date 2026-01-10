@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.classList.toggle('loading', !!loading);
   }
 
-  // NEW: wait for firebase-client to attach window.firebaseAuth
   function waitForFirebase(timeout = 3000) {
     return new Promise(resolve => {
       if (window.firebaseAuth) return resolve(true);
@@ -41,24 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return '';
   }
 
-  function addDevUser(payload) {
-    const users = JSON.parse(localStorage.getItem('dev_users') || '[]');
-    const exists = users.some(u => (u.email || '').toLowerCase() === payload.email);
-    if (exists) return { ok: false, reason: 'exists' };
-
-    users.push({
-      email: payload.email,
-      password: payload.password,
-      firstName: payload.firstName,
-      lastName: payload.lastName,
-      userType: payload.userType,
-      newsletter: payload.newsletter
-    });
-
-    localStorage.setItem('dev_users', JSON.stringify(users));
-    return { ok: true };
-  }
-
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     showError('');
@@ -77,63 +58,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (v) return showError(v);
 
     setLoading(true);
-
-    const fbReady = await waitForFirebase();
-    if (fbReady && window.firebaseAuth && window.firebaseAuth.signupEmail) {
-      try {
-        await window.firebaseAuth.signupEmail(payload.email, payload.password);
-        await window.firebaseAuth.waitForSignIn(4000);
-
-        // If you want to test login immediately after signup:
-        if (next === 'login') {
-          if (typeof window.firebaseAuth.signOut === 'function') {
-            await window.firebaseAuth.signOut();
-          }
-          window.location.href = '../login/login.html';
-          return;
-        }
-
-        window.location.href = '../account/account.html';
-        return;
-      } catch (fbErr) {
-        console.warn('Firebase signup error', fbErr);
-        showError((fbErr && fbErr.message) || 'Signup failed with Firebase. Falling back.');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    // server fallback / localStorage dev fallback
-    setLoading(true);
     try {
-      const res = await fetch('/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        credentials: 'include'
-      });
-
-      const json = await res.json().catch(() => null);
-      if (res.ok && json && json.success) {
-        window.location.href = json.redirect || '../login/login.html';
+      const fbReady = await waitForFirebase(5000);
+      if (!fbReady || !window.firebaseAuth || !window.firebaseAuth.signupEmail) {
+        showError('Authentication is not available. Please reload and try again.');
         return;
       }
 
-      const saved = addDevUser(payload);
-      if (!saved.ok && saved.reason === 'exists') {
-        showError('An account with that email already exists (local). Try logging in.');
+      await window.firebaseAuth.signupEmail(payload.email, payload.password);
+      await (window.firebaseAuth.waitForSignIn ? window.firebaseAuth.waitForSignIn(8000) : Promise.resolve());
+
+      // If you want to store firstName/lastName/userType/newsletter in a DB (Firestore),
+      // add it here after signup. Firebase Auth only stores email/password by default.
+
+      if (next === 'login') {
+        if (typeof window.firebaseAuth.signOut === 'function') {
+          await window.firebaseAuth.signOut();
+        }
+        window.location.href = '../login/login.html';
         return;
       }
 
-      window.location.href = '../login/login.html';
-    } catch (err) {
-      const saved = addDevUser(payload);
-      if (!saved.ok && saved.reason === 'exists') {
-        showError('An account with that email already exists (local). Try logging in.');
-        return;
-      }
-
-      window.location.href = '../login/login.html';
+      window.location.href = '../account/account.html';
+    } catch (fbErr) {
+      console.warn('Firebase signup error', fbErr);
+      const code = fbErr && fbErr.code ? fbErr.code : '';
+      if (code === 'auth/email-already-in-use') showError('An account with that email already exists.');
+      else if (code === 'auth/invalid-email') showError('Invalid email address.');
+      else if (code === 'auth/weak-password') showError('Password is too weak.');
+      else if (code === 'auth/operation-not-allowed') showError('Email/password sign-up is not enabled in Firebase.');
+      else showError((fbErr && fbErr.message) || 'Signup failed.');
     } finally {
       setLoading(false);
     }

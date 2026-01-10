@@ -19,6 +19,35 @@
     .btn-secondary { background:transparent; color:#8C2131; border:2px solid #8C2131; }
     .meta { margin-top:16px; color:#999; font-size:13px; }
     #accountStatus { color:#f3b3b3; margin-bottom:12px; }
+
+    .avatar-btn {
+      position: relative;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 12px;
+      line-height: 0;
+    }
+    .avatar-btn:focus-visible {
+      outline: 2px solid #8C2131;
+      outline-offset: 4px;
+    }
+    .avatar-edit {
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.65);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
   </style>
 </head>
 <body>
@@ -38,26 +67,43 @@
 
       <div id="accountContent" style="display:none">
         <div class="profile-row">
-          <img id="profilePic" class="avatar" alt="avatar" src="../sources/avatar-placeholder.png">
+          <button id="changePhotoBtn" class="avatar-btn" type="button" aria-label="Change profile photo">
+            <img id="profilePic" class="avatar" alt="avatar" src="../sources/avatar-placeholder.png">
+            <span class="avatar-edit">Change</span>
+          </button>
+
+          <input id="profilePicInput" type="file" accept="image/*" style="display:none" />
+
           <div class="profile-info">
             <h2 id="displayName">User</h2>
-            <p id="email">email@example.com</p>
+            <p id="email"></p>
             <div class="meta" id="providerInfo"></div>
           </div>
         </div>
 
         <div class="account-actions">
-          <button id="signOutBtn" class="btn btn-logout">Sign out</button>
+          <button id="signOutBtn" class="btn btn-logout" type="button">Sign out</button>
           <a href="../index.html" class="btn btn-secondary" role="button">Back to Home</a>
-          <a href="../signup/signup.html" class="btn btn-secondary" role="button">Edit / Recreate</a>
+        </div>
+
+        <div style="margin-top:22px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.08);">
+          <h3 style="margin:0 0 8px; font-size:16px;">Payment</h3>
+          <p style="margin:0 0 12px; color:#cfcfcf; font-size:13px;">
+            Add or update your payment method securely via Stripe.
+          </p>
+          <div class="account-actions" style="margin-top:0;">
+            <button id="managePaymentBtn" class="btn btn-secondary" type="button">
+              Add / Update Payment Method
+            </button>
+          </div>
+          <div class="meta" id="paymentStatus" style="margin-top:10px;"></div>
         </div>
 
         <div class="meta" id="rawMeta"></div>
       </div>
 
       <div id="notSignedIn" style="display:none">
-        <p>You are not signed in.</p>
-        <a href="../login/login.html" class="btn btn-secondary">Sign in</a>
+        <p style="color:#cfcfcf; margin:0;">You are not signed in. Redirecting to login...</p>
       </div>
     </div>
   </section>
