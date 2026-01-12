@@ -12,8 +12,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const changePhotoBtn = document.getElementById('changePhotoBtn');
   const profilePicInput = document.getElementById('profilePicInput');
+
   const managePaymentBtn = document.getElementById('managePaymentBtn');
   const paymentStatus = document.getElementById('paymentStatus');
+
+  const stripeInlineWrap = document.getElementById('stripeInlineWrap');
+  const submitPaymentBtn = document.getElementById('submitPaymentBtn');
+  const cancelPaymentBtn = document.getElementById('cancelPaymentBtn');
+
+  const DEFAULT_AVATAR_PATH = '../sources/avatar-placeholder.svg';
+  const DEFAULT_AVATAR_DATA_URI =
+    'data:image/svg+xml;charset=utf-8,' +
+    encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Default profile avatar">
+        <rect width="96" height="96" rx="14" fill="#222"/>
+        <circle cx="48" cy="38" r="14" fill="none" stroke="#8C2131" stroke-width="4"/>
+        <path d="M24 82c4-14 18-22 24-22s20 8 24 22" fill="none" stroke="#8C2131" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    `.trim());
+
+  function setDefaultAvatar() {
+    if (!picEl) return;
+    picEl.src = DEFAULT_AVATAR_PATH;
+  }
+
+  // If a remote photo URL is broken, fall back to the default icon.
+  // If the default SVG file is missing too, fall back to an inline (data URI) SVG.
+  if (picEl) {
+    picEl.addEventListener('error', () => {
+      const current = picEl.getAttribute('src') || '';
+
+      // If we already tried the file-path placeholder and it failed, use data URI.
+      if (current.includes('avatar-placeholder.svg')) {
+        picEl.src = DEFAULT_AVATAR_DATA_URI;
+        return;
+      }
+
+      // Otherwise try the normal placeholder file first.
+      setDefaultAvatar();
+    });
+  }
 
   function waitForFirebaseReady(timeout = 4000) {
     return new Promise(resolve => {
@@ -91,15 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof newUrl === 'string' && newUrl) {
           picEl.src = newUrl;
           revokePreview(); // safe: no longer using blob URL
-        } else {
-          // Keep preview if wrapper didn't return a URL; don't revoke it immediately.
-          // (Photo should still be persisted in Auth if updateProfile succeeded.)
         }
 
         setStatus('');
       } catch (e) {
         console.warn('[account] profile photo update failed', e);
-        picEl.src = previousSrc; // revert on failure
+        picEl.src = previousSrc || DEFAULT_AVATAR_PATH; // revert on failure
         revokePreview();
         setStatus(e?.message || 'Failed to update profile photo.');
       } finally {
@@ -107,6 +142,93 @@ document.addEventListener('DOMContentLoaded', () => {
         profilePicInput.value = '';
       }
     });
+  }
+
+  // -------- Stripe Elements (inline payment) --------
+  let stripe = null;
+  let elements = null;
+  let paymentElement = null;
+
+  async function getStripePublishableKey() {
+    const res = await fetch('/api/stripe/config', { method: 'GET' });
+    if (!res.ok) throw new Error(`Stripe config failed (${res.status}).`);
+    const data = await res.json();
+    if (!data?.publishableKey) throw new Error('Missing Stripe publishable key.');
+    return data.publishableKey;
+  }
+
+  async function createSetupIntentClientSecret(idToken) {
+    const res = await fetch('/api/stripe/create-setup-intent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${idToken}`,
+      },
+      body: JSON.stringify({}),
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`Failed to start payment (${res.status}). ${text}`.trim());
+    }
+
+    const data = await res.json();
+    if (!data?.clientSecret) throw new Error('Missing SetupIntent client secret.');
+    return data.clientSecret;
+  }
+
+  function showInlinePayment(show) {
+    if (!stripeInlineWrap) return;
+    stripeInlineWrap.style.display = show ? 'block' : 'none';
+  }
+
+  async function ensureStripeMounted(user) {
+    if (paymentElement) return;
+
+    if (typeof window.Stripe !== 'function') {
+      throw new Error('Stripe.js failed to load.');
+    }
+
+    const idToken = await user.getIdToken();
+    const [publishableKey, clientSecret] = await Promise.all([
+      getStripePublishableKey(),
+      createSetupIntentClientSecret(idToken),
+    ]);
+
+    stripe = window.Stripe(publishableKey);
+
+    elements = stripe.elements({
+      clientSecret,
+      appearance: { theme: 'night' },
+    });
+
+    paymentElement = elements.create('payment');
+    paymentElement.mount('#payment-element');
+  }
+
+  async function confirmSetup() {
+    const user =
+      window.firebaseAuth?.auth?.currentUser ||
+      (window.firebaseAuth.waitForSignIn ? await window.firebaseAuth.waitForSignIn(3000) : null);
+
+    if (!user) {
+      setPaymentStatus('Please sign in to manage payment methods.');
+      window.location.href = '../login/login.html';
+      return;
+    }
+
+    if (!stripe || !elements) throw new Error('Payment form is not ready.');
+
+    const { error } = await stripe.confirmSetup({
+      elements,
+      confirmParams: {
+        // In case a redirect-based method is used, come back here:
+        return_url: `${window.location.origin}${window.location.pathname}?payment=success`,
+      },
+      redirect: 'if_required',
+    });
+
+    if (error) throw new Error(error.message || 'Payment confirmation failed.');
   }
 
   async function init() {
@@ -121,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     bindPhotoEditing();
 
-    // Show simple return message from Stripe redirects
+    // Show simple return message from redirects
     const qs = new URLSearchParams(window.location.search);
     const pay = (qs.get('payment') || '').toLowerCase();
     if (pay === 'success') setPaymentStatus('Payment method saved.');
@@ -131,7 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
       managePaymentBtn.addEventListener('click', async () => {
         setPaymentStatus('');
 
-        const user = window.firebaseAuth?.auth?.currentUser || await (window.firebaseAuth.waitForSignIn ? window.firebaseAuth.waitForSignIn(3000) : null);
+        const user =
+          window.firebaseAuth?.auth?.currentUser ||
+          (window.firebaseAuth.waitForSignIn ? await window.firebaseAuth.waitForSignIn(3000) : null);
+
         if (!user) {
           setPaymentStatus('Please sign in to manage payment methods.');
           window.location.href = '../login/login.html';
@@ -140,38 +265,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
           managePaymentBtn.disabled = true;
-          setPaymentStatus('Opening secure Stripe page...');
+          setPaymentStatus('Loading secure payment form...');
 
-          const idToken = await user.getIdToken();
+          showInlinePayment(true);
+          await ensureStripeMounted(user);
 
-          // Vercel Serverless Function (same origin)
-          const endpoint = '/api/stripe/create-setup-session';
-
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${idToken}`,
-            },
-            body: JSON.stringify({
-              returnUrl: window.location.href
-            })
-          });
-
-          if (!res.ok) {
-            const text = await res.text().catch(() => '');
-            throw new Error(`Payment setup failed (${res.status}). ${text}`.trim());
-          }
-
-          const data = await res.json();
-          if (!data?.url) throw new Error('Payment setup failed: missing redirect URL.');
-
-          window.location.href = data.url;
+          setPaymentStatus('');
         } catch (e) {
-          console.warn('[payment] failed to open Stripe', e);
-          setPaymentStatus(e?.message || 'Could not start payment workflow.');
+          console.warn('[payment] failed to load Stripe Elements', e);
+          setPaymentStatus(e?.message || 'Could not load payment form.');
+          showInlinePayment(false);
+        } finally {
           managePaymentBtn.disabled = false;
         }
+      });
+    }
+
+    if (submitPaymentBtn) {
+      submitPaymentBtn.addEventListener('click', async () => {
+        try {
+          submitPaymentBtn.disabled = true;
+          setPaymentStatus('Saving payment method...');
+
+          await confirmSetup();
+
+          setPaymentStatus('Payment method saved.');
+          showInlinePayment(false);
+        } catch (e) {
+          console.warn('[payment] confirm setup failed', e);
+          setPaymentStatus(e?.message || 'Could not save payment method.');
+        } finally {
+          submitPaymentBtn.disabled = false;
+        }
+      });
+    }
+
+    if (cancelPaymentBtn) {
+      cancelPaymentBtn.addEventListener('click', () => {
+        setPaymentStatus('');
+        showInlinePayment(false);
       });
     }
 
@@ -192,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
       notSignedEl.style.display = 'none';
       contentEl.style.display = 'block';
 
-      picEl.src = user.photoURL || '../sources/avatar-placeholder.png';
+      picEl.src = user.photoURL || DEFAULT_AVATAR_PATH;
       nameEl.textContent = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
       emailEl.textContent = user.email || '';
       const providers = (user.providerData || []).map(p => p.providerId).join(', ');
@@ -207,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setStatus('');
       notSignedEl.style.display = 'none';
       contentEl.style.display = 'block';
-      picEl.src = user.photoURL || '../sources/avatar-placeholder.png';
+      picEl.src = user.photoURL || DEFAULT_AVATAR_PATH;
       nameEl.textContent = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
       emailEl.textContent = user.email || '';
       const providers = (user.providerData || []).map(p => p.providerId).join(', ');
