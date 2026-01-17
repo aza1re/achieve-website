@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achieve Ice Hockey & Education</title>
-
-    <!-- Font Awesome + site CSS (use absolute path to avoid relative issues) -->
+    <title>Achieve Hockey - Company Introduction</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/index.css">
-    <link rel="stylesheet" href="about.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="../index.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
     <header>
         <div class="container header-container">
             <div class="logo-container">
@@ -26,7 +26,7 @@
             </button>
             <nav>
                 <ul>
-                    <li><a href="../about/about.html">About Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
                     <li class="has-dropdown">
                         <a href="#programs">Programs</a>
                         <ul class="dropdown">
@@ -34,7 +34,7 @@
                                 <a href="#">Education</a>
                                 <ul class="dropdown flyout">
                                     <li class="has-dropdown">
-                                        <a href="packages/packages.html">Admissions Consulting</a>
+                                        <a href="../packages/packages.html">Admissions Consulting</a>
                                         <ul class="dropdown flyout">
                                             <li><a href="">CAIS</a></li>
                                             <li><a href="">Hockey Academy</a></li>
@@ -55,8 +55,6 @@
                                     <li><a href="../packages/packages.html">Six-nations</a></li>
                                 </ul>
                             </li>
-                                
-                             
                         </ul>
                     </li>
                     
@@ -68,190 +66,759 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline>
-          <source src="https://escex07qwkvrz1em.public.blob.vercel-storage.com/video.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-img">
-                    <img src="../sources/logo.png" alt="Achieve Logo"/>
+    <!-- Page Hero Section -->
+    <section class="about-hero-section">
+        <div class="about-hero-container">
+            <div class="about-hero-content">
+                <div class="about-hero-logo">
+                    <div class="logo-circle">
+                        <img src="../sources/logo.png" alt="Achieve Hockey Logo">
+                    </div>
                 </div>
-                <h1>NOTHING GREAT COMES EASY</h1>
-                <div class="hero-buttons">
-                    <a href="#programs" class="btn btn-outline">View Programs</a>
-                    <a href="/app/app.html" class="btn">Launch App</a>
-                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                <div class="about-hero-text">
+                    <h1 class="about-page-title">ACHIEVE HOCKEY</h1>
+                    <div class="divider-line"></div>
+                    <p class="about-tagline">Across Asia Pacific to Top Tier Elite<br>Canadian Hockey Program and Tour Agency</p>
+                    <div class="divider-line"></div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Programs Section -->
-   <section class="programs-section" id="programs">
-        <div class="container">
-            <div class="section-title">
-                <h2>Elite Training Programs</h2>
-                <p>
+    
+    <!-- Sub Navigation -->
+    <div class="nav-container">
+        <nav class="container">
+            <ul class="nav-links">
+                <li><a href="#our-story">Our Story</a></li>
+                <li><a href="#what-we-do">What We Do</a></li>
+                <li><a href="#asian-scene">Asian Hockey Scene</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#partners">Partners</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Our Story Section -->
+        <section id="our-story">
+            <h2 class="section-title">OUR STORY</h2>
+            <div class="story-content">
+                <div class="story-text">
+                    <p style="font-size: 1.15rem; margin-bottom: 20px; font-weight: 500; color: #8C2131;">AROUND 2017, A FATHER OF TWO STUDENT-ATHLETES HAD A PROBLEM.</p>
+                    <p style="font-size: 1.05rem; line-height: 1.8;">Like many other families today, pursuing Ice Hockey through Highschool and beyond was a mystery. He knew that his sons had to go to North America for a bigger stage, but he didn't know where to start.</p>
+                    <p style="margin-top: 20px; font-size: 1.05rem; line-height: 1.8;">After a journey full of uncertainty and discovery, he founded a company to help the next generation of student-athlete families like his.</p>
+                    <p style="margin-top: 20px; font-weight: 600; color: #8C2131; font-size: 1.05rem;">This is the story of our Founder, Thomas Kim.</p>
+                </div>
+                <div class="story-image">
+                    <img src="../sources/photos/about_us.png" alt="Ice Hockey Player">
+                </div>
             </div>
+        </section>
+           <!-- Asian Hockey Scene Section -->
+        <section id="asian-scene" style="background-color: #ffffff;">
+            <h2 class="section-title">CURRENT ASIAN YOUTH HOCKEY SCENE</h2>
+            <div class="scene-container">
+                <div class="scene-item">
+                    <h3 class="scene-title">
+                        <span class="scene-icon"><i class="fas fa-gamepad"></i></span>
+                        DEMAND OF GAMES
+                    </h3>
+                    <p style="color: #555; line-height: 1.8; font-size: 1.02rem;">In Asia, there are a small number of games in the Hockey scene, compared to the demand. Aspiring Asian parents/players want hockey, but there is no league, few tournaments, and few game opportunities.</p>
+                </div>
+                
+                <div class="scene-item">
+                    <h3 class="scene-title">
+                        <span class="scene-icon"><i class="fas fa-calendar-alt"></i></span>
+                        RIGID MANAGEMENT
+                    </h3>
+                        <p style="color: #555; line-height: 1.8; font-size: 1.02rem;">Forced into a rigid schedule of games, not designed for student-athlete development. Junior players have to on their own effectively manage their time at best, without prior experience of doing so.</p>
+                </div>
+                   <div class="scene-item">
+                    <h3 class="scene-title">
+                        <span class="scene-icon"><i class="fas fa-calendar-alt"></i></span>
+                        Lack of consistency
+                    </h3>
+                        <p style="color: #555; line-height: 1.8; font-size: 1.02rem;">Lack of consistency of games throughout the season, because there is no youth hockey league, but only short tournaments. With limited time for growth between games, players often experience burnout and slower long-term progress.</p>
+                </div>
+                
+                <div class="scene-item">
+                    <h3 class="scene-title">
+                        <span class="scene-icon"><i class="fas fa-book"></i></span>
+                        LACK OF KNOWLEDGE
+                    </h3>
+                    <p style="color: #555; line-height: 1.8; font-size: 1.02rem;">Asian parents and players often lack knowledge about North American youth hockey leagues before arriving. They have little information on how the system works, what a proper student-athlete prepares, the environment they would be thrown to.</p>
+                </div>
+            </div>
+        </section>
+        
+        
+        <!-- What We Do Section -->
+        <section id="what-we-do" style="background-color: #fafafa;">
+            <h2 class="section-title">WHAT WE DO</h2>
+           <div class="what-we-do-container">
+            <div class="what-we-do-grid">
+                <p style="color: #8C2131;">
+                    WE WILL
+                </p>
+                <p style="font-weight: bold;color: #333;font-size: 24px;">
+                    GUIDE YOUR EVERY STEP TO TOP TIER <br> ICE HOCKEY & EDUCATION.
+                </p>    
+            </div>
+               <div class="what-we-do-grid">
+                <p style="color: #8C2131;">
+                  WITH OUR
+                </p>
+                
+                 <ul style="font-size: 15px;color: #333;">
+                   <li >Extensive knowledge of the Ice Hockey scene in North America</li>
+                   <li>Internal connections with CSSHL Hockey Academies
+and Jr. A Teams (USPHL / NCDC) in North America</li>
+                   <li>Academic advisory for North American Junior Programs</li>
+                 </ul>
+          
+            </div>
+           </div>
+                <div class="what-we-do-logos">
+                    <div class="logo-group">
+                        <img src="https://via.placeholder.com/120x60?text=BCHL" alt="BCHL Logo" />
+                        <img src="https://via.placeholder.com/120x60?text=CSSHL" alt="CSSHL Logo" />
+                        <img src="https://via.placeholder.com/120x60?text=NAPHL" alt="NAPHL Logo" />
+                        <img src="https://via.placeholder.com/120x60?text=NCDC" alt="NCDC Logo" />
+                        <img src="https://via.placeholder.com/120x60?text=USPHL" alt="USPHL Logo" />
+                        <img src="https://via.placeholder.com/120x60?text=PJHL" alt="PJHL Logo" />
+                        <img src="https://via.placeholder.com/120x60?text=NAHL" alt="NAHL Logo" />
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <div class="programs-stack">
-                <!-- Elite Skating -->
-                <div class="program-card active" data-index="0">
-                    <div>
-                        <div class="program-icon">⛸️</div>
-                        <h3>Youth Hockey Camps</h3>
-                        <p>We will host Yout Hockey Camps and bring coaches with extensive playinng experience in NHL, Major Junior and Jr. A. </p>
-                        <ul class="program-features">
-                            <li>Porfessional Coaches</li>
-                            <li>Polish foundational skills</li>
-                            
+        <!-- Business Overview Section -->
+        <section class="business-overview-section">
+            <div class="business-overview-container">
+                <div class="business-curve">
+                    <h2 class="business-title">BUSINESS OVERVIEW</h2>
+                </div>
+                <div class="business-services">
+                    <div class="service-item">
+                        <div class="service-badge">1</div>
+                        <div class="service-info">
+                            <h3>Youth Hockey Camps</h3>
+                            <p>Develop Your Skills and Learn from the Best</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-badge">2</div>
+                        <div class="service-info">
+                            <h3>High Caliber Hockey Tournaments</h3>
+                            <p>High Caliber Asian Hockey to the world stage</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-badge">3</div>
+                        <div class="service-info">
+                            <h3>Canadian Ice Hockey Academy Tours</h3>
+                            <p>Experience what it means to be a Hockey Student-athlete</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-badge">4</div>
+                        <div class="service-info">
+                            <h3>Canadian Women's Hockey Program</h3>
+                            <p>Take your Ice Hockey to the next level</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-badge">5</div>
+                        <div class="service-info">
+                            <h3>Student Athlete Short Term Post Graduate Program</h3>
+                            <p>Asian Hockey Talents to North America</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-badge">6</div>
+                        <div class="service-info">
+                            <h3>Hockey Coach Internship & Outsourcing</h3>
+                            <p>Meet Young and Upcoming coaches from all around the world</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Youth Hockey Camps Detail Section -->
+        <section class="camps-detail-section">
+            <div class="camps-detail-container">
+                <div class="camps-badge-wrapper">
+                    <div class="camps-badge">1</div>
+                    <h2 class="camps-main-title">Youth Hockey Camps</h2>
+                </div>
+                <div class="camps-content">
+                    <div class="camps-text">
+                        <h3 class="camps-heading">Camps</h3>
+                        <p class="camps-intro">We will host <strong>Youth Hockey development camps</strong> and bring <strong>Coaches with extensive playing experience in the NHL, Major Junior, and Jr. A.</strong></p>
+                        <p class="camps-description">Immerse yourself in the ways of <strong style="color:#8C2131;">North American Ice hockey</strong> and polish your foundational ice hockey skills such as <strong style="color:#8C2131;">Power Skating, Precision Passing, and Accurate Shooting.</strong></p>
+                    </div>
+                    <div class="camps-image">
+                        <img src="../sources/photos/typical_week_at_camp.jpg" alt="Hockey training camp" onerror="this.src='https://via.placeholder.com/600x400/8C2131/FFFFFF?text=Hockey+Camp'" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- High Caliber Hockey Tournaments Section -->
+        <section class="tournaments-section">
+            <div class="tournaments-container">
+                <div class="tournaments-header">
+                    <div class="tournaments-badge">2</div>
+                    <h2 class="tournaments-main-title">High Caliber Hockey Tournaments</h2>
+                </div>
+                <p class="tournaments-subtitle">Providing the opportunity to participate in the most prestigious tournaments all around the world.</p>
+                <h3 class="tournaments-list-heading">TOURNAMENTS LIST</h3>
+                <div class="tournaments-logos">
+                    <div class="tournament-logo">
+                        <img src="../sources/photos/peewee_bernieres.png" alt="International PeeWee Tournament" />
+                    </div>
+                    <div class="tournament-logo">
+                        <img src="../sources/photos/pre-quebec-peewee.png" alt="Tournoi International" />
+                    </div>
+                    <div class="tournament-logo">
+                        <img src="../sources/photos/quebec_peewee.png" alt="MODO Hockey" />
+                    </div>
+                    <div class="tournament-logo">       
+                        <img src="../sources/photos/grand_montreal.png" alt="Hockey Game Series" />
+                    </div>
+                    <div class="tournament-logo">
+                        <img src="../sources/photos/bauer_cup.jpg" alt="International PeeWee" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Canadian Ice Hockey Academy Tours Section -->
+        <section class="academy-tours-section">
+            <div class="academy-tours-container">
+                <div class="academy-tours-header">
+                    <div class="academy-badge">3</div>
+                    <h2 class="academy-main-title">Canadian Ice Hockey Academy Tours</h2>
+                </div>
+                <div class="academy-content-wrapper">
+                    <div class="academy-description">
+                        <p>Visit North American Hockey Academies & experience the life of a North American student-athlete by <strong style="color:#8C2131;">spending a day in each academy</strong>, joining current athletes on the <strong style="color:#8C2131;">ice and in the classroom.</strong> (Spring & Summer)</p>
+                    </div>
+                    <div class="academy-photos-grid">
+                        <div class="academy-photo large">
+                            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600" alt="Academy team photo" onerror="this.src='https://via.placeholder.com/400x300/8C2131/FFFFFF?text=Academy+Team'" />
+                        </div>
+                        <div class="academy-photo">
+                            <img src="https://images.unsplash.com/photo-1515703407324-5f753afd8be8?w=400" alt="Training session" onerror="this.src='https://via.placeholder.com/300x250/8C2131/FFFFFF?text=Training'" />
+                        </div>
+                        <div class="academy-photo">
+                            <img src="https://images.unsplash.com/photo-1519505907962-0a6cb0167c73?w=400" alt="Academy visit" onerror="this.src='https://via.placeholder.com/300x250/8C2131/FFFFFF?text=Academy'" />
+                        </div>
+                        <div class="academy-photo">
+                            <img src="https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=400" alt="Team meeting" onerror="this.src='https://via.placeholder.com/300x250/8C2131/FFFFFF?text=Meeting'" />
+                        </div>
+                        <div class="academy-photo">
+                            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400" alt="Classroom session" onerror="this.src='https://via.placeholder.com/300x250/8C2131/FFFFFF?text=Classroom'" />
+                        </div>
+                        <div class="academy-photo large">
+                            <img src="https://images.unsplash.com/photo-1484820540004-14229fe36ca4?w=600" alt="Group photo" onerror="this.src='https://via.placeholder.com/400x300/8C2131/FFFFFF?text=Group'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      
+     
+        <!-- Our Achievers Section -->
+        <section class="achievers-new">
+            <div class="achievers-new-container">
+                <div class="achievers-header">
+                    <h2 class="achievers-title">Our Achievers 🍁</h2>
+                    <p class="achievers-subtitle">From all around the world!</p>
+                </div>
+                <div class="achievers-cards-grid">
+                    <div class="achievers-card">
+                        <h3 class="card-region">HONG KONG</h3>
+                        <ul class="card-list">
+                            <li>Anson Kwok (CIHA)</li>
+                            <li>Owen Kwok (CIHA/Stanstead/CCHL)</li>
                         </ul>
                     </div>
-                    <button class="program-btn">Program Details</button>
-                </div>
-
-                <!-- Shooting & Scoring -->
-                <div class="program-card right" data-index="1">
-                    <div>
-                        <div class="program-icon">🎯</div>
-                        <h3>North American Academy Tours</h3>
-                        <p>Visit North American Hockey Academies and experience the life of a North American student-athelete.</p>
-                        <ul class="program-features">
-                            <li>Spend a day in each academy</li>
-                            <li>Join current athelets on the ice and classroom</li>
-                          
+                    <div class="achievers-card">
+                        <h3 class="card-region">THAILAND</h3>
+                        <ul class="card-list">
+                            <li>Tee (OHA)</li>
+                            <li>Tahn (OHA)</li>
+                            <li>Tony (OHA)</li>
+                            <li>TW (Universel Gatineau)</li>
+                            <li>Achi (Shawnigan Lake)</li>
                         </ul>
                     </div>
-                    <button class="program-btn">Program Details</button>
-                </div>
-
-                <!-- Goalie Training -->
-                <div class="program-card left" data-index="2">
-                    <div>
-                        <div class="program-icon">🥅</div>
-                        <h3>High Caliber Hockey Tournaments</h3>
-                        <p>Providing the oppurtunity to participate in the most prestigious tournaments all around the world.</p>
-                        <ul class="program-features">
-                            <li>Elite International exposure</li>
-                            <li>Pathway to Pro oppurtunites</li>
-                            
+                    <div class="achievers-card large">
+                        <h3 class="card-region">AUSTRALIA</h3>
+                        <ul class="card-list two-columns">
+                            <div>
+                                <li>Kelly (OHA)</li>
+                                <li>Sorenne (OHA)</li>
+                                <li>Kenneth (OHA)</li>
+                            </div>
+                            <div>
+                                <li>Kingston (OHA)</li>
+                                <li>Quinton (CIHA)</li>
+                            </div>
                         </ul>
                     </div>
-                    <button class="program-btn">Program Details</button>
-                </div>
-
-                <div class="program-card far-right" data-index="3">
-                    <div>
-                        <div class="program-icon">🏒</div>
-                        <h3>Women's Hockey</h3>
-                        <p>Specialized training pathway for female athletes focusing on skill, speed, and competitive play development.</p>
-                        <ul class="program-features">
-                            <li>Position-specific skill work</li>
-                            <li>Strength & conditioning for female athletes</li>
-
+                    <div class="achievers-card small">
+                        <h3 class="card-region">SINGAPORE</h3>
+                        <ul class="card-list">
+                            <li>Ruven (CIHA)</li>
                         </ul>
                     </div>
-              <a href="women-page/women.html">      <button class="program-btn">Program Details</button></a>
+                    <div class="achievers-card">
+                        <h3 class="card-region">KOREA</h3>
+                        <ul class="card-list">
+                            <li>Sehyuk Noh (Somang USPHL)</li>
+                        </ul>
+                    </div>
+                    <div class="achievers-card">
+                        <h3 class="card-region">AMERICA</h3>
+                        <ul class="card-list two-columns">
+                            <div>
+                                <li>Sorenne (OHA)</li>
+                            </div>
+                            <div>
+                                <li>Nisha (OHA)</li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="achievers-card small">
+                        <h3 class="card-region">AMERICA</h3>
+                        <ul class="card-list">
+                            <li>Nisha (OHA)</li>
+                        </ul>
+                    </div>
+                    <div class="achievers-card small">
+                        <h3 class="card-region">MALAYSIA</h3>
+                        <ul class="card-list">
+                            <li>Matty Yu (CIHA)</li>
+                        </ul>
+                    </div>
+                    <div class="achievers-card thailand-extra">
+                        <ul class="card-list">
+                            <li>Ceasar (Notre Dame)</li>
+                            <li>Leica (Notre Dame)</li>
+                            <li>Praew (OHA)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+          <!-- Canadian Women's Hockey Program Section -->
+        <section class="womens-hockey-section">
+            <div class="womens-hockey-container">
+                <div class="womens-header">
+                    <div class="womens-badge">4</div>
+                    <h2 class="womens-title">Canadians Women's Hockey Program</h2>
+                </div>
+                <div class="womens-content">
+                    <div class="womens-left">
+                        <div class="coach-card">
+                            <div class="coach-photo">
+                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400" alt="Shelley Kettles" onerror="this.src='https://via.placeholder.com/300x350/8C2131/FFFFFF?text=Coach'" />
+                            </div>
+                            <div class="coach-info">
+                                <h3>Shelley Kettles</h3>
+                                <p>Technical Skating Specialist<br>for Ottawa Senators</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="womens-gallery">
+                        <div class="gallery-photo large">
+                            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600" alt="Women's team" onerror="this.src='https://via.placeholder.com/500x350/8C2131/FFFFFF?text=Team'" />
+                        </div>
+                        <div class="gallery-photo">
+                            <img src="https://images.unsplash.com/photo-1519766304817-4f37bda74a26?w=500" alt="Training session" onerror="this.src='https://via.placeholder.com/400x300/8C2131/FFFFFF?text=Training'" />
+                        </div>
+                        <div class="gallery-photo tall">
+                            <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=400" alt="Players" onerror="this.src='https://via.placeholder.com/350x450/8C2131/FFFFFF?text=Players'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- International Programs Section -->
+        <section class="international-programs-section">
+            <div class="international-container">
+                <h2 class="international-title">International Programs & Partnerships</h2>
+                <div class="international-grid">
+                    <!-- Korea Section -->
+                    <div class="country-block">
+                        <div class="flag-banner korea-flag">
+                            <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="300" height="200" fill="#fff"/>
+                                <circle cx="150" cy="100" r="35" fill="#CD2E3A"/>
+                                <circle cx="150" cy="100" r="35" fill="#0047A0" clip-path="inset(0 0 50% 0)"/>
+                                <g fill="#000">
+                                    <rect x="180" y="60" width="4" height="20"/>
+                                    <rect x="186" y="60" width="4" height="20"/>
+                                    <rect x="192" y="60" width="4" height="20"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="country-map">
+                            <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M100,50 L120,80 L140,120 L145,160 L140,200 L130,240 L120,270 L100,280 L80,270 L70,240 L60,200 L55,160 L60,120 L80,80 Z" fill="#8C2131" stroke="#6b1825" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Invitation Letter -->
+                    <div class="invitation-letter">
+                        <div class="letter-header">
+                            <div class="letter-logo">🏒</div>
+                            <h3>OFFICIAL INVITATION LETTER</h3>
+                            <p class="letter-subtitle">ACHIEVE HOCKEY CAMP</p>
+                        </div>
+                        <div class="letter-body">
+                            <p><strong>To Whom It May Concern,</strong></p>
+                            <p>We are pleased to invite international students to participate in our elite hockey development programs in Canada.</p>
+                            <div class="letter-highlights">
+                                <div class="highlight-item">✓ Professional Coaching Staff</div>
+                                <div class="highlight-item">✓ World-Class Facilities</div>
+                                <div class="highlight-item">✓ Cultural Experience</div>
+                                <div class="highlight-item">✓ Skill Development</div>
+                            </div>
+                            <div class="letter-details">
+                                <p><strong>Key Features:</strong></p>
+                                <ul>
+                                    <li>On-ice & off-ice training sessions</li>
+                                    <li>Video analysis & game preparation</li>
+                                    <li>Team building activities</li>
+                                    <li>Professional tournament exposure</li>
+                                </ul>
+                            </div>
+                            <div class="letter-footer">
+                                <p><strong>For more information contact:</strong></p>
+                                <p>info@achievehockey.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MODO Camp Poster -->
+                    <div class="camp-poster">
+                        <div class="poster-content modo-camp">
+                            <div class="poster-header sweden-colors">
+                                <div class="sweden-flag">
+                                    <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="160" height="100" fill="#006AA7"/>
+                                        <rect x="50" y="0" width="25" height="100" fill="#FECC00"/>
+                                        <rect x="0" y="37.5" width="160" height="25" fill="#FECC00"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="poster-title">
+                                <h3>MODO HOCKEY</h3>
+                                <h4>INTERNATIONAL CAMP</h4>
+                            </div>
+                            <div class="poster-info">
+                                <div class="camp-logo-circle">
+                                    <span class="logo-text">MODO</span>
+                                </div>
+                                <div class="camp-details">
+                                    <p class="camp-date">January 12-16, 2026</p>
+                                    <p class="camp-location">📍 ÖRNSKÖLDSVIK, SWEDEN</p>
+                                    <p class="camp-desc">Elite Hockey Development & Education</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Europe Map -->
+                    <div class="country-block europe">
+                        <div class="country-map large">
+                            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50,120 L80,100 L110,95 L140,100 L160,90 L180,95 L200,100 L220,110 L235,125 L245,145 L250,170 L245,195 L230,215 L210,230 L185,240 L160,245 L135,243 L110,238 L85,228 L65,210 L50,185 L45,160 L47,135 Z" fill="#8C2131" stroke="#6b1825" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Athlete Post Graduate Program Section -->
+        <section class="postgrad-section">
+            <div class="postgrad-container">
+                <div class="postgrad-header">
+                    <div class="postgrad-badge">5</div>
+                    <h2 class="postgrad-title">Student Athlete Short-term Post Graduate Program</h2>
+                </div>
+                
+                <div class="postgrad-photos">
+                    <div class="postgrad-photo">
+                        <img src="https://images.unsplash.com/photo-1577213339738-c3a28c9b4b38?w=500" alt="Student athlete" onerror="this.src='https://via.placeholder.com/400x450/8C2131/FFFFFF?text=Student+1'" />
+                    </div>
+                    <div class="postgrad-photo">
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500" alt="Group of students" onerror="this.src='https://via.placeholder.com/550x350/8C2131/FFFFFF?text=Students'" />
+                    </div>
+                    <div class="postgrad-photo">
+                        <img src="https://images.unsplash.com/photo-1519766304817-4f37bda74a26?w=500" alt="Hockey practice" onerror="this.src='https://via.placeholder.com/550x350/8C2131/FFFFFF?text=Practice'" />
+                    </div>
+                    <div class="postgrad-photo">
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400" alt="Coaches" onerror="this.src='https://via.placeholder.com/400x450/8C2131/FFFFFF?text=Coaches'" />
+                    </div>
                 </div>
 
-              
-
-              
-            </div>
-
-            <div class="program-nav">
-                <div class="nav-dot active" data-nav="0"></div>
-                <div class="nav-dot" data-nav="1"></div>
-                <div class="nav-dot" data-nav="2"></div>
-                <div class="nav-dot" data-nav="3"></div>
-            
-            </div>
-        </div>
-    </section>
-    <!-- Founder Section -->
-    <section id="coaches" style="background-color: #111;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Founders</h2>
-                <p>Meet the founders of Achieve-Ice</p>
-            </div>
-            <div class="coaches-grid">
-                <div class="coach-card">
-                    <div class="coach-img" style="background-image: url(../sources/founders/Solomon.jpg);"></div>
-                    <h3>Seiwon "Solomon" Kim</h3>
-                    <p style="color: white;">Co-Founder | Software development project manager</p>
-               
-                </div>
-                <div class="coach-card" >
-                    <div class="coach-img" style="background-image: url(../sources/founders/Thomas.jpg);"></div>
-                    <h3>Thomas Kim</h3>
-                    <p style="color:white">CEO | Founder</p>
-                  
-                </div>
-                <div class="coach-card">
-                    <div class="coach-img" style="background-image: url(../sources/founders/Jerry.jpeg);"></div>
-                    <h3>Jerry Kim</h3>
-                    <p style="color:white;"> Chief Client Relations Officer</p>
+                <div class="program-timeline">
+                    <div class="timeline-path">
+                        <div class="timeline-point start">
+                            <div class="point-marker"></div>
+                            <div class="point-label asia">ASIA</div>
+                            <div class="point-date">March</div>
+                        </div>
+                        <div class="timeline-line"></div>
+                        <div class="timeline-point middle">
+                            <div class="point-marker"></div>
+                            <div class="point-label summer">Summer<br>(Aug/Sept)</div>
+                        </div>
+                        <div class="timeline-line"></div>
+                        <div class="timeline-point end">
+                            <div class="point-marker"></div>
+                            <div class="point-label canada">CANADA</div>
+                            <div class="point-date">March</div>
+                        </div>
+                    </div>
                     
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <!--<section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Success Stories</h2>
-                <p>Hear from players who have transformed their game with Achieve Hockey.</p>
-            </div>
-            <div class="testimonial-slider">
-                <div class="testimonial">
-                    <p>"The training at Achieve Hockey completely changed my game. My skating improved dramatically and I earned a scholarship to play college hockey."</p>
-                    <h4>James Peterson</h4>
-                    <p>NCAA Division I Player</p>
-                </div>
-            </div>
-        </div>
-    </section>
--->
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p>Ready to take your game to the next level? Contact us today to schedule a training session.</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Hockey Way, Minneapolis, MN 55401</p>
-                    <p><i class="fas fa-phone"></i> (612) 555-HOCKEY</p>
-                    <p><i class="fas fa-envelope"></i> info@achievehockey.org</p>
-                    <p><i class="fas fa-clock"></i> Mon-Fri: 9am-9pm, Sat-Sun: 8am-6pm</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    <div class="program-tracks">
+                        <div class="track-row">
+                            <div class="track-label">Academics</div>
+                            <div class="track-phases">
+                                <div class="phase semester1">Semester 1</div>
+                                <div class="phase semester2">Semester 2</div>
+                            </div>
+                        </div>
+                        <div class="track-row">
+                            <div class="track-label">Hockey</div>
+                            <div class="track-phases">
+                                <div class="phase asian-hockey">After school Asian Hockey</div>
+                                <div class="phase north-american-hockey">Intensive North American Hockey</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="text" placeholder="Subject" required>
-                        <textarea placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
+            </div>
+        </section>
+
+        <!-- Hockey Coach Internship & Outsourcing Section -->
+        <section class="coach-internship-section">
+            <div class="coach-internship-container">
+                <div class="coach-header">
+                    <div class="coach-badge">6</div>
+                    <h2 class="coach-title">Hockey Coach Internship & Outsourcing</h2>
+                </div>
+                
+                <div class="coach-tagline">
+                    <p><span class="tagline-highlight">MEET THE DEMAND</span> OF NORTH AMERICAN COACHES IN ASIA;<br>
+                    <span class="tagline-highlight">WITH THE SUPPLY</span> OF YOUNG COACHES FROM CANADA.</p>
+                </div>
+
+                <div class="coach-content">
+                    <div class="coach-info">
+                        <div class="info-item">
+                            <div class="bullet-dot"></div>
+                            <p>Provides internship opportunities to many young hockey coaches from <span class="text-highlight">Major Junior/Junior A/College</span> and are looking for unique experiences on their resume.</p>
+                        </div>
+                        <div class="info-item">
+                            <div class="bullet-dot"></div>
+                            <p>Provides Asian students <span class="text-highlight">elite North American coaching</span> that open doors to take that next step in their career and play in any major North American Hockey Leagues.</p>
+                        </div>
+                    </div>
+
+                    <div class="coach-photos">
+                        <div class="coach-photo large-photo">
+                            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600" alt="Hockey coaching" onerror="this.src='https://via.placeholder.com/500x350/8C2131/FFFFFF?text=Coaching'" />
+                        </div>
+                        <div class="coach-photo">
+                            <img src="https://images.unsplash.com/photo-1519766304817-4f37bda74a26?w=500" alt="Coach with players" onerror="this.src='https://via.placeholder.com/450x300/8C2131/FFFFFF?text=Coach'" />
+                        </div>
+                        <div class="coach-photo tall-photo">
+                            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500" alt="Young team" onerror="this.src='https://via.placeholder.com/400x500/8C2131/FFFFFF?text=Team'" />
+                        </div>
+                        <div class="coach-photo">
+                            <img src="https://images.unsplash.com/photo-1577213339738-c3a28c9b4b38?w=500" alt="Coaches" onerror="this.src='https://via.placeholder.com/450x300/8C2131/FFFFFF?text=Coaches'" />
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+        
+        
+        <!-- Our Partners Section -->
+        <section class="partners-section">
+            <div class="partners-container">
+                <h2 class="partners-main-title">OUR PARTNERS</h2>
+                
+                <div class="partners-layout">
+                    <!-- Left Column -->
+                    <div class="partners-left">
+                        <!-- Independent School Partners -->
+                        <div class="partner-group">
+                            <h3 class="partner-category-title">Official Independent School Partners</h3>
+                            <div class="partner-logos-row">
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/150x120/fff/8C2131?text=School+1" alt="School Partner 1" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/150x120/fff/8C2131?text=Shawnigan+Lake" alt="Shawnigan Lake School" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/150x120/fff/8C2131?text=School+3" alt="School Partner 3" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Youth Hockey Development Partners -->
+                        <div class="partner-group">
+                            <h3 class="partner-category-title">Official Youth Hockey Development Partners:</h3>
+                            <div class="partner-logos-row">
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/130x110/fff/8C2131?text=Hockey+1" alt="Hockey Partner 1" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/130x110/fff/8C2131?text=MODO" alt="MODO Hockey" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/130x110/fff/8C2131?text=Handmade" alt="Handmade Hockey" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/130x110/fff/8C2131?text=Bloomage" alt="Bloomage" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hockey Rink Partners -->
+                        <div class="partner-group">
+                            <h3 class="partner-category-title">Hockey Rink Partners:</h3>
+                            <div class="partner-logos-row rink-partners">
+                                <div class="partner-logo-box rink-logo">
+                                    <div class="rink-text">
+                                        <div class="rink-icon">🏒</div>
+                                        <p>Pride of Six Hockey</p>
+                                    </div>
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/130x110/fff/8C2131?text=Thailand+Rink" alt="Thailand International Ice Hockey Rink" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/130x110/fff/8C2131?text=Heritage" alt="International Heritage Tours" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="partners-right">
+                        <!-- Supporting Leagues -->
+                        <div class="partner-group">
+                            <h3 class="partner-category-title">Official Supporting League USPHL/NAPHL/CSSHL</h3>
+                            <div class="partner-logos-grid">
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/140x120/fff/8C2131?text=Universel" alt="Universel Gatineau" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/140x120/fff/8C2131?text=Rodmacks" alt="Rodmacks" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/140x120/fff/8C2131?text=Wranglers" alt="Wranglers" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Partners -->
+                        <div class="partner-group">
+                            <div class="partner-logos-grid">
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/140x120/fff/8C2131?text=OHA" alt="OHA Hockey" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/140x120/fff/8C2131?text=CIH+Academy" alt="CIH Academy" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/140x120/fff/8C2131?text=Victus" alt="Victus Academy" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/140x120/fff/8C2131?text=Okanagan" alt="Okanagan Hockey Ontario" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/140x120/fff/8C2131?text=Capital+Idea" alt="Capital Idea" />
+                                </div>
+                                <div class="partner-logo-box">
+                                    <img src="https://via.placeholder.com/140x120/fff/8C2131?text=Epic" alt="Epic Premier League" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+   
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">ACHIEVE HOCKEY</div>
+            <p style="max-width: 600px; margin: 0 auto 30px; opacity: 0.9;">Guiding Asian student-athletes to top-tier Canadian ice hockey programs and educational opportunities since 2017.</p>
+            <div class="copyright">
+                &copy; 2023 Achieve Hockey. All rights reserved. | info@achievehockey.com
+            </div>
         </div>
-    </section>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add subtle animation to service cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe service cards for animation
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
 
     <!-- Footer -->
     <footer>
@@ -264,21 +831,20 @@
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                       
-                        <li><a href="#programs">Programs</a></li>
-                        
-                        
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="../packages/packages.html">Programs</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Programs</h3>
                     <ul>
-                        <li><a href="#">Elite Skating</a></li>
-                        <li><a href="#">Shooting & Scoring</a></li>
-                        <li><a href="#">Goalie Training</a></li>
-                        <li><a href="#">Team Training</a></li>
-                        <li><a href="#">Summer Camps</a></li>
+                        <li><a href="../packages/packages.html">Elite Camps</a></li>
+                        <li><a href="../packages/packages.html">Academy Tours</a></li>
+                        <li><a href="../packages/packages.html">Tournaments</a></li>
+                        <li><a href="../packages/packages.html">Women's Hockey</a></li>
+                        <li><a href="../packages/packages.html">Coach Internship</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -296,6 +862,6 @@
         </div>
     </footer>
 
-    <script src="/index.js"></script>
+    <script src="../index.js"></script>
 </body>
 </html>
