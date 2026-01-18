@@ -383,11 +383,13 @@ section {
     gap:15px;
     flex-wrap:wrap;
     justify-content:flex-start;
+    align-items:stretch;
 }
 .partner-logos-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:15px;
+    align-items:stretch;
 }
 .partner-logo-box{
     background:#fff;
@@ -397,7 +399,8 @@ section {
     display:flex;
     align-items:center;
     justify-content:center;
-    min-height:100px;
+    min-height:120px;
+    height:100%;
     transition:all 0.3s ease;
     box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
@@ -470,13 +473,20 @@ section {
     .partner-logos-row{
         flex-direction:column;
         align-items:center;
+        width:100%;
     }
     .partner-logo-box{
         width:100%;
         max-width:280px;
+        margin:0 auto;
     }
     .partner-logos-grid{
         grid-template-columns:1fr;
+        justify-items:center;
+    }
+    .partner-logos-grid .partner-logo-box{
+        width:100%;
+        max-width:280px;
     }
 }
 
