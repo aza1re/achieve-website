@@ -2474,3 +2474,51 @@ footer {
     }
 }
 
+/* Hero Section Mobile Responsiveness */
+@media (max-width:980px){
+    .about-hero-container{
+        flex-direction:column;
+    }
+    .about-hero-logo-side{
+        width:100%;
+        border-radius:0 0 50% 50% / 0 0 80px 80px;
+        min-height:300px;
+        padding:40px;
+    }
+    .about-hero-text{
+        width:100%;
+        padding:40px;
+    }
+    .about-page-title{
+        font-size:2.5rem;
+    }
+    .about-tagline{
+        font-size:1.3rem;
+    }
+    .logo-circle{
+        width:250px;
+        height:250px;
+    }
+}
+
+@media (max-width:640px){
+    .about .about-hero-section{
+
+    }
+    .about-hero-logo-side{
+        min-height:250px;
+        padding:30px;
+    }
+    .about-page-title{
+        font-size:2.8rem;
+        margin-bottom: 0px;
+    
+    }
+    .about-tagline{
+        font-size:1.1rem;
+    }
+    .logo-circle{
+        width:200px;
+        height:200px;
+    }
+}
