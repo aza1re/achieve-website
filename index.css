@@ -41,6 +41,7 @@
         .header-container .logo-img{
             width: 50px;
             margin-right: 20px;
+            margin-top: 8px;
         }
      .logo-container{
             display: flex;
