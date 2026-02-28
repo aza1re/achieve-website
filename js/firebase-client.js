@@ -7,7 +7,9 @@ import {
   browserLocalPersistence,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithCustomToken,
   GoogleAuthProvider,
+  OAuthProvider,
   signInWithPopup,
   signOut as fbSignOut,
   onAuthStateChanged,
@@ -35,6 +37,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const storage = getStorage(app);
 const googleProvider = new GoogleAuthProvider();
+
+// Apple OAuth provider
+const appleProvider = new OAuthProvider('apple.com');
+appleProvider.addScope('email');
+appleProvider.addScope('name');
 
 // ensure local persistence (keeps user signed in across reloads)
 setPersistence(auth, browserLocalPersistence).catch((e) => {
@@ -110,6 +117,12 @@ window.firebaseAuth = {
   },
   signInWithGooglePopup() {
     return signInWithPopup(auth, googleProvider);
+  },
+  signInWithApplePopup() {
+    return signInWithPopup(auth, appleProvider);
+  },
+  signInWithCustomToken(token) {
+    return signInWithCustomToken(auth, token);
   },
   signOut() {
     return fbSignOut(auth);

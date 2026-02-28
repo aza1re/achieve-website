@@ -552,3 +552,133 @@
 
 /* Ensure visual parity with main sign-in button spacing */
 .login-card .btn-google { display:block; }
+
+/* ── Apple Sign-In button ── */
+.btn-apple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background: #000;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  margin-top: 12px;
+}
+
+.btn-apple .apple-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 22px;
+  color: #fff;
+}
+
+.btn-apple .apple-text { color: #fff; }
+
+.btn-apple:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.35);
+  background: #1a1a1a;
+}
+
+@media (max-width: 520px) {
+  .btn-apple { padding: 12px 14px; font-size: 15px; border-radius: 10px; }
+  .btn-apple .apple-icon { width: 32px; height: 32px; font-size: 18px; }
+}
+
+.login-card .btn-apple { display: block; }
+
+/* ── Kakao Sign-In button ── */
+.btn-kakao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #191919;
+  background: #FEE500;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border: none;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  margin-top: 12px;
+}
+
+.btn-kakao .kakao-icon-svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-kakao .kakao-text { color: #191919; }
+
+.btn-kakao:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.22);
+  filter: brightness(0.97);
+}
+
+@media (max-width: 520px) {
+  .btn-kakao { padding: 12px 14px; font-size: 15px; border-radius: 10px; }
+}
+
+.login-card .btn-kakao { display: block; }
+
+/* ── LINE Sign-In button ── */
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background: #06C755;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border: none;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  margin-top: 12px;
+}
+
+.btn-line .line-icon-svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-line .line-text { color: #fff; }
+
+.btn-line:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.22);
+  filter: brightness(0.95);
+}
+
+@media (max-width: 520px) {
+  .btn-line { padding: 12px 14px; font-size: 15px; border-radius: 10px; }
+}
+
+.login-card .btn-line { display: block; }
