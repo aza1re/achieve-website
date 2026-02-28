@@ -125,4 +125,158 @@ document.addEventListener('DOMContentLoaded', () => {
       else showError('Google sign-in not available.');
     });
   }
+  // ── Apple Sign-In ──
+  const appleBtn = document.getElementById('apple-signin-btn');
+  if (appleBtn) {
+    appleBtn.addEventListener('click', async () => {
+      showError('');
+
+      const fbReady = await waitForFirebase(5000);
+      if (!fbReady || !window.firebaseAuth || !window.firebaseAuth.signInWithApplePopup) {
+        showError('Apple sign-in is not available. Please reload and try again.');
+        return;
+      }
+
+      try {
+        await window.firebaseAuth.signInWithApplePopup();
+        await (window.firebaseAuth.waitForSignIn ? window.firebaseAuth.waitForSignIn(8000) : Promise.resolve());
+        window.location.href = '../account/account.html';
+      } catch (err) {
+        console.warn('Apple sign-in error', err);
+        if (err && err.code === 'auth/popup-closed-by-user') {
+          // user closed the popup — don't show an error
+          return;
+        }
+        showError((err && err.message) || 'Apple sign-in failed.');
+      }
+    });
+  }
+
+  // ── Kakao Sign-In ──
+  // Initialize Kakao SDK
+  if (window.Kakao && !window.Kakao.isInitialized()) {
+    window.Kakao.init('19736c7403c9763661e0e7a9ecd6de7f');
+  }
+
+  // Handle Kakao redirect callback (page reloads with ?code=xxx after Kakao login)
+  // Only process if state is NOT 'line' (LINE Login also returns ?code= but includes state=line)
+  const urlParams = new URLSearchParams(window.location.search);
+  const kakaoCode = urlParams.get('code');
+  const oauthState = urlParams.get('state');
+  if (kakaoCode && oauthState !== 'line') {
+    (async () => {
+      showError('');
+      try {
+        // Remove code from URL so refresh doesn't re-trigger
+        window.history.replaceState({}, '', window.location.pathname);
+
+        // Send authorization code to backend
+        const res = await fetch('/api/auth/kakao', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: kakaoCode, redirectUri: window.location.origin + '/login/login.html' }),
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || 'Kakao authentication failed');
+        }
+
+        const { firebaseToken } = await res.json();
+
+        // Sign into Firebase with the custom token
+        const fbReady = await waitForFirebase(5000);
+        if (!fbReady || !window.firebaseAuth || !window.firebaseAuth.signInWithCustomToken) {
+          showError('Firebase is not available. Please reload and try again.');
+          return;
+        }
+
+        await window.firebaseAuth.signInWithCustomToken(firebaseToken);
+        await (window.firebaseAuth.waitForSignIn ? window.firebaseAuth.waitForSignIn(8000) : Promise.resolve());
+        window.location.href = '../account/account.html';
+      } catch (err) {
+        console.warn('Kakao sign-in error', err);
+        showError((err && err.message) || 'Kakao sign-in failed.');
+      }
+    })();
+  }
+
+  const kakaoBtn = document.getElementById('kakao-signin-btn');
+  if (kakaoBtn) {
+    kakaoBtn.addEventListener('click', () => {
+      showError('');
+
+      if (!window.Kakao || !window.Kakao.isInitialized()) {
+        showError('Kakao SDK not loaded. Please reload and try again.');
+        return;
+      }
+
+      // Redirect to Kakao login page
+      window.Kakao.Auth.authorize({
+        redirectUri: window.location.origin + '/login/login.html',
+      });
+    });
+  }
+
+  // ── LINE Sign-In ──
+
+  // LINE Channel ID (must match the value in your .env / LINE Developers Console)
+  const LINE_CHANNEL_ID = '2008862439';
+
+  // Handle LINE redirect callback (page reloads with ?code=xxx&state=line after LINE login)
+  const lineState = urlParams.get('state');
+  const lineCode = urlParams.get('code');
+  if (lineCode && lineState === 'line') {
+    (async () => {
+      showError('');
+      try {
+        // Remove query params so a refresh doesn't re-trigger
+        window.history.replaceState({}, '', window.location.pathname);
+
+        // Send authorization code to backend
+        const res = await fetch('/api/auth/line', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: lineCode, redirectUri: window.location.origin + '/login/login.html' }),
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || 'LINE authentication failed');
+        }
+
+        const { firebaseToken } = await res.json();
+
+        // Sign into Firebase with the custom token
+        const fbReady = await waitForFirebase(5000);
+        if (!fbReady || !window.firebaseAuth || !window.firebaseAuth.signInWithCustomToken) {
+          showError('Firebase is not available. Please reload and try again.');
+          return;
+        }
+
+        await window.firebaseAuth.signInWithCustomToken(firebaseToken);
+        await (window.firebaseAuth.waitForSignIn ? window.firebaseAuth.waitForSignIn(8000) : Promise.resolve());
+        window.location.href = '../account/account.html';
+      } catch (err) {
+        console.warn('LINE sign-in error', err);
+        showError((err && err.message) || 'LINE sign-in failed.');
+      }
+    })();
+  }
+
+  // LINE button click → redirect to LINE authorization page
+  const lineBtn = document.getElementById('line-signin-btn');
+  if (lineBtn) {
+    lineBtn.addEventListener('click', () => {
+      showError('');
+      const redirectUri = encodeURIComponent(window.location.origin + '/login/login.html');
+      const lineAuthUrl = 'https://access.line.me/oauth2/v2.1/authorize'
+        + '?response_type=code'
+        + '&client_id=' + LINE_CHANNEL_ID
+        + '&redirect_uri=' + redirectUri
+        + '&state=line'
+        + '&scope=profile%20openid%20email';
+      window.location.href = lineAuthUrl;
+    });
+  }
 });
