@@ -81,9 +81,17 @@ export default async function handler(req, res) {
     const firebaseUid = `kakao:${kakaoUid}`;
 
     try {
+      const existingUser = await admin.auth().getUser(firebaseUid);
+
+      // Preserve a user-uploaded profile photo (Firebase Storage URL).
+      // Only overwrite photoURL if the user hasn't set a custom one.
+      const existingPhoto = existingUser.photoURL || '';
+      const hasCustomPhoto = existingPhoto.includes('firebasestorage.googleapis.com')
+        || existingPhoto.includes('firebasestorage.app');
+
       await admin.auth().updateUser(firebaseUid, {
         ...(displayName && { displayName }),
-        ...(photoURL && { photoURL }),
+        ...(!hasCustomPhoto && photoURL && { photoURL }),
         ...(email && { email }),
       });
     } catch (e) {
