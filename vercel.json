@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.achievehockey.org"
+        }
+      ],
+      "destination": "https://achievehockey.org/:path*",
+      "permanent": true
+    }
+  ]
+}
