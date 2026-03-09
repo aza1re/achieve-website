@@ -10,11 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
 
-    <!-- site CSS (use camp css copied into camp folder) -->
+    <!-- site CSS -->
     <link rel="stylesheet" href="index.css" />
+
+    <!-- (removed debug banner / debug styles / extra cache-bust links) -->
 </head>
 <body>
-
+    <!-- (removed debug banner) -->
 
     <!-- navigation bar -->
     <header>
@@ -25,6 +27,14 @@
                 </a>
                 <a href="index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
             </div>
+
+            <div class="nav-search" role="search">
+                <input type="search" placeholder="Search..." aria-label="Search site" />
+                <button type="button" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
@@ -66,7 +76,27 @@
                     
                     <li><a href="app/app.html">App</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
-                    <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
+                    <li class="mobile-login nav-auth">
+                      <a href="../login/login.html" class="btn-login" data-auth="login">Sign In</a>
+
+                      <div class="account-menu" data-auth="account" hidden>
+                        <button class="account-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Account menu">
+                          <span class="account-avatar" data-avatar>AC</span>
+                        </button>
+
+                        <div class="account-dropdown" role="menu">
+                          <div class="account-details">
+                            <span class="account-avatar account-avatar--sm" data-avatar-preview>AC</span>
+                            <div>
+                              <div class="account-name" data-name>Account</div>
+                              <div class="account-email" data-email></div>
+                            </div>
+                          </div>
+                          <a class="account-link" href="account/account.html" role="menuitem">Account</a>
+                          <button class="account-signout" type="button" data-signout>Sign Out</button>
+                        </div>
+                      </div>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -78,22 +108,17 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
-            <source src="sources/video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-        </video>
+        <div class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Homepage banners">
+            <div class="carousel-track">
+                <div class="carousel-slide">
+                    <img src="sources/homepage/1.png" alt="Achieve banner 1">
+                </div>
+            </div>
 
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-img">
-                    <img src="sources/logo.png" alt="Achieve Logo" />
-                </div>
-                <h1>NOTHING GREAT COMES EASY</h1>
-                <div class="hero-buttons">
-                    <a href="#programs" class="btn btn-outline">View Programs</a>
-                    <a href="/app/app.html" class="btn">Launch App</a>
-                    <a href="#contact" class="btn btn-outline">Contact Us</a>
-                </div>
+            <div class="carousel-dots" role="tablist" aria-label="Banner navigation">
+                <button class="dot active" type="button" aria-label="Go to banner 1" aria-selected="true"></button>
+                <button class="dot" type="button" aria-label="Go to banner 2" aria-selected="false"></button>
+                <button class="dot" type="button" aria-label="Go to banner 3" aria-selected="false"></button>
             </div>
         </div>
     </section>
@@ -119,112 +144,133 @@
           <input type="radio" name="season" id="glass-winter">
           <label for="glass-winter" class="season-tab" data-season="winter" role="tab" aria-selected="false">Winter</label>
 
-                    <div class="glass-glider" aria-hidden="true"></div>
-                </div>
+          <div class="glass-glider" aria-hidden="true"></div>
+        </div>
 
-                <!-- All Year control (separate, styled like the seasons bar) -->
-                <div class="season-tabs glass allyear" role="tablist" aria-label="All year programs">
-                    <input type="radio" name="season" id="glass-allyear">
-                    <label for="glass-allyear" class="season-tab all-year-pill" data-season="all-year" role="tab" aria-selected="false" aria-pressed="false">All Year</label>
-                </div>
+        <!-- All Year control removed -->
 
         <!-- Season card groups -->
         <div class="season-cards-wrapper">
           
             <div class="season-cards" data-season="all-year">
-            <div class="cards-row">
-    
-               <!-- Student-athlete School Tours -->
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/schooltour.jpg" alt="Student-athlete School Tours">
-                </div>
-                <div class="card-body">
-                  <h3>Student-athlete School Tours</h3>
-                  <p class="card-desc">tour on student-athlete schools </p>
-                </div>
-              </div>
+              <div class="cards-row">
 
-              <!--Junior Hockey -->
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/juniorhockey.jpg" alt="Junior Hockey">
+                <!-- Student-athlete School Tours -->
+                <div class="card event-card" data-details="tour on student-athlete schools" data-register="camps/index.html" role="button" tabindex="0">
+                  <div class="card-media">
+                    <img src="/sources/placeholders/schooltour.jpg" alt="Student-athlete School Tours">
+                  </div>
+                  <div class="card-body">
+                    <h3>Student-athlete School Tours</h3>
+                    <p class="card-desc">tour on student-athlete schools</p>
+                    <span class="event-register" aria-hidden="true">Register</span>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <h3>Junior Hockey</h3>
-                  <p class="card-desc"> hockey programs for juniors </p>
+
+                <!-- Junior Hockey -->
+                <div class="card event-card" data-details="hockey programs for juniors" data-register="camps/index.html" role="button" tabindex="0">
+                  <div class="card-media">
+                    <img src="/sources/placeholders/juniorhockey.jpg" alt="Junior Hockey">
+                  </div>
+                  <div class="card-body">
+                    <h3>Junior Hockey</h3>
+                    <p class="card-desc">hockey programs for juniors</p>
+                    <span class="event-register" aria-hidden="true">Register</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
             <div class="season-cards" data-season="spring" hidden>
-            <div class="cards-row">
-
-              <!-- Rumble Cup -->
-              <div class="card">
-                <div class="card-media">
-                  <img src="programs/camps/RumbleCup.jpg" alt="Rumble Cup">
-                </div>
-                <div class="card-body">
-                  <h3>Rumble Cup</h3>
-                  <p class="card-desc">Invite-only showcase and coach-led clinics. Details provided to serious applicants.</p>
-
-                  <!-- details shown when card has .expanded -->
-                  <div class="card-details" aria-hidden="true">
-                    <p><strong>When:</strong> Spring & Summer 2026</p>
-                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
-                    <p>Full details, schedule and coach bios are available here when expanded.</p>
-                    <button class="close-card" type="button">Close</button>
+              <div class="cards-row">
+                <!-- Incheon (Apr 18-21) -->
+                <div class="card event-card"
+                     data-details="Venue: Incheon Seonhak Int'l Ice Rink. Dates: April 18-19-20-21."
+                     data-register="camps/index.html"
+                     role="button"
+                     tabindex="0">
+                  <div class="card-media">
+                    <img src="programs/camps/IMG_1626.png" alt="Notre Dame Hounds @Incheon, Korea">
                   </div>
+                  <div class="card-body">
+                    <h3>Notre Dame Hounds @Incheon, Korea</h3>
+                    <p class="card-desc event-meta">
+                      <span class="meta-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Incheon Seonhak Int'l Ice Rink</span>
+                    </p>
+                    <p class="card-desc event-meta">
+                      <span class="meta-line"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i> April 18-19-20-21</span>
+                    </p>
+                    <span class="event-register" aria-hidden="true">Register Now!</span>
+                  </div>
+                </div>
 
-                  <!-- ADDED: Register button -->
-                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
+                <!-- Gimpo (Apr 23-26) -->
+                <div class="card event-card"
+                     data-details="Venue: Gimpo Waves Ice Rink. Dates: April 23-24-25-26."
+                     data-register="camps/index.html"
+                     role="button"
+                     tabindex="0">
+                  <div class="card-media">
+                    <img src="programs/camps/IMG_1626.png" alt="Notre Dame Hounds @Gimpo, Korea">
+                  </div>
+                  <div class="card-body">
+                    <h3>Notre Dame Hounds @Gimpo, Korea</h3>
+                    <p class="card-desc event-meta">
+                        <span class="meta-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Gimpo Waves Ice Rink</span>
+                    </p>
+                    <p class="card-desc event-meta">
+                        <span class="meta-line"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i> April 23-24-25-26</span>
+                    </p>
+                    <span class="event-register" aria-hidden="true">Register Now!</span>
+                  </div>
+                </div>
+
+                <!-- Thailand (Apr 27-May 1) -->
+                <div class="card event-card"
+                     data-details="Venue: Thailand International Ice Hockey Arena. Dates: April 27-28-29-30-May 1."
+                     data-register="camps/index.html"
+                     role="button"
+                     tabindex="0">
+                  <div class="card-media">
+                    <img src="programs/camps/Rumble_Cup.png" alt="Notre Dame Hounds @Thailand">
+                  </div>
+                  <div class="card-body">
+                    <h3>Notre Dame Hounds @Thailand</h3>
+                    <p class="card-desc event-meta">
+                        <span class="meta-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Thailand International Ice Hockey Arena</span>
+                    </p>
+                    <p class="card-desc event-meta">
+                        <span class="meta-line"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i> April 27-28-29-30-May 1</span>
+                    </p>
+                    <span class="event-register" aria-hidden="true">Register Now!</span>
+                  </div>
                 </div>
               </div>
-              
             </div>
 
-          </div>
-
-          <!-- other seasons: copy same structure or replace content per season -->
           <div class="season-cards" data-season="summer" hidden>
             <div class="cards-row">
-
-               <!-- Rumble Cup -->
-              <div class="card">
-                <div class="card-media">
-                  <img src="programs/camps/RumbleCup.jpg" alt="Rumble Cup">
-                </div>
-                <div class="card-body">
-                  <h3>Rumble Cup</h3>
-                  <p class="card-desc">Invite-only showcase and coach-led clinics. Details provided to serious applicants.</p>
-
-                  <!-- details shown when card has .expanded -->
-                  <div class="card-details" aria-hidden="true">
-                    <p><strong>When:</strong> Spring & Summer 2026</p>
-                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
-                    <p>Full details, schedule and coach bios are available here when expanded.</p>
-                    <button class="close-card" type="button">Close</button>
+                <!-- Thailand (Apr 27-May 1) -->
+                <div class="card event-card"
+                     data-details="Venue: Thailand International Ice Hockey Arena. Dates: July 13-14-15-16-17."
+                     data-register="camps/index.html"
+                     role="button"
+                     tabindex="0">
+                  <div class="card-media">
+                    <img src="programs/camps/Aim.png" alt="Coach Nevin Guy Skills Camp @Thailand">
                   </div>
-
-                  <!-- ADDED: Register button -->
-                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
+                  <div class="card-body">
+                    <h3>Coach Nevin Guy Skills Camp @Thailand</h3>
+                    <p class="card-desc event-meta">
+                        <span class="meta-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Thailand International Ice Hockey Arena</span>
+                    </p>
+                    <p class="card-desc event-meta">
+                        <span class="meta-line"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i> July 13-14-15-16-17</span>
+                    </p>
+                    <span class="event-register" aria-hidden="true">Register Now!</span>
+                  </div>
                 </div>
               </div>
-            
-              <!-- Brick International -->
-              <div class="card">
-                <div class="card-media">
-                  <img src="/sources/placeholders/brickinternational.jpg" alt="Brick International">
-                </div>
-                <div class="card-body">
-                  <h3>Brick International</h3>
-                  <p class="card-desc"> Brick international </p>
-                </div>
-              </div>
-
-
             </div>
           </div>
 
@@ -240,91 +286,74 @@
             <div class="cards-row">
 
               <!-- Modo Hockey -->
-              <div class="card">
+              <div class="card event-card" data-details="Skill sessions, hockey IQ video analysis and on-ice development with international staff." data-register="camps/index.html" role="button" tabindex="0">
                 <div class="card-media">
                   <img src="programs/camps/ModoHockey.png" alt="MODO Camp">
                 </div>
                 <div class="card-body">
                   <h3>MODO Camp</h3>
-                  <p class="card-desc">Skill sessions, hockey IQ video analysis and on-ice development with international staff.</p>
-
-                  <!-- details shown when card has .expanded -->
-                  <div class="card-details" aria-hidden="true">
-                    <p><strong>When:</strong> Spring & Summer 2026</p>
-                    <p><strong>Location:</strong> Minneapolis — Invite only</p>
-                    <p>Full details, schedule and coach bios are available here when expanded.</p>
-                    <button class="close-card" type="button">Close</button>
-                  </div>
-
-                  <!-- ADDED: Register button -->
-                  <a href="#" class="button register-btn" role="button"><span>Register now</span></a>
-                </div>
-              </div>
-
-
-              <!-- Paradise Cup -->
-              <div class="card">
-                <div class="card-media">
-                  <img src="sources/photos/paradise_cup.jpg" alt="Paradise Cup">
-                </div>
-                <div class="card-body">
-                  <h3>Paradise Cup</h3>
-                  <p class="card-desc">Tournament, Thailand </p>
+                  <p class="card-desc">Skill sessions, hockey IQ video analysis and on-ice development.</p>
+                  <span class="event-register" aria-hidden="true">Register</span>
                 </div>
               </div>
 
               <!-- Bauer Cup -->
-              <div class="card">
+              <div class="card event-card" data-details="Tournament, Korea (Completed)" data-register="camps/index.html" role="button" tabindex="0">
                 <div class="card-media">
                   <img src="sources/photos/bauer_cup.jpg" alt="Bauer Cup">
                 </div>
                 <div class="card-body">
                   <h3>Bauer Cup</h3>
-                  <p class="card-desc"> Tournament, Korea (Completed)</p>
+                  <p class="card-desc">Tournament, Korea (Completed)</p>
+                  <span class="event-register" aria-hidden="true">Register</span>
                 </div>
               </div>
 
               <!-- Pre-Quebec -->
-              <div class="card">
+              <div class="card event-card" data-details="Tournament, Canada (Completed)" data-register="camps/index.html" role="button" tabindex="0">
                 <div class="card-media">
                   <img src="sources/photos/pre-quebec-peewee.png" alt="Pre-Quebec">
                 </div>
                 <div class="card-body">
                   <h3>Pre-Quebec</h3>
-                  <p class="card-desc"> Tournament, Canada (Completed)</p>
+                  <p class="card-desc">Tournament, Canada (Completed)</p>
+                  <span class="event-register" aria-hidden="true">Register</span>
                 </div>
               </div>
 
               <!-- Quebec Peewee -->
-              <div class="card">
+              <div class="card event-card" data-details="External Tournament (Quebec, Canada)" data-register="camps/index.html" role="button" tabindex="0">
                 <div class="card-media">
                   <img src="sources/photos/quebec_peewee.png" alt="Quebec Peewee">
                 </div>
                 <div class="card-body">
                   <h3>Quebec Peewee</h3>
-                  <p class="card-desc"> External Tournament ( Quebec, Canada ) </p>
+                  <p class="card-desc">External Tournament (Quebec, Canada)</p>
+                  <span class="event-register" aria-hidden="true">Register</span>
                 </div>
               </div>
 
               <!-- Peewee Bernieres -->
-              <div class="card">
+              <div class="card event-card" data-details="External Tournament, Canada (Completed)" data-register="camps/index.html" role="button" tabindex="0">
                 <div class="card-media">
                   <img src="sources/photos/peewee_bernieres.png" alt="Peewee Bernieres">
                 </div>
                 <div class="card-body">
                   <h3>Peewee Bernieres</h3>
-                  <p class="card-desc"> External Tournament, Canada (Completed)</p>
+                  <p class="card-desc">External Tournament, Canada (Completed)</p>
+                  <span class="event-register" aria-hidden="true">Register</span>
                 </div>
               </div>
 
-              <!-- Grand Montreal International Tournament -->
-              <div class="card">
+              <!-- Grand Montreal -->
+              <div class="card event-card" data-details="External Tournament, Canada (Completed)" data-register="camps/index.html" role="button" tabindex="0">
                 <div class="card-media">
                   <img src="sources/photos/grand_montreal.png" alt="Grand Montreal International Tournament">
                 </div>
                 <div class="card-body">
                   <h3>Grand Montreal International Tournament</h3>
-                  <p class="card-desc"> External Tournament, Canada (Completed)</p>
+                  <p class="card-desc">External Tournament, Canada (Completed)</p>
+                  <span class="event-register" aria-hidden="true">Register</span>
                 </div>
               </div>
 
@@ -673,6 +702,85 @@
         </div>
     </footer>
 
-    <script src="index.js"> </script>
+    <!-- Featured Events Section -->
+    <section class="events-section featured-events" id="featured-events">
+      <div class="container">
+        <div class="section-title">
+          <h2>Featured Events</h2>
+          <p>Highlighted events and key dates.</p>
+        </div>
+
+        <div class="events-grid featured">
+          <article class="event-card" data-details="Tournament highlights, schedule, and travel info available upon registration." data-register="camps/index.html" role="button" tabindex="0">
+            <img src="sources/photos/paradise_cup.jpg" alt="Paradise Cup" class="event-image" />
+            <div class="event-content">
+              <h3>Paradise Cup</h3>
+              <p>Tournament, Thailand</p>
+            </div>
+            <span class="event-register" aria-hidden="true">Register</span>
+          </article>
+
+          <article class="event-card" data-details="International competition details and roster requirements are shared after sign‑up." data-register="camps/index.html" role="button" tabindex="0">
+            <img src="sources/photos/bauer_cup.jpg" alt="Bauer Cup" class="event-image" />
+            <div class="event-content">
+              <h3>Bauer Cup</h3>
+              <p>Tournament, Korea (Completed)</p>
+            </div>
+            <span class="event-register" aria-hidden="true">Register</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section" id="events">
+      <div class="container">
+        <div class="section-title">
+          <h2>Events</h2>
+          <p>Upcoming events and key dates.</p>
+        </div>
+
+        <div class="events-grid">
+          <article class="event-card" data-details="Full tournament details, dates, and travel logistics are provided on registration." data-register="camps/index.html" role="button" tabindex="0">
+            <img src="sources/photos/quebec_peewee.png" alt="Quebec Peewee" class="event-image" />
+            <div class="event-content">
+              <h3>Quebec Peewee</h3>
+              <p>External Tournament (Quebec, Canada)</p>
+            </div>
+            <span class="event-register" aria-hidden="true">Register</span>
+          </article>
+
+          <article class="event-card" data-details="Event dates, venue info, and team requirements are shared after sign‑up." data-register="camps/index.html" role="button" tabindex="0">
+            <img src="sources/photos/pre-quebec-peewee.png" alt="Pre Quebec Peewee" class="event-image" />
+            <div class="event-content">
+              <h3>Pre-Quebec</h3>
+              <p>Tournament, Canada (Completed)</p>
+            </div>
+            <span class="event-register" aria-hidden="true">Register</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Modal -->
+    <div class="event-modal" id="event-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Event details">
+      <div class="event-modal__backdrop" data-close></div>
+      <div class="event-modal__panel" role="document">
+        <button class="event-modal__close" type="button" aria-label="Close">×</button>
+        <div class="event-modal__content">
+          <img class="event-modal__image" src="" alt="" />
+          <div class="event-modal__body">
+            <h3 class="event-modal__title"></h3>
+            <p class="event-modal__desc"></p>
+            <p class="event-modal__details"></p>
+            <a class="event-register event-modal__register" href="#" role="button">Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/firebase-client.js"></script>
+    <script src="js/auth-ui.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

@@ -21,6 +21,17 @@ import {
   uploadBytes,
   getDownloadURL
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  addDoc,
+  collection,
+  serverTimestamp,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAXYi7MCm-aMBeh3bEjs0eJ5eHcGjf9-bw",
@@ -103,7 +114,69 @@ async function updateProfilePhoto(file) {
   // Persist photoURL on the Firebase Auth user profile
   await updateProfile(user, { photoURL: url });
 
-  return url;
+  // Refresh the in-memory user so other UI consumers read the latest profile.
+  try {
+    await user.reload();
+  } catch {
+    // Non-fatal; continue with returned URL fallback.
+  }
+
+  const refreshedUser = auth.currentUser || user;
+  const effectivePhotoURL = refreshedUser.photoURL || url;
+
+  // Notify any page-level UI (header avatar/account page) to update instantly.
+  window.dispatchEvent(new CustomEvent('achieve:profile-updated', {
+    detail: {
+      uid: refreshedUser.uid,
+      photoURL: effectivePhotoURL,
+      displayName: refreshedUser.displayName || ''
+    }
+  }));
+
+  return effectivePhotoURL;
+}
+
+async function requireUser() {
+  return auth.currentUser || await waitForSignIn(4000);
+}
+
+async function saveCampSignup(payload) {
+  const user = await requireUser();
+  if (!user) throw new Error("Please sign in first.");
+
+  const data = {
+    campName: String(payload?.campName || "").trim(),
+    personal: payload?.personal || {},
+    athlete: payload?.athlete || {},
+    guardians: payload?.guardians || {},
+    userId: user.uid,
+    userEmail: user.email || "",
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
+  };
+
+  const ref = await addDoc(collection(db, "users", user.uid, "campSignups"), data);
+
+  await setDoc(
+    doc(db, "users", user.uid),
+    { lastCampSignupAt: serverTimestamp() },
+    { merge: true }
+  );
+
+  return { id: ref.id };
+}
+
+async function getUserCampSignups() {
+  const user = await requireUser();
+  if (!user) return [];
+
+  const q = query(
+    collection(db, "users", user.uid, "campSignups"),
+    orderBy("createdAt", "desc")
+  );
+
+  const snap = await getDocs(q);
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 }
 
 // expose simple API for other scripts
@@ -131,5 +204,7 @@ window.firebaseAuth = {
     return onAuthStateChanged(auth, cb);
   },
   waitForSignIn,
-  updateProfilePhoto
+  updateProfilePhoto,
+  saveCampSignup,
+  getUserCampSignups
 };

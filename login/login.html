@@ -59,7 +59,27 @@
                     
                     <li><a href="../app/app.html">App</a></li>
                     <li><a href="../index.html#contact">Contact</a></li>
-                    <li class="mobile-login"><a href="../login/login.html" class="btn-login">Login</a></li>
+                    <li class="mobile-login nav-auth">
+                      <a href="../login/login.html" class="btn-login" data-auth="login">Sign In</a>
+
+                      <div class="account-menu" data-auth="account" hidden>
+                        <button class="account-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Account menu">
+                          <span class="account-avatar" data-avatar>AC</span>
+                        </button>
+
+                        <div class="account-dropdown" role="menu">
+                          <div class="account-details">
+                            <span class="account-avatar account-avatar--sm" data-avatar-preview>AC</span>
+                            <div>
+                              <div class="account-name" data-name>Account</div>
+                              <div class="account-email" data-email></div>
+                            </div>
+                          </div>
+                          <a class="account-link" href="../account/account.html" role="menuitem">Account</a>
+                          <button class="account-signout" type="button" data-signout>Sign Out</button>
+                        </div>
+                      </div>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -70,6 +90,7 @@
     <section class="login-section">
         <div class="login-container">
             <div class="login-card">
+                <img src="../sources/logo.png" class="login-logo-img" alt="Achieve Logo" />
                 <h1 class="login-logo">ACHIEVE<span>HOCKEY</span></h1>
                 <p class="login-subtitle">Sign in to your account</p>
 
@@ -189,6 +210,7 @@
     <script src="../js/script.js"></script>
     <!-- Firebase client (module) -->
     <script type="module" src="../js/firebase-client.js"></script>
+    <script src="../js/auth-ui.js"></script>
     <script src="login.js"></script>
     <!-- existing Google Identity / GSI fallback -->
     <script src="../js/google-login.js"></script>

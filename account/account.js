@@ -12,13 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const changePhotoBtn = document.getElementById('changePhotoBtn');
   const profilePicInput = document.getElementById('profilePicInput');
-
-  const managePaymentBtn = document.getElementById('managePaymentBtn');
-  const paymentStatus = document.getElementById('paymentStatus');
-
-  const stripeInlineWrap = document.getElementById('stripeInlineWrap');
-  const submitPaymentBtn = document.getElementById('submitPaymentBtn');
-  const cancelPaymentBtn = document.getElementById('cancelPaymentBtn');
+  const campSignupsStatus = document.getElementById('campSignupsStatus');
+  const campSignupsList = document.getElementById('campSignupsList');
 
   const DEFAULT_AVATAR_PATH = '../sources/avatar-placeholder.svg';
   const DEFAULT_AVATAR_DATA_URI =
@@ -74,9 +69,44 @@ document.addEventListener('DOMContentLoaded', () => {
     statusEl.textContent = msg || '';
   }
 
-  function setPaymentStatus(msg) {
-    if (!paymentStatus) return;
-    paymentStatus.textContent = msg || '';
+  function renderCampSignups(items) {
+    if (!campSignupsList || !campSignupsStatus) return;
+    campSignupsList.innerHTML = '';
+
+    if (!items || items.length === 0) {
+      campSignupsStatus.textContent = 'No camp registrations yet.';
+      return;
+    }
+
+    campSignupsStatus.textContent = '';
+    items.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = item.campName || 'Unnamed camp';
+      campSignupsList.appendChild(li);
+    });
+  }
+
+  async function loadCampSignups() {
+    if (!window.firebaseAuth || typeof window.firebaseAuth.getUserCampSignups !== 'function') {
+      renderCampSignups([]);
+      return;
+    }
+
+    try {
+      const signups = await window.firebaseAuth.getUserCampSignups();
+      renderCampSignups(signups);
+    } catch (e) {
+      console.warn('Failed to load camp signups', e);
+      if (campSignupsStatus) {
+        campSignupsStatus.textContent = 'Unable to load camp registrations right now.';
+      }
+    }
+  }
+
+  function clearCampSignups() {
+    if (!campSignupsList || !campSignupsStatus) return;
+    campSignupsList.innerHTML = '';
+    campSignupsStatus.textContent = '';
   }
 
   function bindPhotoEditing() {
@@ -126,8 +156,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const newUrl = await window.firebaseAuth.updateProfilePhoto(file);
 
-        if (typeof newUrl === 'string' && newUrl) {
-          picEl.src = newUrl;
+        const currentUser = window.firebaseAuth?.auth?.currentUser;
+        if (currentUser && typeof currentUser.reload === 'function') {
+          try {
+            await currentUser.reload();
+          } catch {
+            // ignore reload hiccups and still use returned URL
+          }
+        }
+
+        const refreshedUrl = window.firebaseAuth?.auth?.currentUser?.photoURL || newUrl;
+        if (typeof refreshedUrl === 'string' && refreshedUrl) {
+          picEl.src = refreshedUrl;
           revokePreview(); // safe: no longer using blob URL
         }
 
@@ -144,91 +184,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // -------- Stripe Elements (inline payment) --------
-  let stripe = null;
-  let elements = null;
-  let paymentElement = null;
+  function applyUser(user) {
+    setStatus('');
+    notSignedEl.style.display = 'none';
+    contentEl.style.display = 'block';
 
-  async function getStripePublishableKey() {
-    const res = await fetch('/api/stripe/config', { method: 'GET' });
-    if (!res.ok) throw new Error(`Stripe config failed (${res.status}).`);
-    const data = await res.json();
-    if (!data?.publishableKey) throw new Error('Missing Stripe publishable key.');
-    return data.publishableKey;
-  }
+    picEl.src = user.photoURL || DEFAULT_AVATAR_PATH;
+    nameEl.textContent = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
+    emailEl.textContent = user.email || '';
+    const providers = (user.providerData || []).map(p => p.providerId).join(', ');
+    providerEl.textContent = `Providers: ${providers || 'email/password'}`;
+    rawMeta.innerText = `UID: ${user.uid}\nEmail verified: ${user.emailVerified}\nCreated: ${user.metadata?.creationTime || 'n/a'}`;
 
-  async function createSetupIntentClientSecret(idToken) {
-    const res = await fetch('/api/stripe/create-setup-intent', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${idToken}`,
-      },
-      body: JSON.stringify({}),
-    });
-
-    if (!res.ok) {
-      const text = await res.text().catch(() => '');
-      throw new Error(`Failed to start payment (${res.status}). ${text}`.trim());
-    }
-
-    const data = await res.json();
-    if (!data?.clientSecret) throw new Error('Missing SetupIntent client secret.');
-    return data.clientSecret;
-  }
-
-  function showInlinePayment(show) {
-    if (!stripeInlineWrap) return;
-    stripeInlineWrap.style.display = show ? 'block' : 'none';
-  }
-
-  async function ensureStripeMounted(user) {
-    if (paymentElement) return;
-
-    if (typeof window.Stripe !== 'function') {
-      throw new Error('Stripe.js failed to load.');
-    }
-
-    const idToken = await user.getIdToken();
-    const [publishableKey, clientSecret] = await Promise.all([
-      getStripePublishableKey(),
-      createSetupIntentClientSecret(idToken),
-    ]);
-
-    stripe = window.Stripe(publishableKey);
-
-    elements = stripe.elements({
-      clientSecret,
-      appearance: { theme: 'night' },
-    });
-
-    paymentElement = elements.create('payment');
-    paymentElement.mount('#payment-element');
-  }
-
-  async function confirmSetup() {
-    const user =
-      window.firebaseAuth?.auth?.currentUser ||
-      (window.firebaseAuth.waitForSignIn ? await window.firebaseAuth.waitForSignIn(3000) : null);
-
-    if (!user) {
-      setPaymentStatus('Please sign in to manage payment methods.');
-      window.location.href = '../login/login.html';
-      return;
-    }
-
-    if (!stripe || !elements) throw new Error('Payment form is not ready.');
-
-    const { error } = await stripe.confirmSetup({
-      elements,
-      confirmParams: {
-        // In case a redirect-based method is used, come back here:
-        return_url: `${window.location.origin}${window.location.pathname}?payment=success`,
-      },
-      redirect: 'if_required',
-    });
-
-    if (error) throw new Error(error.message || 'Payment confirmation failed.');
+    loadCampSignups();
   }
 
   async function init() {
@@ -243,108 +211,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     bindPhotoEditing();
 
-    // Show simple return message from redirects
-    const qs = new URLSearchParams(window.location.search);
-    const pay = (qs.get('payment') || '').toLowerCase();
-    if (pay === 'success') setPaymentStatus('Payment method saved.');
-    if (pay === 'cancel') setPaymentStatus('Payment setup canceled.');
-
-    if (managePaymentBtn) {
-      managePaymentBtn.addEventListener('click', async () => {
-        setPaymentStatus('');
-
-        const user =
-          window.firebaseAuth?.auth?.currentUser ||
-          (window.firebaseAuth.waitForSignIn ? await window.firebaseAuth.waitForSignIn(3000) : null);
-
-        if (!user) {
-          setPaymentStatus('Please sign in to manage payment methods.');
-          window.location.href = '../login/login.html';
-          return;
-        }
-
-        try {
-          managePaymentBtn.disabled = true;
-          setPaymentStatus('Loading secure payment form...');
-
-          showInlinePayment(true);
-          await ensureStripeMounted(user);
-
-          setPaymentStatus('');
-        } catch (e) {
-          console.warn('[payment] failed to load Stripe Elements', e);
-          setPaymentStatus(e?.message || 'Could not load payment form.');
-          showInlinePayment(false);
-        } finally {
-          managePaymentBtn.disabled = false;
-        }
-      });
-    }
-
-    if (submitPaymentBtn) {
-      submitPaymentBtn.addEventListener('click', async () => {
-        try {
-          submitPaymentBtn.disabled = true;
-          setPaymentStatus('Saving payment method...');
-
-          await confirmSetup();
-
-          setPaymentStatus('Payment method saved.');
-          showInlinePayment(false);
-        } catch (e) {
-          console.warn('[payment] confirm setup failed', e);
-          setPaymentStatus(e?.message || 'Could not save payment method.');
-        } finally {
-          submitPaymentBtn.disabled = false;
-        }
-      });
-    }
-
-    if (cancelPaymentBtn) {
-      cancelPaymentBtn.addEventListener('click', () => {
-        setPaymentStatus('');
-        showInlinePayment(false);
-      });
-    }
-
     const maybeUser = await (window.firebaseAuth.waitForSignIn ? window.firebaseAuth.waitForSignIn(4000) : Promise.resolve(null));
 
-    const unsub = window.firebaseAuth.onAuthStateChanged((user) => {
+    window.firebaseAuth.onAuthStateChanged((user) => {
       if (!user) {
         setStatus('');
         contentEl.style.display = 'none';
         notSignedEl.style.display = 'block';
+        clearCampSignups();
         setTimeout(() => {
           window.location.href = '../login/login.html';
         }, 900);
         return;
       }
 
-      setStatus('');
-      notSignedEl.style.display = 'none';
-      contentEl.style.display = 'block';
-
-      picEl.src = user.photoURL || DEFAULT_AVATAR_PATH;
-      nameEl.textContent = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
-      emailEl.textContent = user.email || '';
-      const providers = (user.providerData || []).map(p => p.providerId).join(', ');
-      providerEl.textContent = `Providers: ${providers || 'email/password'}`;
-      rawMeta.innerText = `UID: ${user.uid}\nEmail verified: ${user.emailVerified}\nCreated: ${user.metadata?.creationTime || 'n/a'}`;
-
-      try { if (typeof unsub === 'function') unsub(); } catch (e) { /* ignore */ }
+      applyUser(user);
     });
 
     if (maybeUser) {
-      const user = maybeUser;
-      setStatus('');
-      notSignedEl.style.display = 'none';
-      contentEl.style.display = 'block';
-      picEl.src = user.photoURL || DEFAULT_AVATAR_PATH;
-      nameEl.textContent = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
-      emailEl.textContent = user.email || '';
-      const providers = (user.providerData || []).map(p => p.providerId).join(', ');
-      providerEl.textContent = `Providers: ${providers || 'email/password'}`;
-      rawMeta.innerText = `UID: ${user.uid}\nEmail verified: ${user.emailVerified}\nCreated: ${user.metadata?.creationTime || 'n/a'}`;
+      applyUser(maybeUser);
     }
 
     signOutBtn.addEventListener('click', async () => {

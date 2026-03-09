@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camp Signup | Achieve Hockey</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../index.css" />
+  <link rel="stylesheet" href="./signup.css" />
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo-container">
+        <a href="../index.html" aria-label="Return to home">
+          <img src="../sources/logo.png" class="logo-img" alt="Achieve Logo" />
+        </a>
+        <a href="../index.html" class="logo">ACHIEVE<span>HOCKEY</span></a>
+      </div>
+
+      <nav aria-label="Camp signup navigation">
+        <ul>
+          <li>
+            <a href="../index.html" class="btn-login return-home-btn">
+              <i class="fa-solid fa-house"></i>
+              Return Home
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="signup-page">
+    <section class="signup-card">
+      <div class="progress-wrap" aria-label="Signup progress">
+        <ol class="progress-steps">
+          <li class="step is-active" data-step="1">
+            <span class="step-circle">1</span>
+            <span class="step-title">Personal Information</span>
+          </li>
+          <li class="step" data-step="2">
+            <span class="step-circle">2</span>
+            <span class="step-title">Student-Athlete Information</span>
+          </li>
+          <li class="step" data-step="3">
+            <span class="step-circle">3</span>
+            <span class="step-title">Payment</span>
+          </li>
+        </ol>
+      </div>
+
+      <form id="camp-signup-form" novalidate>
+        <!-- Stage 1 -->
+        <section class="stage is-active" data-stage="1" aria-labelledby="stage-1-title">
+          <h2 id="stage-1-title">Tell us about yourself first!</h2>
+
+          <div class="grid two">
+            <label>
+              Player first name*  
+              <input name="firstName" type="text" required />
+            </label>
+            <label>
+              Player last name*  
+              <input name="lastName" type="text" required />
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label>
+              Nickname
+              <input name="nickname" type="text" />
+            </label>
+            <label>
+              Birthdate*
+              <input name="birthdate" type="date" required />
+            </label>
+          </div>
+
+          <label>
+            Address*
+            <input name="address" type="text" required />
+          </label>
+
+          <label>
+            Country of Birth* 
+            <select name="countryOfBirth" required>
+              <option value="">Select country</option>
+              <option>Afghanistan</option>
+              <option>Albania</option>
+              <option>Algeria</option>
+              <option>Andorra</option>
+              <option>Angola</option>
+              <option>Antigua and Barbuda</option>
+              <option>Argentina</option>
+              <option>Armenia</option>
+              <option>Australia</option>
+              <option>Austria</option>
+              <option>Azerbaijan</option>
+              <option>Bahamas</option>
+              <option>Bahrain</option>
+              <option>Bangladesh</option>
+              <option>Barbados</option>
+              <option>Belarus</option>
+              <option>Belgium</option>
+              <option>Belize</option>
+              <option>Benin</option>
+              <option>Bhutan</option>
+              <option>Bolivia</option>
+              <option>Bosnia and Herzegovina</option>
+              <option>Botswana</option>
+              <option>Brazil</option>
+              <option>Brunei</option>
+              <option>Bulgaria</option>
+              <option>Burkina Faso</option>
+              <option>Burundi</option>
+              <option>Cabo Verde</option>
+              <option>Cambodia</option>
+              <option>Cameroon</option>
+              <option>Canada</option>
+              <option>Central African Republic</option>
+              <option>Chad</option>
+              <option>Chile</option>
+              <option>China</option>
+              <option>Colombia</option>
+              <option>Comoros</option>
+              <option>Congo (Congo-Brazzaville)</option>
+              <option>Costa Rica</option>
+              <option>Côte d’Ivoire</option>
+              <option>Croatia</option>
+              <option>Cuba</option>
+              <option>Cyprus</option>
+              <option>Czechia</option>
+              <option>Democratic Republic of the Congo</option>
+              <option>Denmark</option>
+              <option>Djibouti</option>
+              <option>Dominica</option>
+              <option>Dominican Republic</option>
+              <option>Ecuador</option>
+              <option>Egypt</option>
+              <option>El Salvador</option>
+              <option>Equatorial Guinea</option>
+              <option>Eritrea</option>
+              <option>Estonia</option>
+              <option>Eswatini</option>
+              <option>Ethiopia</option>
+              <option>Fiji</option>
+              <option>Finland</option>
+              <option>France</option>
+              <option>Gabon</option>
+              <option>Gambia</option>
+              <option>Georgia</option>
+              <option>Germany</option>
+              <option>Ghana</option>
+              <option>Greece</option>
+              <option>Grenada</option>
+              <option>Guatemala</option>
+              <option>Guinea</option>
+              <option>Guinea-Bissau</option>
+              <option>Guyana</option>
+              <option>Haiti</option>
+              <option>Holy See</option>
+              <option>Honduras</option>
+              <option>Hungary</option>
+              <option>Iceland</option>
+              <option>India</option>
+              <option>Indonesia</option>
+              <option>Iran</option>
+              <option>Iraq</option>
+              <option>Ireland</option>
+              <option>Israel</option>
+              <option>Italy</option>
+              <option>Jamaica</option>
+              <option>Japan</option>
+              <option>Jordan</option>
+              <option>Kazakhstan</option>
+              <option>Kenya</option>
+              <option>Kiribati</option>
+              <option>Kuwait</option>
+              <option>Kyrgyzstan</option>
+              <option>Laos</option>
+              <option>Latvia</option>
+              <option>Lebanon</option>
+              <option>Lesotho</option>
+              <option>Liberia</option>
+              <option>Libya</option>
+              <option>Liechtenstein</option>
+              <option>Lithuania</option>
+              <option>Luxembourg</option>
+              <option>Madagascar</option>
+              <option>Malawi</option>
+              <option>Malaysia</option>
+              <option>Maldives</option>
+              <option>Mali</option>
+              <option>Malta</option>
+              <option>Marshall Islands</option>
+              <option>Mauritania</option>
+              <option>Mauritius</option>
+              <option>Mexico</option>
+              <option>Micronesia</option>
+              <option>Moldova</option>
+              <option>Monaco</option>
+              <option>Mongolia</option>
+              <option>Montenegro</option>
+              <option>Morocco</option>
+              <option>Mozambique</option>
+              <option>Myanmar</option>
+              <option>Namibia</option>
+              <option>Nauru</option>
+              <option>Nepal</option>
+              <option>Netherlands</option>
+              <option>New Zealand</option>
+              <option>Nicaragua</option>
+              <option>Niger</option>
+              <option>Nigeria</option>
+              <option>North Korea</option>
+              <option>North Macedonia</option>
+              <option>Norway</option>
+              <option>Oman</option>
+              <option>Pakistan</option>
+              <option>Palau</option>
+              <option>Palestine</option>
+              <option>Panama</option>
+              <option>Papua New Guinea</option>
+              <option>Paraguay</option>
+              <option>Peru</option>
+              <option>Philippines</option>
+              <option>Poland</option>
+              <option>Portugal</option>
+              <option>Qatar</option>
+              <option>Romania</option>
+              <option>Russia</option>
+              <option>Rwanda</option>
+              <option>Saint Kitts and Nevis</option>
+              <option>Saint Lucia</option>
+              <option>Saint Vincent and the Grenadines</option>
+              <option>Samoa</option>
+              <option>San Marino</option>
+              <option>Sao Tome and Principe</option>
+              <option>Saudi Arabia</option>
+              <option>Senegal</option>
+              <option>Serbia</option>
+              <option>Seychelles</option>
+              <option>Sierra Leone</option>
+              <option>Singapore</option>
+              <option>Slovakia</option>
+              <option>Slovenia</option>
+              <option>Solomon Islands</option>
+              <option>Somalia</option>
+              <option>South Africa</option>
+              <option>South Korea</option>
+              <option>South Sudan</option>
+              <option>Spain</option>
+              <option>Sri Lanka</option>
+              <option>Sudan</option>
+              <option>Suriname</option>
+              <option>Sweden</option>
+              <option>Switzerland</option>
+              <option>Syria</option>
+              <option>Tajikistan</option>
+              <option>Tanzania</option>
+              <option>Thailand</option>
+              <option>Timor-Leste</option>
+              <option>Togo</option>
+              <option>Tonga</option>
+              <option>Trinidad and Tobago</option>
+              <option>Tunisia</option>
+              <option>Turkey</option>
+              <option>Turkmenistan</option>
+              <option>Tuvalu</option>
+              <option>Uganda</option>
+              <option>Ukraine</option>
+              <option>United Arab Emirates</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+              <option>Uruguay</option>
+              <option>Uzbekistan</option>
+              <option>Vanuatu</option>
+              <option>Venezuela</option>
+              <option>Vietnam</option>
+              <option>Yemen</option>
+              <option>Zambia</option>
+              <option>Zimbabwe</option>
+            </select>
+          </label>
+        </section>
+
+        <!-- Stage 2 -->
+        <section class="stage" data-stage="2" aria-labelledby="stage-2-title">
+          <h2 id="stage-2-title">Now tell us about you as a Student-Athlete!</h2>
+
+          <div class="grid two">
+            <label>
+              Current Ice Hockey team*
+              <input name="currentTeam" type="text" required />
+            </label>
+            <label>
+              Current Grade*
+              <input name="currentGrade" type="text" required />
+            </label>
+          </div>
+
+          <label>
+            Ice Hockey Position*
+          </label>
+          <div class="position-tabs" role="tablist" aria-label="Ice Hockey Position">
+            <input type="radio" id="position-forward" name="position" value="Forward" required checked />
+            <label for="position-forward" role="tab">Forward</label>
+
+            <input type="radio" id="position-defensemen" name="position" value="Defensemen" />
+            <label for="position-defensemen" role="tab">Defensemen</label>
+
+            <input type="radio" id="position-goalie" name="position" value="Goalie" />
+            <label for="position-goalie" role="tab">Goalie</label>
+
+            <span class="position-glider" aria-hidden="true"></span>
+          </div>
+
+          <label>
+            Current School*
+            <input name="currentSchool" type="text" required />
+          </label>
+
+          <fieldset>
+            <legend>Parent/guardian #1</legend>
+            <div class="grid two">
+              <label>
+                Name*
+                <input name="guardian1Name" type="text" required />
+              </label>
+              <label>
+                Email*
+                <input name="guardian1Email" type="email" required />
+              </label>
+            </div>
+            <div class="grid two">
+              <label>
+                Cell
+                <input name="guardian1Cell" type="tel" />
+              </label>
+              <label>
+                Relationship with player*
+                <input name="guardian1Relationship" type="text" required />
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Parent/guardian #2</legend>
+            <div class="grid two">
+              <label>
+                Name
+                <input name="guardian2Name" type="text" />
+              </label>
+              <label>
+                Email
+                <input name="guardian2Email" type="email" />
+              </label>
+            </div>
+            <div class="grid two">
+              <label>
+                Cell
+                <input name="guardian2Cell" type="tel" />
+              </label>
+              <label>
+                Relationship with player
+                <input name="guardian2Relationship" type="text" />
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <!-- Stage 3 -->
+        <section class="stage" data-stage="3" aria-labelledby="stage-3-title">
+          <h2 id="stage-3-title">Wire Transfer Payment</h2>
+
+          <div class="payment-panel">
+            <p id="camp-name-line" class="muted"></p>
+            <p class="muted">Please complete payment using wire transfer with the details below:</p>
+
+            <div class="payment-grid">
+              <div class="wire-transfer-col">
+                <div class="wire-transfer-details">
+                  <p>Scotiabank</p>
+                  <p>B6-2737 Laurier Street, Rockland, ON Canada K4K1A3</p>
+                  <p>Account Holder: Kim You-Seok</p>
+                  <p>Account #: 41186 04399 83</p>
+                  <p>Branch code: 002</p>
+                  <p>Swift code: NOSCCATT</p>
+                  <p>Routing number: 0002 41186</p>
+                  <p>Transit number: 41186</p>
+                  <p>Email Address: thomas121china@gmail.com</p>
+                </div>
+
+                <p class="invoice-note">
+                  An invoice will be sent to your email upon Submission of Payment Proof
+                </p>
+              </div>
+
+              <div class="payment-proof-col">
+                <h3>Upload Payment Proof</h3>
+
+                <label>
+                  Payment proof* (PDF/JPG/PNG)
+                  <input
+                    id="paymentProof"
+                    name="paymentProof"
+                    type="file"
+                    accept=".pdf,image/*"
+                    required
+                  />
+                </label>
+
+                <p id="paymentProofName" class="muted"></p>
+
+                <label>
+                  Transfer date*
+                  <input name="transferDate" type="date" required />
+                </label>
+
+                <label>
+                  Transfer reference / notes
+                  <input name="transferReference" type="text" placeholder="Optional" />
+                </label>
+              </div>
+            </div>
+
+            <label class="terms-check">
+              <input
+                type="checkbox"
+                name="agreeTerms"
+                id="agreeTerms"
+                required
+              />
+              <span>I agree to the terms and conditions from Achieve Ice Hockey &amp; Education</span>
+            </label>
+
+            <p id="paymentStatus" class="muted"></p>
+          </div>
+        </section>
+
+        <footer class="actions">
+          <button type="button" id="back-btn" class="btn secondary" disabled>Back</button>
+          <button type="button" id="next-btn" class="btn primary">Next</button>
+          <button type="submit" id="submit-btn" class="btn primary" hidden>Finish Registration</button>
+        </footer>
+      </form>
+    </section>
+  </main>
+
+  <script type="module" src="../js/firebase-client.js"></script>
+  <script src="./signup.js"></script>
+</body>
+</html>

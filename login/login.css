@@ -59,6 +59,13 @@
             color: #8C2131;
         }
 
+        .login-logo-img {
+  width: 72px;
+  height: auto;
+  margin: 0 auto 12px;
+  display: block;
+        }
+
         /* Top-level navigation (keeps nested dropdown ULs unaffected) */
         nav > ul {
             display: flex;

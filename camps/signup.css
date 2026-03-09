@@ -1,0 +1,347 @@
+:root {
+  --bg: #060606;
+  --panel: #111;
+  --text: #fff;
+  --muted: #bdbdbd;
+  --accent: #8c2131;
+  --line: rgba(255, 255, 255, 0.2);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.signup-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.signup-card {
+  width: min(980px, 100%);
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.progress-wrap { margin-bottom: 24px; }
+
+.progress-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  position: relative;
+}
+
+.progress-steps::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: var(--line);
+  z-index: 0;
+}
+
+.step {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 2px solid var(--line);
+  display: inline-grid;
+  place-items: center;
+  background: #181818;
+  font-weight: 700;
+}
+
+.step-title {
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 160px;
+}
+
+.step.is-active .step-circle,
+.step.is-done .step-circle {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+  
+.step.is-active .step-title,
+.step.is-done .step-title {
+  color: #fff;
+}
+
+.stage { display: none; }
+.stage.is-active { display: block; }
+
+h2 { margin: 0 0 18px; font-size: 1.4rem; }
+
+label, legend {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+input, select {
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 14px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: #0b0b0b;
+  color: #fff;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.grid.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+fieldset {
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 12px;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  padding: 14px;
+}
+
+.position-tabs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.position-tabs input[type="radio"] { display: none; }
+
+.position-tabs label {
+  margin: 0;
+  padding: 12px;
+  text-align: center;
+  z-index: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.position-glider {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: calc(33.333% - 4px);
+  background: linear-gradient(90deg, #8c2131, #6e1c2a);
+  border-radius: 10px;
+  transition: transform 220ms ease;
+}
+
+#position-forward:checked ~ .position-glider { transform: translateX(0%); }
+#position-defensemen:checked ~ .position-glider { transform: translateX(100%); }
+#position-goalie:checked ~ .position-glider { transform: translateX(200%); }
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn.secondary {
+  background: #1f1f1f;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.muted { color: var(--muted); }
+
+@media (max-width: 720px) {
+  .grid.two { grid-template-columns: 1fr; }
+  .step-title { font-size: 11px; }
+}
+
+/* Prevent inherited site header styles from affecting progress panel */
+.signup-card > .progress-wrap {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  z-index: auto !important;
+  margin: 0 0 20px 0 !important;
+  padding: 0 0 14px 0 !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Force visible gap between stepper and form content */
+#camp-signup-form {
+  margin-top: 10px;
+}
+
+/* Prevent inherited global section spacing from index.css */
+#camp-signup-form .stage {
+  display: none;
+  margin-top: 0;
+  padding: 0 !important;
+}
+
+#camp-signup-form .stage.is-active {
+  display: block;
+}
+
+.payment-panel {
+  margin-top: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #0b0b0b;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.payment-price {
+  margin: 6px 0 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.payment-method-card {
+  margin: 10px 0 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+.payment-method-ok {
+  color: #9fdba9;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.payment-actions-inline {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.invoice-preview {
+  width: 100%;
+  min-height: 480px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px;
+  background: #0b0b0b;
+  margin-top: 12px;
+}
+
+.wire-transfer-details {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px;
+  background: #101010;
+}
+
+.wire-transfer-details p {
+  margin: 6px 0;
+  word-break: break-word;
+}
+
+.invoice-note {
+  margin-top: 14px;
+  font-size: 0.92rem;
+  color: var(--muted);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-top: 10px;
+}
+
+.payment-proof-col {
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px;
+  background: #101010;
+}
+
+.payment-proof-col h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.payment-proof-col input[type="file"] {
+  padding: 9px 10px;
+}
+
+@media (max-width: 900px) {
+  .payment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.terms-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.terms-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
+}
