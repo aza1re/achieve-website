@@ -1,6 +1,8 @@
 {
   "name": "Achieve Ice Hockey & Education",
   "short_name": "Achieve",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
