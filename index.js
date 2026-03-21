@@ -9,6 +9,8 @@ class ProgramsCarousel {
             }
 
             init() {
+              if (!this.cards.length) return;
+
                 // Add click events to dots
                 this.dots.forEach((dot, index) => {
                     dot.addEventListener('click', () => {
@@ -56,6 +58,8 @@ class ProgramsCarousel {
             }
 
             addSwipeSupport() {
+              if (!this.cards.length || !this.cards[0].parentElement) return;
+
                 let startX = 0;
                 let endX = 0;
 
@@ -96,6 +100,7 @@ class ProgramsCarousel {
         // Reset animation on page load for smoother effect
 window.addEventListener('load', function() {
     const heroContent = document.querySelector('.hero-content');
+  if (!heroContent) return;
     heroContent.style.animation = 'none';
     setTimeout(() => {
         heroContent.style.animation = '';
@@ -123,6 +128,56 @@ window.addEventListener('load', function() {
                 }
             });
         });
+
+        // Event search by title (filters all event cards)
+        (function initEventSearch() {
+          const searchInput = document.querySelector('.nav-search input[type="search"]');
+          const searchButton = document.querySelector('.nav-search button');
+          const eventCards = Array.from(document.querySelectorAll('.event-card'));
+          const seasonGroups = Array.from(document.querySelectorAll('.season-cards'));
+          const seasonTabs = Array.from(document.querySelectorAll('.season-tab'));
+
+          if (!searchInput || !eventCards.length) return;
+
+          function applyFilter() {
+            const query = (searchInput.value || '').trim().toLowerCase();
+
+            if (!query) {
+              eventCards.forEach((card) => {
+                card.style.display = '';
+                card.hidden = false;
+              });
+
+              // Restore season visibility using currently active tab state.
+              const activeTab = seasonTabs.find((tab) => tab.classList.contains('active'));
+              if (activeTab) activeTab.click();
+              return;
+            }
+
+            // While searching, expose all seasonal groups so results are not constrained to one tab.
+            seasonGroups.forEach((group) => group.removeAttribute('hidden'));
+
+            eventCards.forEach((card) => {
+              const title = (card.querySelector('h3')?.textContent || '').trim().toLowerCase();
+              const isMatch = title.includes(query);
+              card.hidden = !isMatch;
+              card.style.display = isMatch ? '' : 'none';
+            });
+          }
+
+          searchInput.addEventListener('input', applyFilter);
+
+          if (searchButton) {
+            searchButton.addEventListener('click', applyFilter);
+          }
+
+          searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              applyFilter();
+            }
+          });
+        })();
 
         // Dropdown hover behavior with small hide delay so it stays when cursor moves between trigger and panel
         (function attachDropdownHover() {
@@ -431,18 +486,124 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!modal) return;
 
   const DEFAULT_CAMP_SIGNUP_URL = "./camps/index.html";
+  const NOTRE_DAME_BANNER = "sources/homepage/1.png";
+  const CAMP_INFO = {
+    "Student-athlete School Tours": {
+      price: "$1,200 CAD",
+      venue: "Toronto, Ontario",
+      features: [
+        { title: "Academic Pathway Planning", desc: "Visits and orientation focused on student-athlete school options." },
+        { title: "Campus + Ice Exposure", desc: "Players tour facilities and see real training environments." },
+        { title: "Family Guidance", desc: "Structured support to help families compare fit and next steps." },
+      ],
+    },
+    "Junior Hockey": {
+      price: "$2,100 CAD",
+      venue: "Montreal, Quebec",
+      features: [
+        { title: "High Tempo Sessions", desc: "Skill and pace-focused training built for junior-level progression." },
+        { title: "Position-Specific Work", desc: "Dedicated reps for forwards, defensemen, and goalies." },
+        { title: "Performance Feedback", desc: "Coaches provide direct notes to target each player's development." },
+      ],
+    },
+    "Notre Dame Hounds @Incheon, Korea": {
+      price: "$2,950 CAD",
+      venue: "Incheon Seonhak Int'l Ice Rink",
+      features: [
+        { title: "International Competition", desc: "Compete against elite teams in a high-standard tournament setting." },
+        { title: "Coach-Led Clinics", desc: "On-ice sessions designed around in-game decision making and execution." },
+        { title: "Travel Logistics Included", desc: "Clear itinerary and operations support for players and families." },
+      ],
+    },
+    "Notre Dame Hounds @Thailand": {
+      price: "$2,450 CAD",
+      venue: "Bangkok, Thailand",
+      features: [
+        { title: "Tournament Readiness", desc: "Structured prep sessions before and during event play." },
+        { title: "Game Film Touchpoints", desc: "Quick video reviews for tactical adjustments." },
+        { title: "Team Culture Build", desc: "Focused environment that strengthens accountability and cohesion." },
+      ],
+    },
+    "Bauer Cup": {
+      price: "$2,600 CAD",
+      venue: "Seoul, Korea",
+      features: [
+        { title: "Elite Showcase", desc: "Competitive stage for players targeting higher-level opportunities." },
+        { title: "Skill Transfer Drills", desc: "Practice design emphasizes skills that carry directly into games." },
+        { title: "Mentor Coaching", desc: "Direct guidance from experienced staff throughout the event." },
+      ],
+    },
+    "Quebec Peewee": {
+      price: "$1,950 CAD",
+      venue: "Quebec City, Canada",
+      features: [
+        { title: "Premier Youth Event", desc: "Participate in one of hockey's most recognized youth tournaments." },
+        { title: "Game Environment Prep", desc: "Sessions tuned for tournament pace and pressure." },
+        { title: "Travel Coordination", desc: "Operational details are organized for a smoother camp experience." },
+      ],
+    },
+    "Pre-Quebec": {
+      price: "$1,500 CAD",
+      venue: "Rockland, Ontario",
+      features: [
+        { title: "Pre-Tournament Build", desc: "Final prep cycle before major competition windows." },
+        { title: "Systems Alignment", desc: "Team structure and role clarity work before game travel." },
+        { title: "Confidence Sessions", desc: "Targeted reps to sharpen execution under pressure." },
+      ],
+    },
+  };
+
+  const FALLBACK_INFO = {
+    price: "$TBD",
+    venue: "Venue shared after registration",
+    features: [
+      { title: "International Coaching", desc: "Professional on-ice guidance tailored to player level." },
+      { title: "Structured Development", desc: "Clear training progression with practical game focus." },
+      { title: "Player Support", desc: "Organized communication and planning for participants and families." },
+    ],
+  };
 
   const backdrop = modal.querySelector("[data-close]");
   const closeBtn = modal.querySelector(".event-modal__close");
   const modalImage = modal.querySelector(".event-modal__image");
   const modalTitle = modal.querySelector(".event-modal__title");
-  const modalDesc = modal.querySelector(".event-modal__desc");
   const modalDetails = modal.querySelector(".event-modal__details");
   const modalRegister = modal.querySelector(".event-modal__register");
+  const modalPrice = modal.querySelector("[data-event-price]");
+  const modalDetailLines = modal.querySelector("[data-event-detail-lines]");
+  const modalVenueLine = modal.querySelector("[data-event-venue-line] span");
+  const modalDatesLine = modal.querySelector("[data-event-dates-line] span");
+  const modalFeatures = modal.querySelector("[data-event-features]");
   let activeRegisterHref = DEFAULT_CAMP_SIGNUP_URL;
 
+  const bindFeatureInteractions = () => {
+    if (!modalFeatures) return;
+    const items = Array.from(modalFeatures.querySelectorAll(".event-modal__feature"));
+
+    const activate = (item) => {
+      items.forEach((el) => el.classList.remove("is-active"));
+      item.classList.add("is-active");
+    };
+
+    items.forEach((item, idx) => {
+      if (!item.dataset.boundFeature) {
+        item.dataset.boundFeature = "1";
+        item.addEventListener("mouseenter", () => activate(item));
+        item.addEventListener("click", () => activate(item));
+        item.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            activate(item);
+          }
+        });
+      }
+
+      if (idx === 0) item.classList.add("is-active");
+      else item.classList.remove("is-active");
+    });
+  };
+
   const openModal = (card) => {
-    const img = card.querySelector("img");
     const title = card.querySelector("h3");
     const desc = card.querySelector("p");
 
@@ -456,30 +617,63 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const campName = (title?.textContent || "Camp").trim();
     const campId = (card.getAttribute("data-camp-id") || "").trim();
+    const info = CAMP_INFO[campName] || FALLBACK_INFO;
+    const isNotreDameEvent = campName.startsWith("Notre Dame Hounds @");
+    const hideIncheonHeaderInfo = campName === "Notre Dame Hounds @Incheon, Korea";
 
     const url = new URL(baseHref, window.location.href);
     url.searchParams.set("camp", campName);
     if (campId) url.searchParams.set("campId", campId);
     activeRegisterHref = url.toString();
 
-    if (img) {
-      modalImage.src = img.src;
-      modalImage.alt = img.alt || "";
-      const naturalW = img.naturalWidth || img.width || 600;
-      const naturalH = img.naturalHeight || img.height || 400;
+    modalTitle.textContent = title ? title.textContent : "Event Details";
+    modalTitle.hidden = hideIncheonHeaderInfo;
+    if (modalImage) {
+      const fallbackImage = card.querySelector("img")?.getAttribute("src") || "";
+      const posterSrc = isNotreDameEvent ? NOTRE_DAME_BANNER : fallbackImage;
+      modalImage.src = posterSrc;
+      modalImage.alt = `${campName} poster`;
+    }
+    if (modalRegister) modalRegister.setAttribute("href", activeRegisterHref);
+    if (modalPrice) modalPrice.textContent = info.price;
 
-      const maxW = Math.min(window.innerWidth * 0.6, 520);
-      const maxH = Math.min(window.innerHeight * 0.7, 360);
-      const scale = Math.min(maxW / naturalW, maxH / naturalH, 1);
+    const venueMatch = detailsText.match(/Venue:\s*([^\.]+)\.?/i);
+    const datesMatch = detailsText.match(/Dates?:\s*([^\.]+)\.?/i);
+    const venueText = venueMatch ? venueMatch[1].trim() : (info.venue || "");
+    const datesText = datesMatch ? datesMatch[1].trim() : "";
 
-      modal.style.setProperty("--event-modal-img-w", `${Math.round(naturalW * scale)}px`);
-      modal.style.setProperty("--event-modal-img-h", `${Math.round(naturalH * scale)}px`);
+    if (modalDetailLines && modalVenueLine && modalDatesLine) {
+      if (hideIncheonHeaderInfo) {
+        modalDetailLines.hidden = true;
+      } else if (venueText || datesText) {
+        modalDetailLines.hidden = false;
+        modalVenueLine.textContent = venueText || "Venue shared on registration";
+        modalDatesLine.textContent = datesText || "Dates shared on registration";
+      } else {
+        modalDetailLines.hidden = true;
+      }
     }
 
-    modalTitle.textContent = title ? title.textContent : "Event Details";
-    modalDesc.textContent = desc ? desc.textContent : "";
-    modalDetails.textContent = detailsText;
-    if (modalRegister) modalRegister.setAttribute("href", activeRegisterHref);
+    if (modalDetails) {
+      const hasStructuredDetails = Boolean(venueMatch || datesMatch);
+      modalDetails.hidden = hasStructuredDetails;
+      modalDetails.textContent = hasStructuredDetails ? "" : detailsText;
+    }
+
+    if (modalFeatures) {
+      const items = (info.features && info.features.length ? info.features : FALLBACK_INFO.features).slice(0, 3);
+      modalFeatures.innerHTML = items
+        .map(
+          (feature) =>
+            `<li class="event-modal__feature" tabindex="0"><strong class="event-modal__feature-title">${feature.title}</strong><span class="event-modal__feature-desc">${feature.desc}</span></li>`
+        )
+        .join("");
+      bindFeatureInteractions();
+    }
+
+    modal.classList.remove("feature-anim-ready");
+    void modal.offsetWidth;
+    modal.classList.add("feature-anim-ready");
 
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
